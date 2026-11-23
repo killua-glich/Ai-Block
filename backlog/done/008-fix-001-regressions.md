@@ -16,11 +16,11 @@ Found by watching the pi session for task 001 (2026-11-23). `npm run verify -- 0
 
 ## Acceptance criteria
 
-- [ ] `button` and `button:disabled` rules are back, unchanged
-- [ ] `.filters` is defined exactly once, and no selector is defined twice
-- [ ] `src/index.css` ends with a newline
-- [ ] `backlog/done/001-category-filter.md` is the full original file again (including `## Prompt`) with every box ticked
-- [ ] `npm run verify -- 008` passes (tests: `tests/task-008.test.js`)
+- [x] `button` and `button:disabled` rules are back, unchanged
+- [x] `.filters` is defined exactly once, and no selector is defined twice
+- [x] `src/index.css` ends with a newline
+- [x] `backlog/done/001-category-filter.md` is the full original file again (including `## Prompt`) with every box ticked
+- [x] `npm run verify -- 008` passes (tests: `tests/task-008.test.js`)
 
 ## Prompt
 

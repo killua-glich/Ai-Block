@@ -17,4 +17,36 @@ Let users filter the device list by category.
 ## Hints
 
 - Use `useState` for the selected category.
-EOF
+
+## Prompt
+
+Run `opencode` in the repo root (default agent `gemma-dev`), then paste:
+
+````text
+Context: AGENTS.md (already loaded) has the stack, the conventions and a project map of every file. Use it. Do NOT list or scan the project, and do NOT call the explorer subagent. Open only the files named under "Read first", "Create" and "Edit" below.
+Rules: only edit the files listed. Do not touch other tasks.
+
+First: `git mv backlog/todo/001-category-filter.md backlog/in-progress/001-category-filter.md`.
+
+Task: add a category filter to the device catalog.
+
+Read first: `src/pages/Catalog.jsx`, `src/data/devices.js`.
+Edit: `src/pages/Catalog.jsx`, `src/index.css`.
+
+Steps:
+1. In Catalog.jsx import `useState` from 'react'.
+2. Build the category list from data: `const categories = ['All', ...new Set(devices.map((d) => d.category))]`.
+3. Add state `const [category, setCategory] = useState('All')`.
+4. Above the `.grid` div render a `<select>` with one `<option>` per category, value bound to `category`, onChange calls `setCategory(e.target.value)`.
+5. Compute `const visible = category === 'All' ? devices : devices.filter((d) => d.category === category)` and map over `visible` instead of `devices`.
+6. If `visible.length === 0` render `<p>No devices found.</p>` instead of the grid.
+7. In index.css add a `.filters` class (flex, gap 1rem, margin-bottom 1rem) and wrap the select in `<div className="filters">`.
+
+When done:
+- Run `npm run verify -- 001`. It checks scope, lint, build and the tests in `tests/task-001*.test.jsx`.
+- If it says FAIL: read the lines under FAIL, fix the code in `src/`, and run it again. Repeat until the last line is `VERIFY PASSED`.
+- NEVER edit files in `tests/`, `package.json` or files the task does not list. The verify step catches that and fails.
+- Tick every checkbox in `backlog/in-progress/001-category-filter.md`, then `git mv backlog/in-progress/001-category-filter.md backlog/done/001-category-filter.md`.
+- `git add -A && git commit -m "task 001: Category filter on catalog"`
+If something is unclear or verify fails 3 times in a row: add a `## Notes` section to the task file explaining the problem and stop.
+````
