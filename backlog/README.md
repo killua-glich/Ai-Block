@@ -52,20 +52,14 @@ Rescanning the repo every session wastes the 32k context, so:
 3. **`.githooks/pre-commit`** reruns it on every commit, so after each task the next session starts with an up-to-date map. `npm install` enables the hook via the `prepare` script.
 4. **Task prompts** name the exact files to read and edit, so the agent opens 2–4 files instead of the whole repo.
 
-## Which model does which task
+## Agent: one model, no orchestrator
 
-Every task has an **Agent** line. The agents are defined in `opencode.json` in the repo root, one per model, with no subagents. Assignments come from `bench/` (see `bench/README.md`).
+Every task runs with the same single agent, **`gemma-dev`** (Supergemma4 26B MoE), the default in `opencode.json`. Just run `opencode` in the repo root.
 
-| Agent | Model | RAM | Speed | Good at | Avoid |
-|---|---|---|---|---|---|
-| `gemma-dev` | Supergemma4 26B MoE | 14 GB | ~28 tok/s | everything, best at logic. Default and fallback | – |
-| `qwen-dev` | Qwen2.5 Coder 14B | 8 GB | ~13 tok/s | React component edits, tool calls | date math, counting constraints |
-| `spark-dev` | Spark X2.5 4B | 4 GB | ~28 tok/s | small, fully specified edits, data, scouting | any logic: it reasons in loops until it hits the token limit |
-
-Inkling 2 Mini scored as well as Gemma but is about 9× slower, and it can't run in OpenCode yet (see `bench/README.md`), so it has no agent.
-
-Start the right one with `opencode --agent <name>`.
-If a task fails twice with its agent, retry it with `gemma-dev`.
+- **Single model, no orchestrator, no subagents.** Only one model is loaded at a time, there's no delegation overhead, and nothing switches models between steps. The `AGENTS.md` map replaces the explorer.
+- **Why Gemma:** best score and fastest in `bench/` (1.00 avg, ~28 tok/s, 55 s for all 5 tests), and the only fast model that got the date logic right.
+- Your global agents (orchestrators, explorers, `gemma-lead`, `qwen-coder`) are disabled in this project via `opencode.json`. Your global config is unchanged.
+- If a task fails twice: make it smaller or more explicit (prompt and test), don't switch models.
 
 ## Verification
 

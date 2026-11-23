@@ -3,7 +3,6 @@
 **Depends on:** none
 **Files:** `src/...`
 **Tests:** `tests/task-NNN.test.jsx`, written by a human BEFORE the task goes into `todo/`
-**Agent:** `gemma-dev` (why this model). Fallback: `gemma-dev`.
 
 ## Goal
 

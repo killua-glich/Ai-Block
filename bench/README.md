@@ -57,6 +57,10 @@ That server returns Inkling's raw message tokens (`<|content_thinking|>`, `<|con
 
 RAM: about 7 GB process RSS plus Metal memory, with about 33% of system RAM still free. It fits on 32 GB with nothing else loaded.
 
+## Decision
+
+**One model for every task: Gemma 26B (`gemma-dev`), no orchestrator, no subagents.** It tied for the best score and was the fastest by far. Per-task models (Qwen Coder for components, Spark for small tasks) were assigned at first but dropped to keep the setup simple: one model loaded, one agent, nothing switching models.
+
 ## Caveats
 
 - One run per test at temperature 0.2, so results are noisy (see Gemma's logic score). Run it again before trusting small differences.

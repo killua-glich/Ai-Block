@@ -8,7 +8,7 @@ Ai-Block: a device rental website. This file is loaded automatically by the codi
 1. The project map below lists every source file, what it exports, and how the files connect. Use it instead of exploring.
 2. Open only the files your task names, plus at most 2 more if the map shows you need them.
 3. Never read `node_modules/`, `dist/`, `package-lock.json`, or `backlog/done/`. Read a test file in `tests/` only when verify fails on it.
-4. Don't use the explorer subagent when the task already lists its files.
+4. There are no subagents. Don't try to delegate: do the task yourself.
 5. After a commit, the pre-commit hook regenerates the map. You never edit the map by hand.
 
 ## Stack and conventions
@@ -24,7 +24,7 @@ Ai-Block: a device rental website. This file is loaded automatically by the codi
 
 ## Workflow
 
-Tasks live in `backlog/`. See `backlog/README.md`. One task per session. Each task names its agent (`gemma-dev`, `qwen-dev`, `spark-dev` in `opencode.json`), based on `bench/README.md`.
+Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tasks use the single agent `gemma-dev` (one model, no orchestrator, no subagents).
 
 ## Project map
 

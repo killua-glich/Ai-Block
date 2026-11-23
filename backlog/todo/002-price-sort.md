@@ -2,7 +2,6 @@
 
 **Depends on:** 001
 **Files:** `src/pages/Catalog.jsx`
-**Agent:** `qwen-dev` (Same file as 001, small component change.) Fallback: `gemma-dev`.
 
 ## Goal
 
@@ -17,7 +16,7 @@ Let users sort devices by price per day.
 
 ## Prompt
 
-Run `opencode --agent qwen-dev` in the repo root, then paste:
+Run `opencode` in the repo root (default agent `gemma-dev`), then paste:
 
 ````text
 Context: AGENTS.md (already loaded) has the stack, the conventions and a project map of every file. Use it. Do NOT list or scan the project, and do NOT call the explorer subagent. Open only the files named under "Read first", "Create" and "Edit" below.

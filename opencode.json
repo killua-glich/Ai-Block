@@ -1,29 +1,38 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "default_agent": "gemma-dev",
+  "model": "lmstudio/supergemma4-26b-uncensored-mlx-v2",
+  "small_model": "lmstudio/supergemma4-26b-uncensored-mlx-v2",
   "agent": {
     "gemma-dev": {
       "mode": "primary",
-      "description": "Gemma4 26B MoE solo dev. Best all-rounder, only reliable model for date/business logic. Default + fallback for every task.",
+      "description": "Single-model agent for every backlog task: Supergemma4 26B MoE. No orchestrator, no subagents.",
       "model": "lmstudio/supergemma4-26b-uncensored-mlx-v2",
       "temperature": 0.2,
-      "prompt": "You are a coding agent working on one backlog task. AGENTS.md has the project map: trust it and open only the files the task names. Make the edits, run `npm run build`, fix errors, then follow the task's git steps.",
-      "permission": { "task": { "*": "deny" } }
+      "prompt": "You are a coding agent working on one backlog task. AGENTS.md has the project map: trust it and open only the files the task names. Make the edits, run `npm run verify -- NNN` (NNN = task number) and fix `src/` until the last line is VERIFY PASSED. Never edit tests/. Then follow the task's git steps.",
+      "permission": {
+        "task": {
+          "*": "deny"
+        }
+      }
     },
-    "qwen-dev": {
-      "mode": "primary",
-      "description": "Qwen2.5 Coder 14B solo dev. Strong at React component edits and tool calls, uses half the RAM. Weak at date math and counting.",
-      "model": "lmstudio/qwen/qwen2.5-coder-14b",
-      "temperature": 0.1,
-      "prompt": "You are a coding agent working on one backlog task. AGENTS.md has the project map: trust it and open only the files the task names. Make the edits, run `npm run build`, fix errors, then follow the task's git steps.",
-      "permission": { "task": { "*": "deny" } }
+    "qwen-orchestrator": {
+      "disable": true
     },
-    "spark-dev": {
-      "mode": "primary",
-      "description": "Spark X2.5 4B solo dev. Only for small, fully specified tasks (one file, no logic). Loops on anything that needs reasoning.",
-      "model": "lmstudio/spark-x2.5-4b-mlx",
-      "temperature": 0.1,
-      "prompt": "You are a coding agent working on one small backlog task. AGENTS.md has the project map: trust it and open only the files the task names. Follow the numbered steps exactly, do not improvise. Run `npm run build`, then follow the task's git steps.",
-      "permission": { "task": { "*": "deny" } }
+    "qwen-explorer": {
+      "disable": true
+    },
+    "gemma-orchestrator": {
+      "disable": true
+    },
+    "gemma-explorer": {
+      "disable": true
+    },
+    "gemma-lead": {
+      "disable": true
+    },
+    "qwen-coder": {
+      "disable": true
     }
   }
 }

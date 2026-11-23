@@ -2,7 +2,6 @@
 
 **Depends on:** 003
 **Files:** `src/pages/DeviceDetail.jsx`, `src/components/RentalForm.jsx` (new), `src/index.css`
-**Agent:** `gemma-dev` (Date math. Gemma was the best at it and passed all daylight-saving cases in 1 of 2 runs; Qwen Coder is off by one, Spark gets stuck in a loop.) Fallback: split the task into smaller ones.
 
 ## Goal
 
@@ -22,7 +21,7 @@ Users pick a start and end date and see the total price.
 
 ## Prompt
 
-Run `opencode --agent gemma-dev` in the repo root, then paste:
+Run `opencode` in the repo root (default agent `gemma-dev`), then paste:
 
 ````text
 Context: AGENTS.md (already loaded) has the stack, the conventions and a project map of every file. Use it. Do NOT list or scan the project, and do NOT call the explorer subagent. Open only the files named under "Read first", "Create" and "Edit" below.

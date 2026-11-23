@@ -2,7 +2,6 @@
 
 **Depends on:** 005
 **Files:** `src/pages/MyRentals.jsx` (new), `src/App.jsx`, `src/components/Header.jsx`
-**Agent:** `gemma-dev` (Three files plus date comparison logic.) Fallback: split the task into smaller ones.
 
 ## Goal
 
@@ -18,7 +17,7 @@ Users see their rentals in one place.
 
 ## Prompt
 
-Run `opencode --agent gemma-dev` in the repo root, then paste:
+Run `opencode` in the repo root (default agent `gemma-dev`), then paste:
 
 ````text
 Context: AGENTS.md (already loaded) has the stack, the conventions and a project map of every file. Use it. Do NOT list or scan the project, and do NOT call the explorer subagent. Open only the files named under "Read first", "Create" and "Edit" below.

@@ -2,7 +2,6 @@
 
 **Depends on:** none
 **Files:** `src/pages/Catalog.jsx`, `src/index.css`
-**Agent:** `qwen-dev` (React component edit, scored 1.00 on the component test.) Fallback: `gemma-dev`.
 
 ## Goal
 
@@ -21,7 +20,7 @@ Let users filter the device list by category.
 
 ## Prompt
 
-Run `opencode --agent qwen-dev` in the repo root, then paste:
+Run `opencode` in the repo root (default agent `gemma-dev`), then paste:
 
 ````text
 Context: AGENTS.md (already loaded) has the stack, the conventions and a project map of every file. Use it. Do NOT list or scan the project, and do NOT call the explorer subagent. Open only the files named under "Read first", "Create" and "Edit" below.
