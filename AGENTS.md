@@ -44,13 +44,14 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
 - `src/data/devices.js` (10 lines)
   - exports: devices (default)
   - shape: { id, name, category, pricePerDay, description } × 4
-- `src/index.css` (13 lines)
-  - classes: header, logo, container, grid, card, category, price
+- `src/index.css` (12 lines)
+  - classes: header, logo, container, grid, card, category, price, filters
 - `src/main.jsx` (14 lines)
   - imports: ./App.jsx
-- `src/pages/Catalog.jsx` (16 lines)
+- `src/pages/Catalog.jsx` (33 lines)
   - exports: Catalog()
   - imports: ../data/devices.js, ../components/DeviceCard.jsx
+  - hooks: useState
 - `src/pages/DeviceDetail.jsx` (23 lines)
   - exports: DeviceDetail()
   - imports: ../data/devices.js
@@ -62,7 +63,7 @@ react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @eslint/js@^10.0.1, @
 
 ### Backlog status
 
-- todo: 001, 002, 003, 004, 005, 006, 007
+- todo: 002, 003, 004, 005, 006, 007
 - in-progress: —
-- done: —
+- done: 001
 <!-- CODEMAP:END -->
