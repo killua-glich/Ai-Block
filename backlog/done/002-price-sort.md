@@ -9,10 +9,10 @@ Let users sort devices by price per day.
 
 ## Acceptance criteria
 
-- [ ] A second `<select>` next to the category filter: "Default", "Price: low to high", "Price: high to low"
-- [ ] Sorting works together with the category filter
-- [ ] The original `devices` array is not mutated (copy before sorting)
-- [ ] `npm run verify -- 002` passes (tests: `tests/task-002*.test.jsx`)
+- [x] A second `<select>` next to the category filter: "Default", "Price: low to high", "Price: high to low"
+- [x] Sorting works together with the category filter
+- [x] The original `devices` array is not mutated (copy before sorting)
+- [x] `npm run verify -- 002` passes (tests: `tests/task-002*.test.jsx`)
 
 ## Prompt
 
