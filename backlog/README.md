@@ -1,0 +1,42 @@
+# Backlog
+
+Work queue for the local coding agents (and humans). One task = one Markdown file.
+
+## Folders = status
+
+| Folder         | Meaning                                  |
+|----------------|------------------------------------------|
+| `todo/`        | Ready to pick up. Lowest number first.   |
+| `in-progress/` | Someone/some agent is working on it.     |
+| `done/`        | Finished and acceptance criteria met.    |
+
+Move a task with `git mv backlog/todo/003-x.md backlog/in-progress/`.
+
+## Rules for agents
+
+1. Pick the **lowest-numbered** file in `todo/` whose `Depends on` tasks are all in `done/`.
+2. Move it to `in-progress/` before starting.
+3. Only touch the files listed under **Files**, unless the task says otherwise.
+4. Stack: React 19 + Vite, **plain JavaScript (.jsx)**, no TypeScript, no new libraries unless the task allows it.
+5. Done = every acceptance-criteria checkbox ticked **and** `npm run build` passes.
+6. Tick the boxes, move the file to `done/`, commit with message `task NNN: <title>`.
+7. If stuck or the task is unclear: add a `## Notes` section explaining why, leave it in `in-progress/`, stop.
+
+## Task template
+
+Copy `TEMPLATE.md` to `todo/NNN-short-name.md` (next free number, 3 digits).
+Keep tasks small: one component or one page change, ideally < 150 lines of code.
+
+## Running a task with a local agent
+
+Every task file ends with a `## Prompt` section. Start OpenCode in the repo root
+(default agent `qwen-orchestrator`, Qwen3.8 27B) and paste that prompt.
+**One task per session.** Start a fresh session for the next task so the 32k context stays clean.
+
+Prompts are written for small local models:
+- self-contained: they don't rely on earlier chat history
+- exact file paths, data shapes, and numbered steps
+- the build check and the git workflow are part of every prompt
+- the agent stops and writes `## Notes` instead of guessing
+
+When you write a new task, keep the prompt under ~400 words and follow the same structure.
