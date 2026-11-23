@@ -13,7 +13,7 @@ Let users sort devices by price per day.
 - [ ] A second `<select>` next to the category filter: "Default", "Price: low to high", "Price: high to low"
 - [ ] Sorting works together with the category filter
 - [ ] The original `devices` array is not mutated (copy before sorting)
-- [ ] `npm run build` passes
+- [ ] `npm run verify -- 002` passes (tests: `tests/task-002*.test.jsx`)
 
 ## Prompt
 
@@ -40,8 +40,10 @@ Steps:
 5. Never call `.sort()` directly on `devices` or `visible`.
 
 When done:
-- Run `npm run build`. If it fails, fix the error and run it again until it passes.
+- Run `npm run verify -- 002`. It checks scope, lint, build and the tests in `tests/task-002*.test.jsx`.
+- If it says FAIL: read the lines under FAIL, fix the code in `src/`, and run it again. Repeat until the last line is `VERIFY PASSED`.
+- NEVER edit files in `tests/`, `package.json` or files the task does not list. The verify step catches that and fails.
 - Tick every checkbox in `backlog/in-progress/002-price-sort.md`, then `git mv backlog/in-progress/002-price-sort.md backlog/done/002-price-sort.md`.
 - `git add -A && git commit -m "task 002: Sort catalog by price"`
-If something is unclear or the build fails 3 times in a row: add a `## Notes` section to the task file explaining the problem and stop.
+If something is unclear or verify fails 3 times in a row: add a `## Notes` section to the task file explaining the problem and stop.
 ````

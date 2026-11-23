@@ -13,7 +13,7 @@ Make devices richer so detail pages have real content.
 - [ ] At least 10 devices, at least 5 categories
 - [ ] Each device has: `id`, `name`, `category`, `pricePerDay`, `description`, `specs` (array of strings), `available` (boolean)
 - [ ] Detail page shows specs as a list and an "Available" / "Not available" badge
-- [ ] `npm run build` passes
+- [ ] `npm run verify -- 003` passes (tests: `tests/task-003*.test.jsx`)
 
 ## Prompt
 
@@ -40,8 +40,10 @@ Steps:
 5. Add `.badge`, `.badge-ok` (green), `.badge-no` (red) styles to `src/index.css` (small rounded pill, white text). This one extra file is allowed.
 
 When done:
-- Run `npm run build`. If it fails, fix the error and run it again until it passes.
+- Run `npm run verify -- 003`. It checks scope, lint, build and the tests in `tests/task-003*.test.jsx`.
+- If it says FAIL: read the lines under FAIL, fix the code in `src/`, and run it again. Repeat until the last line is `VERIFY PASSED`.
+- NEVER edit files in `tests/`, `package.json` or files the task does not list. The verify step catches that and fails.
 - Tick every checkbox in `backlog/in-progress/003-more-device-data.md`, then `git mv backlog/in-progress/003-more-device-data.md backlog/done/003-more-device-data.md`.
 - `git add -A && git commit -m "task 003: Extend device data"`
-If something is unclear or the build fails 3 times in a row: add a `## Notes` section to the task file explaining the problem and stop.
+If something is unclear or verify fails 3 times in a row: add a `## Notes` section to the task file explaining the problem and stop.
 ````

@@ -1,4 +1,7 @@
 #!/bin/sh
-# Keep the project map in AGENTS.md in sync with the code on every commit.
+# 1. Keep the project map in AGENTS.md in sync with the code.
 node scripts/codemap.mjs >/dev/null || exit 1
 git add AGENTS.md
+# 2. Block the commit if lint, build or the tests of any done task fail.
+#    (Humans can skip with `git commit --no-verify`. Agents never do.)
+node scripts/verify.mjs || { echo "Commit blocked: fix the FAIL lines above."; exit 1; }

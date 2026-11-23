@@ -14,7 +14,7 @@ Users see their rentals in one place.
 - [ ] Header has a "My rentals" link
 - [ ] Table/list with device name, dates, total price; split into "Active" (end date >= today) and "Past"
 - [ ] Empty state: "You have no rentals yet."
-- [ ] `npm run build` passes
+- [ ] `npm run verify -- 006` passes (tests: `tests/task-006*.test.jsx`)
 
 ## Prompt
 
@@ -35,14 +35,16 @@ Steps:
 1. MyRentals.jsx: default-exported component. `const rentals = getRentals()` (import from '../data/rentals.js'). Import `devices` too.
 2. `const today = new Date().toISOString().slice(0, 10)`. Split: `active = rentals.filter((r) => r.endDate >= today)`, `past = rentals.filter((r) => r.endDate < today)`.
 3. If `rentals.length === 0` render `<p>You have no rentals yet.</p>`.
-4. Otherwise render `<h2>Active</h2>` and `<h2>Past</h2>`, each followed by a `<table>` with columns Device, From, To, Total.
+4. Otherwise render `<h2>Active</h2>` and `<h2>Past</h2>`, each DIRECTLY followed by a `<table>` (no wrapper element in between) with columns Device, From, To, Total.
    Device name = `devices.find((d) => d.id === r.deviceId)?.name ?? 'Unknown device'`. Total shown as "CHF {r.totalPrice}". If a section is empty, show "None." instead of the table.
 5. App.jsx: import MyRentals and add `<Route path="/rentals" element={<MyRentals />} />`.
 6. Header.jsx: add `<Link to="/rentals">My rentals</Link>` after the Devices link inside `<nav>`. Add a gap between links via inline style or existing CSS.
 
 When done:
-- Run `npm run build`. If it fails, fix the error and run it again until it passes.
+- Run `npm run verify -- 006`. It checks scope, lint, build and the tests in `tests/task-006*.test.jsx`.
+- If it says FAIL: read the lines under FAIL, fix the code in `src/`, and run it again. Repeat until the last line is `VERIFY PASSED`.
+- NEVER edit files in `tests/`, `package.json` or files the task does not list. The verify step catches that and fails.
 - Tick every checkbox in `backlog/in-progress/006-my-rentals-page.md`, then `git mv backlog/in-progress/006-my-rentals-page.md backlog/done/006-my-rentals-page.md`.
 - `git add -A && git commit -m "task 006: My rentals page"`
-If something is unclear or the build fails 3 times in a row: add a `## Notes` section to the task file explaining the problem and stop.
+If something is unclear or verify fails 3 times in a row: add a `## Notes` section to the task file explaining the problem and stop.
 ````

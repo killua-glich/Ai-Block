@@ -22,6 +22,8 @@ A website where users can browse and rent devices (laptops, tablets, phones, cam
 npm install
 npm run dev      # dev server at http://localhost:5173
 npm run build    # production build to dist/
+npm test         # all acceptance tests (Vitest)
+npm run verify -- 001   # check one backlog task: scope, lint, build, tests
 ```
 
 ## Structure

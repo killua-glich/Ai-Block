@@ -14,7 +14,7 @@ Users pick a start and end date and see the total price.
 - [ ] Shows number of days and total price (`days * pricePerDay`)
 - [ ] Error message if end date is before start date or start date is in the past
 - [ ] Rent button enabled only when dates are valid and device is `available`
-- [ ] `npm run build` passes
+- [ ] `npm run verify -- 004` passes (tests: `tests/task-004*.test.jsx`)
 
 ## Hints
 
@@ -38,7 +38,7 @@ Create: `src/components/RentalForm.jsx`. Edit: `src/pages/DeviceDetail.jsx`, `sr
 Steps:
 1. RentalForm is a default-exported function component with props `{ device }`.
 2. State: `startDate` and `endDate`, both strings, initial `''`.
-3. Two `<input type="date">` fields labelled "Start date" and "End date".
+3. Two `<input type="date">` fields, each wrapped in a label: `<label>Start date <input type="date" ... /></label>` and the same with "End date".
 4. Compute (no extra state):
    - `today = new Date().toISOString().slice(0, 10)`
    - error: if startDate && startDate < today → "Start date cannot be in the past."; else if both set and endDate < startDate → "End date must be after start date."
@@ -51,8 +51,10 @@ Steps:
 9. In index.css add `.error { color: #dc2626; }` and simple spacing for the form (`.rental-form` with flex column, gap 0.5rem, max-width 300px).
 
 When done:
-- Run `npm run build`. If it fails, fix the error and run it again until it passes.
+- Run `npm run verify -- 004`. It checks scope, lint, build and the tests in `tests/task-004*.test.jsx`.
+- If it says FAIL: read the lines under FAIL, fix the code in `src/`, and run it again. Repeat until the last line is `VERIFY PASSED`.
+- NEVER edit files in `tests/`, `package.json` or files the task does not list. The verify step catches that and fails.
 - Tick every checkbox in `backlog/in-progress/004-rental-date-form.md`, then `git mv backlog/in-progress/004-rental-date-form.md backlog/done/004-rental-date-form.md`.
 - `git add -A && git commit -m "task 004: Rental date form on detail page"`
-If something is unclear or the build fails 3 times in a row: add a `## Notes` section to the task file explaining the problem and stop.
+If something is unclear or verify fails 3 times in a row: add a `## Notes` section to the task file explaining the problem and stop.
 ````

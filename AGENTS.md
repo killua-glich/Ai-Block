@@ -7,7 +7,7 @@ Ai-Block: a device rental website. This file is loaded automatically by the codi
 
 1. The project map below lists every source file, what it exports, and how the files connect. Use it instead of exploring.
 2. Open only the files your task names, plus at most 2 more if the map shows you need them.
-3. Never read `node_modules/`, `dist/`, `package-lock.json`, or `backlog/done/`.
+3. Never read `node_modules/`, `dist/`, `package-lock.json`, or `backlog/done/`. Read a test file in `tests/` only when verify fails on it.
 4. Don't use the explorer subagent when the task already lists its files.
 5. After a commit, the pre-commit hook regenerates the map. You never edit the map by hand.
 
@@ -19,7 +19,8 @@ Ai-Block: a device rental website. This file is loaded automatically by the codi
 - Pages in `src/pages/`, reusable UI in `src/components/`, data and storage in `src/data/`
 - All styles in `src/index.css` (no CSS modules, no inline style objects unless tiny)
 - Prices in CHF, dates as `YYYY-MM-DD` strings
-- Verify with `npm run build` (there are no tests yet)
+- Verify with `npm run verify -- NNN` (NNN = task number). Last line must be `VERIFY PASSED`
+- `tests/` holds the acceptance tests, written by humans. NEVER edit them: change `src/` until they pass
 
 ## Workflow
 
@@ -57,7 +58,7 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. Each ta
 
 ### Dependencies
 
-react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @vitejs/plugin-react@^5.0.0, vite@^7.0.0
+react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @eslint/js@^10.0.1, @testing-library/jest-dom@^8.0.0, @testing-library/react@^16.3.3, @testing-library/user-event@^14.6.13, @vitejs/plugin-react@^5.0.0, eslint@^10.15.0, eslint-plugin-react-hooks@^7.1.1, globals@^17.14.0, jsdom@^29.1.1, vite@^7.0.0, vitest@^5.0.1
 
 ### Backlog status
 

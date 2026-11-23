@@ -12,7 +12,7 @@ Unknown URLs show a friendly page instead of a blank screen.
 
 - [ ] Catch-all route `path="*"` renders `NotFound`
 - [ ] Page says "Page not found" with a link back to `/`
-- [ ] `npm run build` passes
+- [ ] `npm run verify -- 007` passes (tests: `tests/task-007*.test.jsx`)
 
 ## Prompt
 
@@ -34,8 +34,10 @@ Steps:
 2. App.jsx: import NotFound and add `<Route path="*" element={<NotFound />} />` as the LAST route inside `<Routes>`.
 
 When done:
-- Run `npm run build`. If it fails, fix the error and run it again until it passes.
+- Run `npm run verify -- 007`. It checks scope, lint, build and the tests in `tests/task-007*.test.jsx`.
+- If it says FAIL: read the lines under FAIL, fix the code in `src/`, and run it again. Repeat until the last line is `VERIFY PASSED`.
+- NEVER edit files in `tests/`, `package.json` or files the task does not list. The verify step catches that and fails.
 - Tick every checkbox in `backlog/in-progress/007-not-found-page.md`, then `git mv backlog/in-progress/007-not-found-page.md backlog/done/007-not-found-page.md`.
 - `git add -A && git commit -m "task 007: 404 page"`
-If something is unclear or the build fails 3 times in a row: add a `## Notes` section to the task file explaining the problem and stop.
+If something is unclear or verify fails 3 times in a row: add a `## Notes` section to the task file explaining the problem and stop.
 ````

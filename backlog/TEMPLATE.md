@@ -2,6 +2,7 @@
 
 **Depends on:** none
 **Files:** `src/...`
+**Tests:** `tests/task-NNN.test.jsx`, written by a human BEFORE the task goes into `todo/`
 **Agent:** `gemma-dev` (why this model). Fallback: `gemma-dev`.
 
 ## Goal
@@ -11,7 +12,7 @@ One or two sentences: what and why.
 ## Acceptance criteria
 
 - [ ] ...
-- [ ] `npm run build` passes
+- [ ] `npm run verify -- NNN` passes (tests: `tests/task-NNN.test.jsx`)
 
 ## Hints
 

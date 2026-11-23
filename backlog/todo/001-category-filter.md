@@ -13,7 +13,7 @@ Let users filter the device list by category.
 - [ ] A `<select>` above the grid with "All" plus every category found in `src/data/devices.js` (derived from data, not hard-coded)
 - [ ] Choosing a category shows only devices of that category; "All" shows everything
 - [ ] If no device matches, show "No devices found."
-- [ ] `npm run build` passes
+- [ ] `npm run verify -- 001` passes (tests: `tests/task-001*.test.jsx`)
 
 ## Hints
 
@@ -44,8 +44,10 @@ Steps:
 7. In index.css add a `.filters` class (flex, gap 1rem, margin-bottom 1rem) and wrap the select in `<div className="filters">`.
 
 When done:
-- Run `npm run build`. If it fails, fix the error and run it again until it passes.
+- Run `npm run verify -- 001`. It checks scope, lint, build and the tests in `tests/task-001*.test.jsx`.
+- If it says FAIL: read the lines under FAIL, fix the code in `src/`, and run it again. Repeat until the last line is `VERIFY PASSED`.
+- NEVER edit files in `tests/`, `package.json` or files the task does not list. The verify step catches that and fails.
 - Tick every checkbox in `backlog/in-progress/001-category-filter.md`, then `git mv backlog/in-progress/001-category-filter.md backlog/done/001-category-filter.md`.
 - `git add -A && git commit -m "task 001: Category filter on catalog"`
-If something is unclear or the build fails 3 times in a row: add a `## Notes` section to the task file explaining the problem and stop.
+If something is unclear or verify fails 3 times in a row: add a `## Notes` section to the task file explaining the problem and stop.
 ````
