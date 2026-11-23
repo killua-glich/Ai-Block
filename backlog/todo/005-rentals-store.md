@@ -19,8 +19,8 @@ Clicking Rent stores the rental so it survives a page reload (no backend yet).
 Paste this into the agent:
 
 ````text
-Project: React 19 + Vite, plain JavaScript (.jsx). No TypeScript. No new npm packages.
-Rules: only edit the files listed. Keep existing code style (function components, default exports, 2-space indent). Do not touch other tasks.
+Context: AGENTS.md (already loaded) has the stack, the conventions and a project map of every file. Use it. Do NOT list or scan the project, and do NOT call the explorer subagent. Open only the files named under "Read first", "Create" and "Edit" below.
+Rules: only edit the files listed. Do not touch other tasks.
 
 First: `git mv backlog/todo/005-rentals-store.md backlog/in-progress/005-rentals-store.md`.
 

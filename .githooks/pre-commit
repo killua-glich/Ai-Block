@@ -1,0 +1,4 @@
+#!/bin/sh
+# Keep the project map in AGENTS.md in sync with the code on every commit.
+node scripts/codemap.mjs >/dev/null || exit 1
+git add AGENTS.md

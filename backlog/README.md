@@ -35,8 +35,18 @@ Every task file ends with a `## Prompt` section. Start OpenCode in the repo root
 
 Prompts are written for small local models:
 - self-contained: they don't rely on earlier chat history
+- no exploring: `AGENTS.md` (auto-loaded) holds a generated project map, so the agent opens only the files the task names
 - exact file paths, data shapes, and numbered steps
 - the build check and the git workflow are part of every prompt
 - the agent stops and writes `## Notes` instead of guessing
 
 When you write a new task, keep the prompt under ~400 words and follow the same structure.
+
+## Context strategy
+
+Rescanning the repo every session wastes the 32k context, so:
+
+1. **`AGENTS.md`** in the repo root is auto-loaded by OpenCode and pi. It holds the rules plus a generated **project map**: every file under `src/` with its exports, imports, hooks, routes, data shapes and CSS classes (~500 tokens).
+2. **`scripts/codemap.mjs`** generates that map (`npm run codemap`).
+3. **`.githooks/pre-commit`** reruns it on every commit, so after each task the next session starts with an up-to-date map. `npm install` enables the hook via the `prepare` script.
+4. **Task prompts** name the exact files to read and edit, so the agent opens 2–4 files instead of the whole repo.
