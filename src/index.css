@@ -76,3 +76,21 @@ button:disabled {
   gap: 1rem;
   margin-bottom: 1rem;
 }
+
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  vertical-align: middle;
+}
+
+.badge-ok {
+  background: #16a34a;
+}
+
+.badge-no {
+  background: #dc2626;
+}

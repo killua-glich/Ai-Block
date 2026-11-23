@@ -9,10 +9,10 @@ Make devices richer so detail pages have real content.
 
 ## Acceptance criteria
 
-- [ ] At least 10 devices, at least 5 categories
-- [ ] Each device has: `id`, `name`, `category`, `pricePerDay`, `description`, `specs` (array of strings), `available` (boolean)
-- [ ] Detail page shows specs as a list and an "Available" / "Not available" badge
-- [ ] `npm run verify -- 003` passes (tests: `tests/task-003*.test.jsx`)
+- [x] At least 10 devices, at least 5 categories
+- [x] Each device has: `id`, `name`, `category`, `pricePerDay`, `description`, `specs` (array of strings), `available` (boolean)
+- [x] Detail page shows specs as a list and an "Available" / "Not available" badge
+- [x] `npm run verify -- 003` passes (tests: `tests/task-003*.test.jsx`)
 
 ## Prompt
 

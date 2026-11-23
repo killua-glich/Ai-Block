@@ -13,8 +13,18 @@ export default function DeviceDetail() {
     <section>
       <Link to="/">← Back</Link>
       <h1>{device.name}</h1>
-      <p className="category">{device.category}</p>
+      <p className="category">
+        {device.category}{' '}
+        <span className={device.available ? 'badge badge-ok' : 'badge badge-no'}>
+          {device.available ? 'Available' : 'Not available'}
+        </span>
+      </p>
       <p>{device.description}</p>
+      <ul>
+        {device.specs.map((spec) => (
+          <li key={spec}>{spec}</li>
+        ))}
+      </ul>
       <p className="price">CHF {device.pricePerDay} / day</p>
       <button disabled>Rent (coming soon)</button>
     </section>

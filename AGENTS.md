@@ -51,18 +51,18 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
   - exports: DeviceCard({ device })
 - `src/components/Header.jsx` (13 lines)
   - exports: Header()
-- `src/data/devices.js` (10 lines)
+- `src/data/devices.js` (132 lines)
   - exports: devices (default)
-  - shape: { id, name, category, pricePerDay, description } × 4
-- `src/index.css` (79 lines)
-  - classes: header, logo, container, grid, card, category, price, filters
+  - shape: { id, name, category, pricePerDay, description, specs, available } × 14
+- `src/index.css` (97 lines)
+  - classes: header, logo, container, grid, card, category, price, filters, badge, badge-ok, badge-no
 - `src/main.jsx` (14 lines)
   - imports: ./App.jsx
 - `src/pages/Catalog.jsx` (45 lines)
   - exports: Catalog()
   - imports: ../data/devices.js, ../components/DeviceCard.jsx
   - hooks: useState
-- `src/pages/DeviceDetail.jsx` (23 lines)
+- `src/pages/DeviceDetail.jsx` (33 lines)
   - exports: DeviceDetail()
   - imports: ../data/devices.js
   - hooks: useParams
@@ -73,7 +73,7 @@ react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @eslint/js@^10.0.1, @
 
 ### Backlog status
 
-- todo: 003, 004, 005, 006, 007
+- todo: 004, 005, 006, 007
 - in-progress: —
-- done: 001, 002, 008
+- done: 001, 002, 003, 008
 <!-- CODEMAP:END -->
