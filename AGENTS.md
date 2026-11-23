@@ -23,7 +23,7 @@ Ai-Block: a device rental website. This file is loaded automatically by the codi
 
 ## Workflow
 
-Tasks live in `backlog/`. See `backlog/README.md`. One task per session.
+Tasks live in `backlog/`. See `backlog/README.md`. One task per session. Each task names its agent (`gemma-dev`, `qwen-dev`, `spark-dev` in `opencode.json`), based on `bench/README.md`.
 
 ## Project map
 

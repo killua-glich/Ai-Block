@@ -2,6 +2,7 @@
 
 **Depends on:** none
 **Files:** `src/...`
+**Agent:** `gemma-dev` (why this model). Fallback: `gemma-dev`.
 
 ## Goal
 

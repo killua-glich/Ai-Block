@@ -1,0 +1,103 @@
+{
+  "model": "qwen/qwen2.5-coder-14b",
+  "loadMs": 7422,
+  "tests": {
+    "component": {
+      "score": 1,
+      "seconds": 26.7,
+      "outTokens": 391,
+      "tokPerSec": 14.7,
+      "checks": {
+        "build": true,
+        "useState": true,
+        "derived": true,
+        "empty": true,
+        "copySort": true
+      },
+      "note": null,
+      "sample": "```jsx\nimport devices from '../data/devices.js'\nimport DeviceCard from '../components/DeviceCard.jsx'\nimport { useState } from 'react'\n\nexport default function Catalog() {\n  const [selectedCategory, setSelectedCategory] = useState('All')\n  const [sortOrder, setSortOrder] = useState('default')\n\n  const filteredDevices = selectedCategory === 'All'\n    ? devices\n    : devices.filter(device => device.category === selectedCategory)\n\n  const sortedDevices = [...filteredDevices].sort((a, b) => {\n    if (sortOrder === 'asc') return a.pricePerDay - b.pricePerDay\n    if (sortOrder === 'desc') return b.pricePerDay - a.pricePerDay\n    return 0\n  })\n\n  return (\n    <section>\n      <h1>Rent a device</h1>\n      <div className=\"filters\">\n        <select value={selectedCategory} onChange={(e) => setSelectedCategory(e.target.value)}>\n          <option value=\"All\">All</option>\n          {Array.from(new Set(devices.map(device => device.category))).map(category => (\n            <option key={category} value={category}>{category}</option>\n          ))}\n        </select>\n        <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>\n          <option value=\"default\">Default</option>\n          <option value=\"asc\">Price (Low to High)</option>\n          <option value=\"desc\">Price (High to Low)</option>\n        </select>\n      </div>\n      {sortedDevices.length > 0 ? (\n        <div className=\"grid\">\n          {sortedDevices.map((device) => (\n            <DeviceCard key={device.id} dev"
+    },
+    "logic": {
+      "score": 0.9,
+      "seconds": 13.9,
+      "outTokens": 222,
+      "tokPerSec": 16,
+      "checks": {
+        "pass": 9,
+        "total": 10,
+        "fails": [
+          {
+            "args": [
+              "2027-10-30",
+              "2027-11-01",
+              2,
+              "2026-11-23"
+            ],
+            "got": {
+              "days": 4,
+              "total": 8,
+              "error": null
+            }
+          }
+        ]
+      },
+      "note": null,
+      "sample": "```js\nexport function rentalQuote(startDate, endDate, pricePerDay, today) {\n  if (!startDate || !endDate) {\n    return { days: 0, total: 0, error: null };\n  }\n\n  const parseDate = (dateStr) => new Date(dateStr.split('-'));\n\n  const start = parseDate(startDate);\n  const end = parseDate(endDate);\n  const now = parseDate(today);\n\n  if (start < now) {\n    return { days: 0, total: 0, error: 'Start date cannot be in the past.' };\n  } else if (end < start) {\n    return { days: 0, total: 0, error: 'End date must be after start date.' };\n  }\n\n  const timeDiff = end - start;\n  const days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)) + 1;\n  const total = days * pricePerDay;\n\n  return { days, total, error: null };\n}\n```"
+    },
+    "data": {
+      "score": 0.88,
+      "seconds": 45.3,
+      "outTokens": 765,
+      "tokPerSec": 16.9,
+      "checks": {
+        "count": true,
+        "categories": false,
+        "exactKeys": true,
+        "types": true,
+        "specs": true,
+        "ids": true,
+        "unavailable": true,
+        "kept": true
+      },
+      "note": null,
+      "sample": "```js\n// Mock data until a backend exists.\nconst devices = [\n  { id: 1, name: 'MacBook Pro 14\"', category: 'Laptop', pricePerDay: 25, description: 'M-series laptop, 16GB RAM, 512GB SSD.', specs: ['Apple M1 Pro chip', '16-inch Retina display', 'Touch Bar'], available: true },\n  { id: 2, name: 'iPad Air', category: 'Tablet', pricePerDay: 12, description: '10.9\" tablet with Apple Pencil support.', specs: ['A14 Bionic chip', '8-core GPU', 'Up to 10 hours of battery life'], available: true },\n  { id: 3, name: 'Sony Alpha 7 IV', category: 'Camera', pricePerDay: 40, description: 'Full-frame mirrorless camera with 28-70mm lens.', specs: ['33.4MP full-frame CMOS sensor', 'BIONZ X image processor', '5-axis in-body stabilization'], available: false },\n  { id: 4, name: 'Google Pixel 9', category: 'Phone', pricePerDay: 10, description: 'Android smartphone, unlocked.', specs: ['Tensor chip', '6.7\" OLED display', '5G support'], available: true },\n  { id: 5, name: 'Dell XPS 13', category: 'Laptop', pricePerDay: 20, description: '13.4\" laptop with AMD Ryzen processor.', specs: ['AMD Ryzen 7 processor', '16GB RAM', '512GB SSD'], available: true },\n  { id: 6, name: 'Samsung Galaxy Tab S7+', category: 'Tablet', pricePerDay: 15, description: '12.4\" tablet with S Pen support.', specs: ['Exynos 980 processor', '12.4\" Super AMOLED display', 'Up to 9 hours of battery life'], available: false },\n  { id: 7, name: 'Canon EOS R5', category: 'Camera', pricePerDay: 50, description: 'Full-frame mirrorless c"
+    },
+    "tools": {
+      "score": 1,
+      "seconds": 17.4,
+      "outTokens": 210,
+      "tokPerSec": 12.1,
+      "checks": {
+        "call1": true,
+        "readFirst": true,
+        "call2": true,
+        "build": true
+      },
+      "note": null,
+      "sample": ""
+    },
+    "scout": {
+      "score": 1,
+      "seconds": 10.1,
+      "outTokens": 44,
+      "tokPerSec": 4.4,
+      "checks": {
+        "json": true,
+        "edit": 1,
+        "create": 1,
+        "pureJson": true,
+        "answer": {
+          "edit": [
+            "src/App.jsx",
+            "src/components/Header.jsx"
+          ],
+          "create": [
+            "src/pages/MyRentals.jsx"
+          ]
+        }
+      },
+      "note": null,
+      "sample": "```json\n{\n  \"edit\": [\n    \"src/App.jsx\",\n    \"src/components/Header.jsx\"\n  ],\n  \"create\": [\n    \"src/pages/MyRentals.jsx\"\n  ]\n}\n```"
+    }
+  }
+}

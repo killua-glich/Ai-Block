@@ -1,0 +1,89 @@
+{
+  "model": "supergemma4-26b-uncensored-mlx-v2",
+  "loadMs": 13497,
+  "tests": {
+    "component": {
+      "score": 1,
+      "seconds": 14.3,
+      "outTokens": 470,
+      "tokPerSec": 32.8,
+      "checks": {
+        "build": true,
+        "useState": true,
+        "derived": true,
+        "empty": true,
+        "copySort": true
+      },
+      "note": null,
+      "sample": "```jsx\nimport { useState } from 'react'\nimport devices from '../data/devices.js'\nimport DeviceCard from '../components/DeviceCard.jsx'\n\nexport default function Catalog() {\n  const [filter, setFilter] = useState('All')\n  const [sortOrder, setSortOrder] = useState('default')\n\n  // Derive unique categories from data\n  const categories = ['All', ...new Set(devices.map((d) => d.category))]\n\n  // Filter logic\n  const filteredDevices = devices.filter((device) => {\n    return filter === 'All' || device.category === filter\n  })\n\n  // Sort logic (on a copy to prevent mutation)\n  const sortedDevices = [...filteredDevices].sort((a, b) => {\n    if (sortOrder === 'asc') return a.pricePerDay - b.pricePerDay\n    if (sortOrder === 'desc') return b.pricePerDay - a.pricePerDay\n    return 0\n  })\n\n  return (\n    <section>\n      <h1>Rent a device</h1>\n\n      <div className=\"controls\">\n        <select value={filter} onChange={(e) => setFilter(e.target.value)}>\n          {categories.map((cat) => (\n            <option key={cat} value={cat}>\n              {cat}\n            </option>\n          ))}\n        </select>\n\n        <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>\n          <option value=\"default\">Default</option>\n          <option value=\"asc\">Price: Low to High</option>\n          <option value=\"desc\">Price: High to Low</option>\n        </select>\n      </div>\n\n      <div className=\"grid\">\n        {sortedDevices.length > 0 ? (\n          sortedDevices.map((device) => (\n  "
+    },
+    "logic": {
+      "score": 1,
+      "seconds": 9.4,
+      "outTokens": 360,
+      "tokPerSec": 38.3,
+      "checks": {
+        "pass": 10,
+        "total": 10,
+        "fails": []
+      },
+      "note": null,
+      "sample": "```js\nexport function rentalQuote(startDate, endDate, pricePerDay, today) {\n  if (!startDate || !endDate) {\n    return { days: 0, total: 0, error: null }\n  }\n\n  const start = new Date(startDate)\n  const end = new Date(endDate)\n  const current = new Date(today)\n\n  // Normalize to midnight to ensure pure date comparison regardless of timezones\n  const normalize = (d) => new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()))\n\n  const normStart = normalize(start)\n  const normEnd = normalize(end)\n  const normToday = normalize(current)\n\n  if (normStart < normToday) {\n    return { days: 0, total: 0, error: 'Start date cannot be in the past.' }\n  }\n\n  if (normEnd < normStart) {\n    return { days: 0, total: 0, error: 'End date must be after start date.' }\n  }\n\n  // Calculate difference in milliseconds and convert to days\n  // Using UTC ensures we don't hit DST issues during the subtraction\n  const diffInMs = normEnd.getTime() - normStart.getTime()\n  const msPerDay = 24 * 60 * 60 * 1000\n  const days = Math.floor(diffInMs / msPerDay) + 1\n\n  return {\n    days: days,\n    total: days * pricePerDay,\n    error: null\n  }\n}\n\nexport default rentalQuote\n```"
+    },
+    "data": {
+      "score": 1,
+      "seconds": 17.1,
+      "outTokens": 644,
+      "tokPerSec": 37.8,
+      "checks": {
+        "count": true,
+        "categories": true,
+        "exactKeys": true,
+        "types": true,
+        "specs": true,
+        "ids": true,
+        "unavailable": true,
+        "kept": true
+      },
+      "note": null,
+      "sample": "```js\n// Mock data until a backend exists.\nconst devices = [\n  { id: 1, name: 'MacBook Pro 14\"', category: 'Laptop', pricePerDay: 25, description: 'M-series laptop, 16GB RAM, 512GB SSD.', specs: ['M3 Chip', 'Liquid Retina XDR', 'MagSafe 3'], available: true },\n  { id: 2, name: 'iPad Air', category: 'Tablet', pricePerDay: 12, description: '10.9\" tablet with Apple Pencil support.', specs: ['A14 Bionic', 'Wi-Fi 6', 'Touch ID'], available: true },\n  { id: 3, name: 'Sony Alpha 7 IV', category: 'Camera', pricePerDay: 40, description: 'Full-frame mirrorless camera with 28-70mm lens.', specs: ['33MP Sensor', '4K Video', 'Eye AF'], available: true },\n  { id: 4, name: 'Google Pixel 9', category: 'Phone', pricePerDay: 10, description: 'Android smartphone, unlocked.', specs: ['Tensor G4', 'AI Camera', 'OLED Display'], available: true },\n  { id: 5, name: 'Dell XPS 15', category: 'Laptop', pricePerDay: 22, description: 'High-performance workstation.', specs: ['Intel i7', '4K Display', 'NVIDIA RTX'], available: true },\n  { id: 6, name: 'Samsung Galaxy Tab S9', category: 'Tablet', pricePerDay: 15, description: 'Premium Android tablet.', specs: ['AMOLED', 'S-Pen Included', 'Water Resistant'], available: false },\n  { id: 7, name: 'Canon EOS R5', category: 'Camera', pricePerDay: 45, description: 'Professional photography beast.', specs: ['45MP', '8K Video', 'IBIS'], available: true },\n  { id: 8, name: 'iPhone 15 Pro', category: 'Phone', pricePerDay: 18, description: 'Titanium design smartphone."
+    },
+    "tools": {
+      "score": 1,
+      "seconds": 10,
+      "outTokens": 197,
+      "tokPerSec": 19.7,
+      "checks": {
+        "call1": true,
+        "readFirst": true,
+        "call2": true,
+        "build": true
+      },
+      "note": null,
+      "sample": ""
+    },
+    "scout": {
+      "score": 1,
+      "seconds": 4.4,
+      "outTokens": 60,
+      "tokPerSec": 13.8,
+      "checks": {
+        "json": true,
+        "edit": 1,
+        "create": 1,
+        "pureJson": true,
+        "answer": {
+          "edit": [
+            "src/App.jsx",
+            "src/components/Header.jsx"
+          ],
+          "create": [
+            "src/pages/MyRentals.jsx"
+          ]
+        }
+      },
+      "note": null,
+      "sample": "```json\n{\n  \"edit\": [\n    \"src/App.jsx\",\n    \"src/components/Header.jsx\"\n  ],\n  \"create\": [\n    \"src/pages/MyRentals.jsx\"\n  ]\n}\n```"
+    }
+  }
+}

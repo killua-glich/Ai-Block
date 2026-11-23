@@ -1,0 +1,89 @@
+{
+  "model": "inkling-2-mini",
+  "loadMs": 0,
+  "tests": {
+    "component": {
+      "score": 1,
+      "seconds": 98.8,
+      "outTokens": 1499,
+      "tokPerSec": 15.2,
+      "checks": {
+        "build": true,
+        "useState": true,
+        "derived": true,
+        "empty": true,
+        "copySort": true
+      },
+      "note": null,
+      "sample": "```jsx\nimport { useState } from 'react'\nimport devices from '../data/devices.js'\nimport DeviceCard from '../components/DeviceCard.jsx'\n\nexport default function Catalog() {\n  const [category, setCategory] = useState('All')\n  const [sort, setSort] = useState('default')\n\n  const categories = ['All', ...new Set(devices.map((device) => device.category))]\n\n  const filtered = devices.filter(\n    (device) => category === 'All' || device.category === category\n  )\n\n  const sorted = [...filtered].sort((a, b) => {\n    if (sort === 'asc') return a.pricePerDay - b.pricePerDay\n    if (sort === 'desc') return b.pricePerDay - a.pricePerDay\n    return 0\n  })\n\n  return (\n    <section>\n      <h1>Rent a device</h1>\n      <div className=\"filters\">\n        <select value={category} onChange={(e) => setCategory(e.target.value)}>\n          {categories.map((cat) => (\n            <option key={cat} value={cat}>{cat}</option>\n          ))}\n        </select>\n        <select value={sort} onChange={(e) => setSort(e.target.value)}>\n          <option value=\"default\">Default</option>\n          <option value=\"asc\">Price: low to high</option>\n          <option value=\"desc\">Price: high to low</option>\n        </select>\n      </div>\n      {sorted.length === 0 ? (\n        <p>No devices found.</p>\n      ) : (\n        <div className=\"grid\">\n          {sorted.map((device) => (\n            <DeviceCard key={device.id} device={device} />\n          ))}\n        </div>\n      )}\n    </section>\n  )\n}\n```"
+    },
+    "logic": {
+      "score": 1,
+      "seconds": 144.9,
+      "outTokens": 2421,
+      "tokPerSec": 16.7,
+      "checks": {
+        "pass": 10,
+        "total": 10,
+        "fails": []
+      },
+      "note": null,
+      "sample": "```js\nexport function rentalQuote(startDate, endDate, pricePerDay, today) {\n  const s = typeof startDate === 'string' ? startDate.trim() : ''\n  const e = typeof endDate === 'string' ? endDate.trim() : ''\n\n  if (!s || !e) {\n    return { days: 0, total: 0, error: null }\n  }\n\n  if (s < today) {\n    return { days: 0, total: 0, error: 'Start date cannot be in the past.' }\n  }\n\n  if (e < s) {\n    return { days: 0, total: 0, error: 'End date must be after start date.' }\n  }\n\n  const start = parseDate(s)\n  const end = parseDate(e)\n\n  if (start === null || end === null) {\n    return { days: 0, total: 0, error: 'Invalid date.' }\n  }\n\n  const days = Math.round((end - start) / 86400000) + 1\n\n  return { days, total: days * pricePerDay, error: null }\n}\n\nfunction parseDate(str) {\n  const m = /^(\\d{4})-(\\d{2})-(\\d{2})$/.exec(str)\n  if (!m) return null\n  const year = +m[1]\n  const month = +m[2]\n  const day = +m[3]\n  const time = Date.UTC(year, month - 1, day)\n  const d = new Date(time)\n  if (d.getUTCFullYear() !== year || d.getUTCMonth() !== month - 1 || d.getUTCDate() !== day) {\n    return null\n  }\n  return time\n}\n```"
+    },
+    "data": {
+      "score": 1,
+      "seconds": 193,
+      "outTokens": 3211,
+      "tokPerSec": 16.6,
+      "checks": {
+        "count": true,
+        "categories": true,
+        "exactKeys": true,
+        "types": true,
+        "specs": true,
+        "ids": true,
+        "unavailable": true,
+        "kept": true
+      },
+      "note": null,
+      "sample": "```js\n// Mock data until a backend exists.\nconst devices = [\n  {\n    id: 1,\n    name: 'MacBook Pro 14\"',\n    category: 'Laptop',\n    pricePerDay: 25,\n    description: 'M-series laptop, 16GB RAM, 512GB SSD.',\n    specs: ['M3 Pro chip', '16GB unified memory', '512GB SSD', '14.2\" Liquid Retina XDR display'],\n    available: true,\n  },\n  {\n    id: 2,\n    name: 'iPad Air',\n    category: 'Tablet',\n    pricePerDay: 12,\n    description: '10.9\" tablet with Apple Pencil support.',\n    specs: ['10.9\" Liquid Retina display', 'Apple Pencil (2nd gen) support', 'Wi-Fi 6', '10-hour battery life'],\n    available: true,\n  },\n  {\n    id: 3,\n    name: 'Sony Alpha 7 IV',\n    category: 'Camera',\n    pricePerDay: 40,\n    description: 'Full-frame mirrorless camera with 28-70mm lens.',\n    specs: ['33MP full-frame sensor', '4K 60p video', 'In-body image stabilization', '28-70mm f/2.8 lens'],\n    available: true,\n  },\n  {\n    id: 4,\n    name: 'Google Pixel 9',\n    category: 'Phone',\n    pricePerDay: 10,\n    description: 'Android smartphone, unlocked.',\n    specs: ['6.3\" OLED display', 'Tensor G4 chip', '50MP triple camera', 'Unlocked carrier'],\n    available: false,\n  },\n  {\n    id: 5,\n    name: 'Dell XPS 15',\n    category: 'Laptop',\n    pricePerDay: 30,\n    description: 'Premium 15.6\" laptop with Intel Core Ultra processor.',\n    specs: ['Intel Core Ultra 7', '32GB RAM', '1TB SSD', '15.6\" OLED display'],\n    available: true,\n  },\n  {\n    id: 6,\n    name: 'iPad Pro 11\"',\n    category: 'Tablet',\n    pri"
+    },
+    "tools": {
+      "score": 1,
+      "seconds": 30.9,
+      "outTokens": 421,
+      "tokPerSec": 13.6,
+      "checks": {
+        "call1": true,
+        "readFirst": true,
+        "call2": true,
+        "build": true
+      },
+      "note": null,
+      "sample": ""
+    },
+    "scout": {
+      "score": 1,
+      "seconds": 40.3,
+      "outTokens": 570,
+      "tokPerSec": 14.1,
+      "checks": {
+        "json": true,
+        "edit": 1,
+        "create": 1,
+        "pureJson": true,
+        "answer": {
+          "edit": [
+            "src/App.jsx",
+            "src/components/Header.jsx"
+          ],
+          "create": [
+            "src/pages/MyRentals.jsx"
+          ]
+        }
+      },
+      "note": null,
+      "sample": "{\"edit\":[\"src/App.jsx\",\"src/components/Header.jsx\"],\"create\":[\"src/pages/MyRentals.jsx\"]}"
+    }
+  }
+}

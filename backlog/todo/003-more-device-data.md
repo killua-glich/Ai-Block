@@ -2,6 +2,7 @@
 
 **Depends on:** none
 **Files:** `src/data/devices.js`, `src/pages/DeviceDetail.jsx`, `src/index.css`
+**Agent:** `spark-dev` (Schema-bound data plus simple JSX, scored 1.00 on the data test.) Fallback: `gemma-dev`.
 
 ## Goal
 
@@ -16,7 +17,7 @@ Make devices richer so detail pages have real content.
 
 ## Prompt
 
-Paste this into the agent:
+Run `opencode --agent spark-dev` in the repo root, then paste:
 
 ````text
 Context: AGENTS.md (already loaded) has the stack, the conventions and a project map of every file. Use it. Do NOT list or scan the project, and do NOT call the explorer subagent. Open only the files named under "Read first", "Create" and "Edit" below.

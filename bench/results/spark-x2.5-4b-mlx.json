@@ -1,0 +1,87 @@
+{
+  "model": "spark-x2.5-4b-mlx",
+  "loadMs": 21581,
+  "tests": {
+    "component": {
+      "score": 1,
+      "seconds": 63.8,
+      "outTokens": 1880,
+      "tokPerSec": 29.5,
+      "checks": {
+        "build": true,
+        "useState": true,
+        "derived": true,
+        "empty": true,
+        "copySort": true
+      },
+      "note": null,
+      "sample": "```jsx\nimport { useState } from 'react'\nimport devices from '../data/devices.js'\nimport DeviceCard from '../components/DeviceCard.jsx'\n\nexport default function Catalog() {\n  const [selectedCategory, setSelectedCategory] = useState('All')\n  const [sortBy, setSortBy] = useState('default')\n\n  const categories = ['All', ...devices.map((device) => device.category)]\n\n  const filteredDevices = devices.filter((device) => selectedCategory === 'All' || device.category === selectedCategory)\n\n  const sortedDevices = [...filteredDevices].sort((a, b) => {\n    if (sortBy === 'asc') {\n      return a.pricePerDay - b.pricePerDay\n    }\n    if (sortBy === 'desc') {\n      return b.pricePerDay - a.pricePerDay\n    }\n    return 0\n  })\n\n  return (\n    <section>\n      <h1>Rent a device</h1>\n      <div className=\"controls\">\n        <select value={selectedCategory} onChange={(event) => setSelectedCategory(event.target.value)}>\n          {categories.map((category) => (\n            <option key={category} value={category}>{category}</option>\n          ))}\n        </select>\n        <select value={sortBy} onChange={(event) => setSortBy(event.target.value)}>\n          <option value=\"default\">Default</option>\n          <option value=\"asc\">Ascending</option>\n          <option value=\"desc\">Descending</option>\n        </select>\n      </div>\n      <div className=\"grid\">\n        {filteredDevices.length === 0 ? (\n          <p>No devices found.</p>\n        ) : (\n          sortedDevices.map((device) => (\n            <"
+    },
+    "logic": {
+      "score": 0,
+      "seconds": 265.6,
+      "outTokens": 8191,
+      "tokPerSec": 30.8,
+      "checks": {
+        "error": "file:///private/var/folders/r3/kj511wd97nb64tj94my6gqw00000gn/T/aiblock-mod-joUdrr/h.mjs:1\nimport { rentalQuote } from './mod.mjs'\n         ^^^^^^^^^^^\nSyntaxError: The requested module './mod.mjs' does not provide an export named 'rentalQuote'\n    at #_instantiate (node:internal/modules/esm/module_job:254:21)\n    at async ModuleJob.run (node:internal/modules/esm/module_job:369:5)\n    at async onI"
+      },
+      "note": "file:///private/var/folders/r3/kj511wd97nb64tj94my6gqw00000gn/T/aiblock-mod-joUdrr/h.mjs:1\nimport { rentalQuote } from './mod.mjs'\n         ^^^^^^^^^^^\nSyntaxError: The requested module './mod.mjs' does not provide an export named 'rentalQuote'\n    at #_instantiate (node:internal/modules/esm/module_job:254:21)\n    at async ModuleJob.run (node:internal/modules/esm/module_job:369:5)\n    at async onI",
+      "sample": ""
+    },
+    "data": {
+      "score": 1,
+      "seconds": 115.5,
+      "outTokens": 3587,
+      "tokPerSec": 31.1,
+      "checks": {
+        "count": true,
+        "categories": true,
+        "exactKeys": true,
+        "types": true,
+        "specs": true,
+        "ids": true,
+        "unavailable": true,
+        "kept": true
+      },
+      "note": null,
+      "sample": "```js\n// Mock data until a backend exists.\nconst devices = [\n  { id: 1, name: 'MacBook Pro 14\"', category: 'Laptop', pricePerDay: 25, description: 'M-series laptop, 16GB RAM, 512GB SSD.', specs: ['M-series chip', '16GB RAM', '512GB SSD', '14-inch display'], available: true },\n  { id: 2, name: 'iPad Air', category: 'Tablet', pricePerDay: 12, description: '10.9\" tablet with Apple Pencil support.', specs: ['10.9-inch display', 'Apple Pencil support', '128GB storage'], available: true },\n  { id: 3, name: 'Sony Alpha 7 IV', category: 'Camera', pricePerDay: 40, description: 'Full-frame mirrorless camera with 28-70mm lens.', specs: ['Full-frame sensor', '28-70mm lens', '4K video'], available: true },\n  { id: 4, name: 'Google Pixel 9', category: 'Phone', pricePerDay: 10, description: 'Android smartphone, unlocked.', specs: ['Android OS', '12MP main camera', 'Unlocked'], available: true },\n  { id: 5, name: 'Dell XPS 13', category: 'Laptop', pricePerDay: 30, description: 'Lightweight laptop with stunning display.', specs: ['Ultra-fast processor', '13-inch display', '16GB RAM', '512GB SSD'], available: false },\n  { id: 6, name: 'Samsung Galaxy Tab S9', category: 'Tablet', pricePerDay: 15, description: 'Versatile tablet with S Pen support.', specs: ['11-inch display', 'S Pen support', '256GB storage'], available: true },\n  { id: 7, name: 'Canon EOS R5', category: 'Camera', pricePerDay: 50, description: 'Professional mirrorless camera with 8K video.', specs: ['Full-frame sensor', '8K vide"
+    },
+    "tools": {
+      "score": 1,
+      "seconds": 12.5,
+      "outTokens": 349,
+      "tokPerSec": 27.8,
+      "checks": {
+        "call1": true,
+        "readFirst": true,
+        "call2": true,
+        "build": true
+      },
+      "note": null,
+      "sample": ""
+    },
+    "scout": {
+      "score": 1,
+      "seconds": 10,
+      "outTokens": 223,
+      "tokPerSec": 22.4,
+      "checks": {
+        "json": true,
+        "edit": 1,
+        "create": 1,
+        "pureJson": true,
+        "answer": {
+          "edit": [
+            "src/App.jsx",
+            "src/components/Header.jsx"
+          ],
+          "create": [
+            "src/pages/MyRentals.jsx"
+          ]
+        }
+      },
+      "note": null,
+      "sample": "{\"edit\": [\"src/App.jsx\", \"src/components/Header.jsx\"], \"create\": [\"src/pages/MyRentals.jsx\"]}"
+    }
+  }
+}

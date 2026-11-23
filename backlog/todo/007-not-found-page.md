@@ -2,6 +2,7 @@
 
 **Depends on:** none
 **Files:** `src/pages/NotFound.jsx` (new), `src/App.jsx`
+**Agent:** `spark-dev` (Trivial: one new file and one route.) Fallback: `gemma-dev`.
 
 ## Goal
 
@@ -15,7 +16,7 @@ Unknown URLs show a friendly page instead of a blank screen.
 
 ## Prompt
 
-Paste this into the agent:
+Run `opencode --agent spark-dev` in the repo root, then paste:
 
 ````text
 Context: AGENTS.md (already loaded) has the stack, the conventions and a project map of every file. Use it. Do NOT list or scan the project, and do NOT call the explorer subagent. Open only the files named under "Read first", "Create" and "Edit" below.
