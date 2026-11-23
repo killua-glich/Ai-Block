@@ -22,6 +22,16 @@ Ai-Block: a device rental website. This file is loaded automatically by the codi
 - Verify with `npm run verify -- NNN` (NNN = task number). Last line must be `VERIFY PASSED`
 - `tests/` holds the acceptance tests, written by humans. NEVER edit them: change `src/` until they pass
 
+## Editing rules (learned from real agent runs)
+
+1. **Adding CSS:** add new rules at the END of `src/index.css`. Never replace or remove an existing rule. Verify fails if a selector disappears or appears twice.
+2. **Small files (< 80 lines):** prefer the `write` tool with the complete new file content over many `edit` calls.
+3. **If an edit fails twice** ("Could not find the exact text"): read the file ONCE, then rewrite the whole file with `write`. Don't retry the same edit.
+4. **Don't read the same file more than twice in a row.** If you're unsure, run `npm run verify -- NNN` instead and follow its output.
+5. **Never write files with a heredoc** (`cat <<EOF`, `python3 - <<EOF`). Backticks inside get executed by bash. Use `write` or `edit`.
+6. **Ticking checkboxes in a task file:** change only `- [ ]` to `- [x]`. Never rewrite the task file. Verify checks this. Safe one-liner: `sed -i '' 's/- \[ \]/- [x]/' backlog/in-progress/NNN-*.md`
+7. **Don't make empty calls** (`echo ok`, `true`). If you don't know the next step, run verify.
+
 ## Workflow
 
 Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tasks use the single agent `gemma-dev` (one model, no orchestrator, no subagents).
@@ -44,7 +54,7 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
 - `src/data/devices.js` (10 lines)
   - exports: devices (default)
   - shape: { id, name, category, pricePerDay, description } × 4
-- `src/index.css` (14 lines)
+- `src/index.css` (79 lines)
   - classes: header, logo, container, grid, card, category, price, filters
 - `src/main.jsx` (14 lines)
   - imports: ./App.jsx

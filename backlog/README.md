@@ -68,6 +68,8 @@ An agent saying "done" doesn't count. `npm run verify -- NNN` decides:
 | Step | Checks | Catches |
 |---|---|---|
 | scope | `git status` vs. the task's **Files** line (plus `backlog/`, `AGENTS.md`) | edits outside the task, edited tests, new npm packages |
+| css | `src/**/*.css` vs. `HEAD` | deleted CSS rules (an agent "replacing" a rule instead of adding one), duplicate selectors |
+| task file | task files in `in-progress/` and `done/` vs. `HEAD`, ignoring `[ ]`/`[x]` and a trailing `## Notes` | an agent rewriting or truncating its task file |
 | lint | `eslint src tests` (JS recommended + React hooks rules) | unused vars, undefined names, broken hook usage |
 | build | `vite build` | syntax and import errors |
 | tests | Vitest + Testing Library: `task-000` baseline, **every task in `done/`**, and task NNN | wrong behavior, regressions in earlier tasks |
@@ -83,3 +85,5 @@ How the tests were checked (2026-11-23):
 3. Four planted bugs were caught: sorting the original array (002), the daylight-saving off-by-one from the benchmark (004), a missing 404 route (007), and an unused variable (lint).
 
 After the agent: run `npm run verify -- NNN` yourself, then look at `git show` for anything the tests can't see (style, UX). Then start the next task.
+
+The css and task-file guards were added after watching a real agent run (task 001, see bug ticket 008): it deleted the `button` rules and truncated its task file, and verify was still green. Both kinds of damage are now caught, which I checked by planting them again.

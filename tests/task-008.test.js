@@ -3,12 +3,17 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 
 const css = readFileSync('src/index.css', 'utf8')
-const selectors = [...css.matchAll(/^\s*([^{}\n]+?)\s*\{/gm)].map((m) => m[1].trim())
+const rules = [...css.matchAll(/([^{}]+)\{([^{}]*)\}/g)].map((m) => ({
+  selector: m[1].trim(),
+  decls: m[2].split(';').map((d) => d.trim()).filter(Boolean).sort(),
+}))
+const selectors = rules.map((r) => r.selector)
+const declsOf = (sel) => rules.find((r) => r.selector === sel)?.decls
 
 describe('008 fix 001 regressions', () => {
   it('button styles are back', () => {
-    expect(css).toContain('button { padding: 0.5rem 1rem; border-radius: 6px; border: none; background: #2563eb; color: #fff; cursor: pointer; }')
-    expect(css).toContain('button:disabled { background: #9ca3af; cursor: not-allowed; }')
+    expect(declsOf('button')).toEqual(['background: #2563eb', 'border-radius: 6px', 'border: none', 'color: #fff', 'cursor: pointer', 'padding: 0.5rem 1rem'].sort())
+    expect(declsOf('button:disabled')).toEqual(['background: #9ca3af', 'cursor: not-allowed'].sort())
   })
 
   it('.filters is defined exactly once', () => {

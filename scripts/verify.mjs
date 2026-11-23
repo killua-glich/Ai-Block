@@ -72,6 +72,56 @@ if (task) {
   report(`scope (task ${task} may change: ${allowed.join(', ')})`, extra.length === 0, [`Files changed that the task does not list:`, ...extra.map((f) => '- ' + f), ...hints, 'Undo them with: git checkout -- <file>  (or delete new files)'].join('\n'))
 }
 
+// ---------- guards for damage tests can't see (found in the task 001 agent run) ----------
+const git = (...args) => run('git', args)
+const atHead = (path) => {
+  const r = git('show', `HEAD:${path}`)
+  return r.ok ? r.out : null
+}
+
+// CSS: no existing selector may disappear, no selector may be defined twice.
+function selectors(css) {
+  return [...css.replace(/\/\*[\s\S]*?\*\//g, '').matchAll(/([^{}]+)\{/g)].map((m) => m[1].trim().replace(/\s+/g, ' '))
+}
+const cssFiles = [...new Set([
+  ...git('ls-files', 'src').out.split('\n'),
+  ...git('ls-files', '--others', '--exclude-standard', 'src').out.split('\n'),
+].filter((f) => f.endsWith('.css')))]
+const cssProblems = []
+for (const f of cssFiles) {
+  if (!existsSync(join(ROOT, f))) continue
+  const now = selectors(readFileSync(join(ROOT, f), 'utf8'))
+  const before = atHead(f)
+  if (before !== null) {
+    const removed = [...new Set(selectors(before))].filter((s) => !now.includes(s))
+    if (removed.length) cssProblems.push(`${f}: you deleted these CSS rules: ${removed.join(', ')}. Put them back unchanged (see: git show HEAD:${f}). Add new rules, don't replace old ones.`)
+  }
+  const dupes = [...new Set(now.filter((s, i) => now.indexOf(s) !== i))]
+  if (dupes.length) cssProblems.push(`${f}: these selectors are defined twice: ${dupes.join(', ')}. Keep only one of each.`)
+}
+report('css (no deleted or duplicate rules)', cssProblems.length === 0, cssProblems.join('\n'))
+
+// Task files: an agent may only tick checkboxes and add a "## Notes" section.
+const normalizeTask = (md) => md.replace(/- \[x\]/g, '- [ ]').replace(/\n## Notes[\s\S]*$/, '').trimEnd()
+const headTaskFiles = git('ls-tree', '-r', '--name-only', 'HEAD', 'backlog').out.split('\n').filter((f) => /\/\d{3}-[^/]+\.md$/.test(f))
+const taskProblems = []
+for (const status of ['in-progress', 'done']) {
+  const dir = join(ROOT, 'backlog', status)
+  if (!existsSync(dir)) continue
+  for (const name of readdirSync(dir).filter((f) => /^\d{3}-.*\.md$/.test(f))) {
+    const path = `backlog/${status}/${name}`
+    const headPath = headTaskFiles.find((f) => f.endsWith('/' + name))
+    if (!headPath) continue
+    const a = normalizeTask(atHead(headPath)).split('\n')
+    const b = normalizeTask(readFileSync(join(ROOT, path), 'utf8')).split('\n')
+    if (a.join('\n') === b.join('\n')) continue
+    const i = a.findIndex((line, k) => line !== b[k])
+    const at = i === -1 ? Math.min(a.length, b.length) : i
+    taskProblems.push(`${path}: you changed more than the checkboxes (first difference at line ${at + 1}).`, `  was: ${a[at] ?? '(end of file)'}`, `  now: ${b[at] ?? '(end of file)'}`, `Only change "- [ ]" to "- [x]" or add a "## Notes" section at the end. Restore with: git show HEAD:${headPath} > ${path}`)
+  }
+}
+report('task file (only checkboxes / Notes changed)', taskProblems.length === 0, taskProblems.join('\n'))
+
 // ---------- 2. lint ----------
 const lint = run(BIN('eslint'), ['src', 'tests'])
 report('lint (eslint src tests)', lint.ok, lint.out)
