@@ -63,7 +63,7 @@ react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @eslint/js@^10.0.1, @
 
 ### Backlog status
 
-- todo: 002, 003, 004, 005, 006, 007
+- todo: 002, 003, 004, 005, 006, 007, 008
 - in-progress: —
 - done: 001
 <!-- CODEMAP:END -->
