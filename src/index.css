@@ -1,0 +1,12 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; color: #222; background: #f7f7f8; }
+a { color: #2563eb; text-decoration: none; }
+.header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #fff; border-bottom: 1px solid #e5e5e5; }
+.logo { font-weight: 700; font-size: 1.25rem; color: #222; }
+.container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+.card { background: #fff; border: 1px solid #e5e5e5; border-radius: 8px; padding: 1rem; }
+.category { color: #666; font-size: 0.9rem; }
+.price { font-weight: 600; }
+button { padding: 0.5rem 1rem; border-radius: 6px; border: none; background: #2563eb; color: #fff; cursor: pointer; }
+button:disabled { background: #9ca3af; cursor: not-allowed; }
