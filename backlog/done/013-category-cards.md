@@ -10,11 +10,11 @@ Each device card gets an image area with a gradient in its category's colour and
 
 ## Acceptance criteria
 
-- [ ] New `src/data/categories.js` exports `categoryIcon(category)` (a different emoji for each of the 7 categories, `📦` for unknown ones) and `categoryHue(category)` (a stable number from 0 to 359)
-- [ ] A card is an `<article>` with `.card-media` (`aria-hidden`, custom property `--hue`, holds `.card-icon`) and `.card-body` (chip, name, price, badge, link)
-- [ ] The card keeps: category in `.chip`, name in `h3`, price as one text `€25 / day`, the `badge`, a "View details" link; unavailable devices get `card-unavailable`
-- [ ] `.card:hover` lifts the card (`translateY`) with the large shadow, and the icon tilts; `.card` fades in with `animation: rise` (`@keyframes rise` from opacity 0 to 1)
-- [ ] `npm run verify -- 013` passes (tests: `tests/task-013*.test.*`)
+- [x] New `src/data/categories.js` exports `categoryIcon(category)` (a different emoji for each of the 7 categories, `📦` for unknown ones) and `categoryHue(category)` (a stable number from 0 to 359)
+- [x] A card is an `<article>` with `.card-media` (`aria-hidden`, custom property `--hue`, holds `.card-icon`) and `.card-body` (chip, name, price, badge, link)
+- [x] The card keeps: category in `.chip`, name in `h3`, price as one text `€25 / day`, the `badge`, a "View details" link; unavailable devices get `card-unavailable`
+- [x] `.card:hover` lifts the card (`translateY`) with the large shadow, and the icon tilts; `.card` fades in with `animation: rise` (`@keyframes rise` from opacity 0 to 1)
+- [x] `npm run verify -- 013` passes (tests: `tests/task-013*.test.*`)
 
 ## Hints
 
