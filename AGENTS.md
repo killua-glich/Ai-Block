@@ -47,9 +47,9 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
   - exports: App()
   - imports: ./components/Header.jsx, ./components/Footer.jsx, ./pages/Catalog.jsx, ./pages/DeviceDetail.jsx, ./pages/MyRentals.jsx, ./pages/NotFound.jsx
   - routes: / → Catalog, /devices/:id → DeviceDetail, /rentals → MyRentals, * → NotFound
-- `src/components/DeviceCard.jsx` (14 lines)
+- `src/components/DeviceCard.jsx` (23 lines)
   - exports: DeviceCard({ device })
-  - imports: ../data/money.js
+  - imports: ../data/money.js, ../data/categories.js
 - `src/components/Footer.jsx` (14 lines)
   - exports: Footer()
 - `src/components/Header.jsx` (17 lines)
@@ -58,6 +58,8 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
   - exports: RentalForm({ device })
   - imports: ../data/rentals, ../data/money.js
   - hooks: useState
+- `src/data/categories.js` (22 lines)
+  - exports: categoryIcon(category), categoryHue(category)
 - `src/data/devices.js` (132 lines)
   - exports: devices (default)
   - shape: { id, name, category, pricePerDay, description, specs, available } × 14
@@ -66,8 +68,8 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
 - `src/data/rentals.js` (10 lines)
   - exports: getRentals(), addRental(rental)
   - localStorage: ai-block-rentals
-- `src/index.css` (310 lines)
-  - classes: header, logo, container, grid, card, category, price, filters, badge, badge-ok, badge-no, error, rental-form, success, logo-mark, nav, footer, footer-links, hero, eyebrow, lead, search, stats, visually-hidden
+- `src/index.css` (382 lines)
+  - classes: header, logo, container, grid, card, category, price, filters, badge, badge-ok, badge-no, error, rental-form, success, logo-mark, nav, footer, footer-links, hero, eyebrow, lead, search, stats, visually-hidden, card-media, card-icon, card-body, card-unavailable, chip, view-link
 - `src/main.jsx` (14 lines)
   - imports: ./App.jsx
 - `src/pages/Catalog.jsx` (68 lines)

@@ -85,9 +85,8 @@ export default function DeviceCard({ device }) {
   )
 }
 ```
-3. Change `src/index.css` with ONE call of the edit tool that holds these 2 edits. Do NOT rewrite the whole file: a long file copied again and again picks up typos.
-   For each edit, oldText must match the file exactly: copy it from here. If an edit fails, read the file once and correct oldText from what you read. Do not guess.
-   Edit 1: replace this rule. oldText:
+3. Change `src/index.css` with FOUR separate edit calls, one after the other. Each call is small. Do NOT rewrite the whole file.
+   Call 1. oldText:
 ```css
 .card {
   background: var(--color-surface);
@@ -111,34 +110,13 @@ export default function DeviceCard({ device }) {
   animation: rise 0.45s ease both;
 }
 ```
-   Edit 2: append the new rules after the last rule of the file. oldText:
+   Calls 2, 3 and 4 insert new rules BEFORE the `.visually-hidden` rule. The oldText is always the single line `.visually-hidden {` and the newText is the new rules, then an empty line, then `.visually-hidden {` again.
+   Call 2. oldText:
 ```css
 .visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
 ```
    newText:
 ```css
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
 .card:hover {
   box-shadow: var(--shadow-lg);
   transform: translateY(-4px);
@@ -161,6 +139,14 @@ export default function DeviceCard({ device }) {
   transform: scale(1.12) rotate(-6deg);
 }
 
+.visually-hidden {
+```
+   Call 3. oldText:
+```css
+.visually-hidden {
+```
+   newText:
+```css
 .card-body {
   display: flex;
   flex-direction: column;
@@ -179,6 +165,14 @@ export default function DeviceCard({ device }) {
   opacity: 0.72;
 }
 
+.visually-hidden {
+```
+   Call 4. oldText:
+```css
+.visually-hidden {
+```
+   newText:
+```css
 .chip {
   display: inline-block;
   padding: 0.15rem 0.7rem;
@@ -199,14 +193,17 @@ export default function DeviceCard({ device }) {
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
+.visually-hidden {
 ```
+   Do the calls in order, each one right after the last. If a call fails, read the file ONCE and fix oldText from what you read.
 
 When done:
 - Run `npm run verify -- 013`. If it says FAIL: read the lines under FAIL, fix `src/`, and run it again. Repeat until the last line is `VERIFY PASSED`.
