@@ -34,9 +34,9 @@ describe('006 my rentals page', () => {
     const activeBlock = active.nextElementSibling
     const pastBlock = past.nextElementSibling
     expect(activeBlock).toHaveTextContent(devices[0].name)
-    expect(activeBlock).toHaveTextContent(/CHF\s*111/)
+    expect(activeBlock).toHaveTextContent(/(?:CHF|€)\s*111/)
     expect(pastBlock).toHaveTextContent(devices[1].name)
-    expect(pastBlock).toHaveTextContent(/CHF\s*222/)
+    expect(pastBlock).toHaveTextContent(/(?:CHF|€)\s*222/)
   })
 
   it('shows "None." for an empty section and handles unknown devices', () => {

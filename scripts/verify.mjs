@@ -8,6 +8,7 @@
 import { execFileSync } from 'node:child_process'
 import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
+import { ruleKeys } from './css.mjs'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const BIN = (name) => join(ROOT, 'node_modules/.bin', name)
@@ -79,10 +80,9 @@ const atHead = (path) => {
   return r.ok ? r.out : null
 }
 
-// CSS: no existing selector may disappear, no selector may be defined twice.
-function selectors(css) {
-  return [...css.replace(/\/\*[\s\S]*?\*\//g, '').matchAll(/([^{}]+)\{/g)].map((m) => m[1].trim().replace(/\s+/g, ' '))
-}
+// CSS: no existing rule may disappear, no rule may be defined twice. A rule inside
+// @media counts as a different rule from the same selector outside it.
+const selectors = (css) => ruleKeys(css)
 const cssFiles = [...new Set([
   ...git('ls-files', 'src').out.split('\n'),
   ...git('ls-files', '--others', '--exclude-standard', 'src').out.split('\n'),

@@ -68,7 +68,7 @@ An agent saying "done" doesn't count. `npm run verify -- NNN` decides:
 | Step | Checks | Catches |
 |---|---|---|
 | scope | `git status` vs. the task's **Files** line (plus `backlog/`, `AGENTS.md`) | edits outside the task, edited tests, new npm packages |
-| css | `src/**/*.css` vs. `HEAD` | deleted CSS rules (an agent "replacing" a rule instead of adding one), duplicate selectors |
+| css | `src/**/*.css` vs. `HEAD` (parser: `scripts/css.mjs`) | deleted CSS rules, duplicate selectors. A rule inside `@media` counts as different from the same selector outside it |
 | task file | task files in `in-progress/` and `done/` vs. `HEAD`, ignoring `[ ]`/`[x]` and a trailing `## Notes` | an agent rewriting or truncating its task file |
 | lint | `eslint src tests` (JS recommended + React hooks rules) | unused vars, undefined names, broken hook usage |
 | build | `vite build` | syntax and import errors |
@@ -87,3 +87,15 @@ How the tests were checked (2026-11-23):
 After the agent: run `npm run verify -- NNN` yourself, then look at `git show` for anything the tests can't see (style, UX). Then start the next task.
 
 The css and task-file guards were added after watching a real agent run (task 001, see bug ticket 008): it deleted the `button` rules and truncated its task file, and verify was still green. Both kinds of damage are now caught, which I checked by planting them again.
+
+## Ticket types
+
+| Type | Example | How it starts |
+|---|---|---|
+| (feature) | 001–007 | test first, then the ticket |
+| bug | 008 repair, 009 euros | test that shows the bug, then the ticket |
+| styling | 010–019 | tests that check what can be measured: CSS variables, hover and focus rules, media queries, labels, classes and behavior in the markup |
+
+Styling tickets are a chain: each rewrites `src/index.css`, so they run **in order** (010 first). Together they turn the plain page into a bold, modern design: violet to pink gradient brand, frosted-glass header, hero with live search, category icons on gradient cards, a sticky booking card, status chips, dark mode, and reduced motion. Every prompt contains the exact CSS and component code to write, taken from a reference solution that was checked in a throwaway copy. The tests for tickets that aren't done yet are not part of `npm run verify`, but `npm test` runs them all.
+
+CSS tests use `tests/css-helpers.js`, which reads `src/index.css` with the same parser as the verify guard.

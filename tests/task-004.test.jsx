@@ -22,20 +22,20 @@ describe('004 rental form', () => {
     render(<RentalForm device={device} />)
     fill('2026-12-01', '2026-12-05')
     expect(screen.getByText(/5 day/)).toBeInTheDocument()
-    expect(screen.getByText(/CHF\s*125/)).toBeInTheDocument()
+    expect(screen.getByText(/(?:CHF|€)\s*125/)).toBeInTheDocument()
     expect(rentButton()).toBeEnabled()
   })
 
   it('same day counts as 1 day', () => {
     render(<RentalForm device={device} />)
     fill('2026-12-01', '2026-12-01')
-    expect(screen.getByText(/CHF\s*25\b/)).toBeInTheDocument()
+    expect(screen.getByText(/(?:CHF|€)\s*25\b/)).toBeInTheDocument()
   })
 
   it('handles the daylight-saving change in March', () => {
     render(<RentalForm device={device} />)
     fill('2027-03-27', '2027-03-29')
-    expect(screen.getByText(/CHF\s*75\b/)).toBeInTheDocument()
+    expect(screen.getByText(/(?:CHF|€)\s*75\b/)).toBeInTheDocument()
   })
 
   it('rejects a start date in the past', () => {

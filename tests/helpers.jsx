@@ -8,5 +8,5 @@ export function renderAt(path, ui = <App />) {
 
 // Device prices shown on catalog cards, in display order.
 export function shownPrices(screen) {
-  return screen.getAllByText(/CHF\s*\d+(\.\d+)?\s*\/\s*day/).map((el) => Number(el.textContent.match(/\d+(\.\d+)?/)[0]))
+  return screen.getAllByText(/(?:CHF|€)\s*\d+(\.\d+)?\s*\/\s*day/).map((el) => Number(el.textContent.match(/\d+(\.\d+)?/)[0]))
 }

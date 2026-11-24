@@ -24,7 +24,7 @@ Ai-Block: a device rental website. This file is loaded automatically by the codi
 
 ## Editing rules (learned from real agent runs)
 
-1. **Adding CSS:** add new rules at the END of `src/index.css`. Never replace or remove an existing rule. Verify fails if a selector disappears or appears twice.
+1. **CSS:** add new rules at the END of `src/index.css`. Never delete a rule and never define the same selector twice. Change the properties of an existing rule only when the task lists that rule; then rewrite the whole file with `write` and keep every other rule. Verify fails if a rule disappears or a selector appears twice (a rule inside `@media` counts as a different rule from the same selector outside it).
 2. **Small files (< 80 lines):** prefer the `write` tool with the complete new file content over many `edit` calls.
 3. **If an edit fails twice** ("Could not find the exact text"): read the file ONCE, then rewrite the whole file with `write`. Don't retry the same edit.
 4. **Don't read the same file more than twice in a row.** If you're unsure, run `npm run verify -- NNN` instead and follow its output.
@@ -85,7 +85,7 @@ react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @eslint/js@^10.0.1, @
 
 ### Backlog status
 
-- todo: —
+- todo: 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019
 - in-progress: —
 - done: 001, 002, 003, 004, 005, 006, 007, 008
 <!-- CODEMAP:END -->
