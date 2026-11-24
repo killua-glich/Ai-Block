@@ -35,9 +35,9 @@ Read first: `src/index.css`.
 Edit or create: `src/index.css`.
 
 Steps:
-1. Change `src/index.css` with ONE call of the edit tool that holds these 3 edits. Do NOT rewrite the whole file: a long file copied again and again picks up typos.
-   For each edit, oldText must match the file exactly: copy it from here. If an edit fails, read the file once and correct oldText from what you read. Do not guess.
-   Edit 1: replace this rule. oldText:
+1. Change `src/index.css` with 3 SEPARATE edit calls, one after the other. Each call is small. Do NOT rewrite the whole file, and do NOT merge calls: a long edit can run past the output limit.
+   For each call, oldText must match the file exactly: copy it from here. If a call fails, read the file once and correct oldText from what you read. Do not guess. Do the calls in order, each one right after the last.
+   Call 1. oldText:
 ```css
 :root {
   --color-bg: #f6f5ff;
@@ -90,7 +90,7 @@ Steps:
   --font-display: ui-rounded, "SF Pro Rounded", "Avenir Next", system-ui, sans-serif;
 }
 ```
-   Edit 2: replace this rule. oldText:
+   Call 2. oldText:
 ```css
 @media (max-width: 600px) {
   .container {
@@ -137,7 +137,7 @@ Steps:
   }
 }
 ```
-   Edit 3: append the new rules after the last rule of the file. oldText:
+   Call 3. oldText:
 ```css
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

@@ -51,9 +51,9 @@ export default function NotFound() {
   )
 }
 ```
-2. Change `src/index.css` with ONE call of the edit tool that holds these 2 edits. Do NOT rewrite the whole file: a long file copied again and again picks up typos.
-   For each edit, oldText must match the file exactly: copy it from here. If an edit fails, read the file once and correct oldText from what you read. Do not guess.
-   Edit 1: replace this rule. oldText:
+2. Change `src/index.css` with 3 SEPARATE edit calls, one after the other. Each call is small. Do NOT rewrite the whole file, and do NOT merge calls: a long edit can run past the output limit.
+   For each call, oldText must match the file exactly: copy it from here. If a call fails, read the file once and correct oldText from what you read. Do not guess. Do the calls in order, each one right after the last.
+   Call 1. oldText:
 ```css
 .container {
   flex: 1;
@@ -74,7 +74,7 @@ export default function NotFound() {
   animation: fade 0.35s ease both;
 }
 ```
-   Edit 2: append the new rules after the last rule of the file. oldText:
+   Call 2. oldText:
 ```css
 .muted {
   color: var(--color-muted);
@@ -91,6 +91,34 @@ export default function NotFound() {
   text-align: center;
 }
 
+.not-found-code {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 20vw, 10rem);
+  font-weight: 900;
+  line-height: 1;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+```
+   Call 3. oldText:
+```css
+.not-found-code {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 20vw, 10rem);
+  font-weight: 900;
+  line-height: 1;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+```
+   newText:
+```css
 .not-found-code {
   margin: 0;
   font-family: var(--font-display);

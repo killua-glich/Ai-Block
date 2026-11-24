@@ -111,9 +111,9 @@ export default function MyRentals() {
   )
 }
 ```
-2. Change `src/index.css` with ONE call of the edit tool that holds these 1 edits. Do NOT rewrite the whole file: a long file copied again and again picks up typos.
-   For each edit, oldText must match the file exactly: copy it from here. If an edit fails, read the file once and correct oldText from what you read. Do not guess.
-   Edit 1: append the new rules after the last rule of the file. oldText:
+2. Change `src/index.css` with 4 SEPARATE edit calls, one after the other. Each call is small. Do NOT rewrite the whole file, and do NOT merge calls: a long edit can run past the output limit.
+   For each call, oldText must match the file exactly: copy it from here. If a call fails, read the file once and correct oldText from what you read. Do not guess. Do the calls in order, each one right after the last.
+   Call 1. oldText:
 ```css
 .summary-total {
   margin: 0.25rem 0 0;
@@ -146,6 +146,24 @@ export default function MyRentals() {
   table-layout: fixed;
   border-collapse: collapse;
 }
+```
+   Call 2. oldText:
+```css
+.table {
+  width: 100%;
+  min-width: 34rem;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+```
+   newText:
+```css
+.table {
+  width: 100%;
+  min-width: 34rem;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
 
 .table th, .table td {
   padding: 0.85rem 1.1rem;
@@ -163,6 +181,18 @@ export default function MyRentals() {
 .table tbody tr:last-child td {
   border-bottom: none;
 }
+```
+   Call 3. oldText:
+```css
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+```
+   newText:
+```css
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
 
 .table tbody tr:hover {
   background: var(--color-bg);
@@ -177,6 +207,20 @@ export default function MyRentals() {
   margin-right: 0.4rem;
 }
 
+.chip-active {
+  background: color-mix(in srgb, var(--color-success) 16%, transparent);
+  color: var(--color-success);
+}
+```
+   Call 4. oldText:
+```css
+.chip-active {
+  background: color-mix(in srgb, var(--color-success) 16%, transparent);
+  color: var(--color-success);
+}
+```
+   newText:
+```css
 .chip-active {
   background: color-mix(in srgb, var(--color-success) 16%, transparent);
   color: var(--color-success);

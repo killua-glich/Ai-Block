@@ -93,9 +93,9 @@ export default function RentalForm({ device }) {
   )
 }
 ```
-2. Change `src/index.css` with ONE call of the edit tool that holds these 7 edits. Do NOT rewrite the whole file: a long file copied again and again picks up typos.
-   For each edit, oldText must match the file exactly: copy it from here. If an edit fails, read the file once and correct oldText from what you read. Do not guess.
-   Edit 1: replace this rule. oldText:
+2. Change `src/index.css` with 9 SEPARATE edit calls, one after the other. Each call is small. Do NOT rewrite the whole file, and do NOT merge calls: a long edit can run past the output limit.
+   For each call, oldText must match the file exactly: copy it from here. If a call fails, read the file once and correct oldText from what you read. Do not guess. Do the calls in order, each one right after the last.
+   Call 1. oldText:
 ```css
 button {
   padding: 0.6rem 1.2rem;
@@ -121,7 +121,7 @@ button {
   transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
 }
 ```
-   Edit 2: replace this rule. oldText:
+   Call 2. oldText:
 ```css
 button:hover:not(:disabled) {
   background: var(--color-primary-hover);
@@ -136,7 +136,7 @@ button:hover:not(:disabled) {
   transform: translateY(-1px);
 }
 ```
-   Edit 3: replace this rule. oldText:
+   Call 3. oldText:
 ```css
 button:disabled {
   background: var(--color-disabled);
@@ -151,7 +151,7 @@ button:disabled {
   cursor: not-allowed;
 }
 ```
-   Edit 4: replace this rule. oldText:
+   Call 4. oldText:
 ```css
 .button-ghost {
   background: transparent;
@@ -168,7 +168,7 @@ button:disabled {
   border: 1px solid var(--color-border);
 }
 ```
-   Edit 5: replace this rule. oldText:
+   Call 5. oldText:
 ```css
 .error {
   color: var(--color-danger);
@@ -181,7 +181,7 @@ button:disabled {
   font-weight: 600;
 }
 ```
-   Edit 6: replace this rule. oldText:
+   Call 6. oldText:
 ```css
 .success {
   color: var(--color-success);
@@ -200,7 +200,7 @@ button:disabled {
   font-weight: 700;
 }
 ```
-   Edit 7: append the new rules after the last rule of the file. oldText:
+   Call 7. oldText:
 ```css
 @media (max-width: 800px) {
   .detail {
@@ -239,6 +239,28 @@ input[type="date"] {
   background: var(--color-surface);
   color: var(--color-text);
 }
+```
+   Call 8. oldText:
+```css
+input[type="date"] {
+  font: inherit;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+```
+   newText:
+```css
+input[type="date"] {
+  font: inherit;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
 
 .rental-form label {
   display: flex;
@@ -251,6 +273,18 @@ input[type="date"] {
   color: var(--color-muted);
 }
 
+.rental-form button {
+  align-self: stretch;
+}
+```
+   Call 9. oldText:
+```css
+.rental-form button {
+  align-self: stretch;
+}
+```
+   newText:
+```css
 .rental-form button {
   align-self: stretch;
 }

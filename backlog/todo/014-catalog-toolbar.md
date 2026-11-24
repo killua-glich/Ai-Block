@@ -130,9 +130,9 @@ export default function Catalog() {
   )
 }
 ```
-2. Change `src/index.css` with ONE call of the edit tool that holds these 2 edits. Do NOT rewrite the whole file: a long file copied again and again picks up typos.
-   For each edit, oldText must match the file exactly: copy it from here. If an edit fails, read the file once and correct oldText from what you read. Do not guess.
-   Edit 1: replace this rule. oldText:
+2. Change `src/index.css` with 6 SEPARATE edit calls, one after the other. Each call is small. Do NOT rewrite the whole file, and do NOT merge calls: a long edit can run past the output limit.
+   For each call, oldText must match the file exactly: copy it from here. If a call fails, read the file once and correct oldText from what you read. Do not guess. Do the calls in order, each one right after the last.
+   Call 1. oldText:
 ```css
 .filters {
   display: flex;
@@ -149,7 +149,7 @@ export default function Catalog() {
   gap: 1rem;
 }
 ```
-   Edit 2: append the new rules after the last rule of the file. oldText:
+   Call 2. oldText:
 ```css
 @keyframes rise {
   from {
@@ -188,6 +188,38 @@ export default function Catalog() {
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
 }
+```
+   Call 3. oldText:
+```css
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+```
+   newText:
+```css
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
 
 .toolbar-end {
   display: flex;
@@ -195,6 +227,32 @@ export default function Catalog() {
   gap: 1rem;
 }
 
+.filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+```
+   Call 4. oldText:
+```css
+.filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+```
+   newText:
+```css
 .filters label {
   display: flex;
   flex-direction: column;
@@ -222,6 +280,22 @@ select {
   font-weight: 600;
   color: var(--color-muted);
 }
+```
+   Call 5. oldText:
+```css
+.result-count {
+  margin: 0;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+```
+   newText:
+```css
+.result-count {
+  margin: 0;
+  font-weight: 600;
+  color: var(--color-muted);
+}
 
 .button-ghost {
   background: transparent;
@@ -233,6 +307,28 @@ select {
   background: var(--color-bg);
 }
 
+.empty-state {
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  background: var(--color-surface);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-muted);
+}
+```
+   Call 6. oldText:
+```css
+.empty-state {
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  background: var(--color-surface);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-muted);
+}
+```
+   newText:
+```css
 .empty-state {
   padding: 2.5rem 1.5rem;
   text-align: center;

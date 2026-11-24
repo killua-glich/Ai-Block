@@ -85,9 +85,9 @@ export default function DeviceDetail() {
   )
 }
 ```
-2. Change `src/index.css` with ONE call of the edit tool that holds these 2 edits. Do NOT rewrite the whole file: a long file copied again and again picks up typos.
-   For each edit, oldText must match the file exactly: copy it from here. If an edit fails, read the file once and correct oldText from what you read. Do not guess.
-   Edit 1: replace this rule. oldText:
+2. Change `src/index.css` with 7 SEPARATE edit calls, one after the other. Each call is small. Do NOT rewrite the whole file, and do NOT merge calls: a long edit can run past the output limit.
+   For each call, oldText must match the file exactly: copy it from here. If a call fails, read the file once and correct oldText from what you read. Do not guess. Do the calls in order, each one right after the last.
+   Call 1. oldText:
 ```css
 .rental-form {
   display: flex;
@@ -105,7 +105,7 @@ export default function DeviceDetail() {
   width: 100%;
 }
 ```
-   Edit 2: append the new rules after the last rule of the file. oldText:
+   Call 2. oldText:
 ```css
 @media (max-width: 600px) {
   .container {
@@ -154,6 +154,24 @@ export default function DeviceDetail() {
   gap: 2.5rem;
   align-items: start;
 }
+```
+   Call 3. oldText:
+```css
+.detail {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+```
+   newText:
+```css
+.detail {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
 
 .detail-media {
   display: grid;
@@ -169,7 +187,43 @@ export default function DeviceDetail() {
   font-size: 5rem;
   filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.25));
 }
+```
+   Call 4. oldText:
+```css
+.detail-icon {
+  font-size: 5rem;
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.25));
+}
+```
+   newText:
+```css
+.detail-icon {
+  font-size: 5rem;
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.25));
+}
 
+.price-tag {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: var(--gradient-brand);
+  color: var(--color-on-primary);
+  font-size: 1.1rem;
+}
+```
+   Call 5. oldText:
+```css
+.price-tag {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: var(--gradient-brand);
+  color: var(--color-on-primary);
+  font-size: 1.1rem;
+}
+```
+   newText:
+```css
 .price-tag {
   display: inline-block;
   padding: 0.4rem 1rem;
@@ -193,6 +247,20 @@ export default function DeviceDetail() {
   margin: 0 0 1rem;
   font-size: 1.25rem;
 }
+```
+   Call 6. oldText:
+```css
+.detail-booking h2 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+}
+```
+   newText:
+```css
+.detail-booking h2 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+}
 
 .specs {
   list-style: none;
@@ -203,6 +271,28 @@ export default function DeviceDetail() {
   margin: 1.25rem 0;
 }
 
+.specs li {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-sm);
+}
+```
+   Call 7. oldText:
+```css
+.specs li {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-sm);
+}
+```
+   newText:
+```css
 .specs li {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
