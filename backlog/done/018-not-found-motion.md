@@ -10,11 +10,11 @@ Unknown addresses show a huge gradient 404. Pages fade in when you switch betwee
 
 ## Acceptance criteria
 
-- [ ] `NotFound.jsx`: `<section className="not-found">` with `<p className="not-found-code" aria-hidden="true">404</p>`, the `h1` "Page not found", `<p className="muted">...</p>` and the link "Back to devices"
-- [ ] `.not-found-code` is filled with the brand gradient (`background-clip: text`, `color: transparent`) with a fluid `clamp(...)` size
-- [ ] `.container` fades in (`animation: fade`, `@keyframes fade` from opacity 0 to 1)
-- [ ] `@media (prefers-reduced-motion: reduce)` sets `animation-duration` and `transition-duration` to `0.01ms` for `*, *::before, *::after`
-- [ ] `npm run verify -- 018` passes (tests: `tests/task-018*.test.*`)
+- [x] `NotFound.jsx`: `<section className="not-found">` with `<p className="not-found-code" aria-hidden="true">404</p>`, the `h1` "Page not found", `<p className="muted">...</p>` and the link "Back to devices"
+- [x] `.not-found-code` is filled with the brand gradient (`background-clip: text`, `color: transparent`) with a fluid `clamp(...)` size
+- [x] `.container` fades in (`animation: fade`, `@keyframes fade` from opacity 0 to 1)
+- [x] `@media (prefers-reduced-motion: reduce)` sets `animation-duration` and `transition-duration` to `0.01ms` for `*, *::before, *::after`
+- [x] `npm run verify -- 018` passes (tests: `tests/task-018*.test.*`)
 
 ## Hints
 
