@@ -18,6 +18,13 @@ export default function Catalog() {
     if (sort === 'desc') return b.pricePerDay - a.pricePerDay
     return 0
   })
+  const hasFilters = category !== 'All' || sort !== 'default' || query !== ''
+
+  function resetFilters() {
+    setCategory('All')
+    setSort('default')
+    setQuery('')
+  }
 
   return (
     <>
@@ -40,20 +47,36 @@ export default function Catalog() {
         </ul>
       </section>
       <section>
-        <div className="filters">
-          <select value={category} onChange={(e) => setCategory(e.target.value)}>
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>{cat}</option>
-            ))}
-          </select>
-          <select value={sort} onChange={(e) => setSort(e.target.value)}>
-            <option value="default">Default</option>
-            <option value="asc">Price: low to high</option>
-            <option value="desc">Price: high to low</option>
-          </select>
+        <div className="toolbar">
+          <div className="filters">
+            <label>
+              Category
+              <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                {categories.map((cat) => (
+                  <option key={cat} value={cat}>{cat}</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Sort by
+              <select value={sort} onChange={(e) => setSort(e.target.value)}>
+                <option value="default">Default</option>
+                <option value="asc">Price: low to high</option>
+                <option value="desc">Price: high to low</option>
+              </select>
+            </label>
+          </div>
+          <div className="toolbar-end">
+            <p className="result-count">{sorted.length === 1 ? '1 device' : `${sorted.length} devices`}</p>
+            {hasFilters && (
+              <button type="button" className="button-ghost" onClick={resetFilters}>Reset filters</button>
+            )}
+          </div>
         </div>
         {visible.length === 0 ? (
-          <p>No devices found.</p>
+          <div className="empty-state">
+            <p>No devices found.</p>
+          </div>
         ) : (
           <div className="grid">
             {sorted.map((device) => (

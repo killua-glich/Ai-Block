@@ -10,12 +10,12 @@ The filters live in a raised toolbar with small-caps labels. The page says how m
 
 ## Acceptance criteria
 
-- [ ] The two selects are inside `<label>`s ("Category", "Sort by") in `<div className="toolbar">`
-- [ ] `<p className="result-count">` shows "N devices" ("1 device" for one) and follows the filters
-- [ ] A "Reset filters" button (`className="button-ghost"`) is shown only while the search, the category or the sorting is changed; clicking it resets all three
-- [ ] The empty result is `<div className="empty-state"><p>No devices found.</p></div>` with a dashed border
-- [ ] On a phone (`@media (max-width: 600px)`) the toolbar and the filters stack in a column
-- [ ] `npm run verify -- 014` passes (tests: `tests/task-014*.test.*`)
+- [x] The two selects are inside `<label>`s ("Category", "Sort by") in `<div className="toolbar">`
+- [x] `<p className="result-count">` shows "N devices" ("1 device" for one) and follows the filters
+- [x] A "Reset filters" button (`className="button-ghost"`) is shown only while the search, the category or the sorting is changed; clicking it resets all three
+- [x] The empty result is `<div className="empty-state"><p>No devices found.</p></div>` with a dashed border
+- [x] On a phone (`@media (max-width: 600px)`) the toolbar and the filters stack in a column
+- [x] `npm run verify -- 014` passes (tests: `tests/task-014*.test.*`)
 
 ## Hints
 

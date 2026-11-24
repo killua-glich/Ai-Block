@@ -68,11 +68,11 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
 - `src/data/rentals.js` (10 lines)
   - exports: getRentals(), addRental(rental)
   - localStorage: ai-block-rentals
-- `src/index.css` (382 lines)
-  - classes: header, logo, container, grid, card, category, price, filters, badge, badge-ok, badge-no, error, rental-form, success, logo-mark, nav, footer, footer-links, hero, eyebrow, lead, search, stats, visually-hidden, card-media, card-icon, card-body, card-unavailable, chip, view-link
+- `src/index.css` (464 lines)
+  - classes: header, logo, container, grid, card, category, price, filters, badge, badge-ok, badge-no, error, rental-form, success, logo-mark, nav, footer, footer-links, hero, eyebrow, lead, search, stats, visually-hidden, card-media, card-icon, card-body, card-unavailable, chip, view-link, toolbar, toolbar-end, result-count, button-ghost, empty-state
 - `src/main.jsx` (14 lines)
   - imports: ./App.jsx
-- `src/pages/Catalog.jsx` (68 lines)
+- `src/pages/Catalog.jsx` (91 lines)
   - exports: Catalog()
   - imports: ../data/devices.js, ../components/DeviceCard.jsx
   - hooks: useState
@@ -92,7 +92,7 @@ react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @eslint/js@^10.0.1, @
 
 ### Backlog status
 
-- todo: 014, 015, 016, 017, 018, 019
+- todo: 015, 016, 017, 018, 019
 - in-progress: —
-- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013
+- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014
 <!-- CODEMAP:END -->
