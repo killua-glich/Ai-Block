@@ -94,3 +94,14 @@ button:disabled {
 .badge-no {
   background: #dc2626;
 }
+
+.error {
+  color: #dc2626;
+}
+
+.rental-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 300px;
+}

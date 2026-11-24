@@ -9,11 +9,11 @@ Users pick a start and end date and see the total price.
 
 ## Acceptance criteria
 
-- [ ] New `RentalForm` component with two `<input type="date">` fields
-- [ ] Shows number of days and total price (`days * pricePerDay`)
-- [ ] Error message if end date is before start date or start date is in the past
-- [ ] Rent button enabled only when dates are valid and device is `available`
-- [ ] `npm run verify -- 004` passes (tests: `tests/task-004*.test.jsx`)
+- [x] New `RentalForm` component with two `<input type="date">` fields
+- [x] Shows number of days and total price (`days * pricePerDay`)
+- [x] Error message if end date is before start date or start date is in the past
+- [x] Rent button enabled only when dates are valid and device is `available`
+- [x] `npm run verify -- 004` passes (tests: `tests/task-004*.test.jsx`)
 
 ## Hints
 
