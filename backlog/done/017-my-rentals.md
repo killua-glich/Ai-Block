@@ -10,12 +10,12 @@ The rentals page gets a heading, tables in a raised scrollable card with an icon
 
 ## Acceptance criteria
 
-- [ ] The page has an `h1` "My rentals", also in the empty state; the empty state is `<div className="empty-state">` with "You have no rentals yet." and a link "Browse devices" to `/`
-- [ ] Each table is `<div className="table-wrap"><table className="table">` with the columns Device, From, To, Status, Total (`className="num"` on the Total `th` and `td`)
-- [ ] Each row starts with `<span className="row-icon" aria-hidden="true">` (the category icon, `📦` for an unknown device) and shows the status as `chip chip-active` ("Active") or `chip chip-past` ("Past")
-- [ ] An empty section shows `<p className="muted">None.</p>`; each `h2` stays directly in front of its table or that line
-- [ ] `.table-wrap` scrolls sideways (`overflow-x: auto`); headers are small caps; rows highlight on hover; the last row has no bottom border
-- [ ] `npm run verify -- 017` passes (tests: `tests/task-017*.test.*`)
+- [x] The page has an `h1` "My rentals", also in the empty state; the empty state is `<div className="empty-state">` with "You have no rentals yet." and a link "Browse devices" to `/`
+- [x] Each table is `<div className="table-wrap"><table className="table">` with the columns Device, From, To, Status, Total (`className="num"` on the Total `th` and `td`)
+- [x] Each row starts with `<span className="row-icon" aria-hidden="true">` (the category icon, `📦` for an unknown device) and shows the status as `chip chip-active` ("Active") or `chip chip-past` ("Past")
+- [x] An empty section shows `<p className="muted">None.</p>`; each `h2` stays directly in front of its table or that line
+- [x] `.table-wrap` scrolls sideways (`overflow-x: auto`); headers are small caps; rows highlight on hover; the last row has no bottom border
+- [x] `npm run verify -- 017` passes (tests: `tests/task-017*.test.*`)
 
 ## Hints
 
