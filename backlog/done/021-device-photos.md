@@ -10,12 +10,12 @@ Every device card and the detail page show a product photo instead of only the e
 
 ## Acceptance criteria
 
-- [ ] `DeviceCard.jsx`: `.card-media` holds, after the `.card-icon` span, `<img className="card-photo" src={`/devices/${device.id}.jpg`} alt="" loading="lazy" onError={...} />`
-- [ ] `DeviceDetail.jsx`: `.detail-media` holds, after the `.detail-icon` span, `<img className="detail-photo" src={`/devices/${device.id}.jpg`} alt="" onError={...} />`
-- [ ] Both `onError` handlers hide the image: `onError={(e) => { e.currentTarget.hidden = true }}`
-- [ ] `.card-media` and `.detail-media` get `position: relative` and `overflow: hidden`
-- [ ] `.card-photo` and `.detail-photo` fill their box: `position: absolute`, `inset: 0`, `width: 100%`, `height: 100%`, `object-fit: cover`; `.card-photo` also has `transition: transform 0.4s` and `.card:hover .card-photo` has `transform: scale(1.06)`
-- [ ] `npm run verify -- 021` passes (tests: `tests/task-021*.test.*`)
+- [x] `DeviceCard.jsx`: `.card-media` holds, after the `.card-icon` span, `<img className="card-photo" src={`/devices/${device.id}.jpg`} alt="" loading="lazy" onError={...} />`
+- [x] `DeviceDetail.jsx`: `.detail-media` holds, after the `.detail-icon` span, `<img className="detail-photo" src={`/devices/${device.id}.jpg`} alt="" onError={...} />`
+- [x] Both `onError` handlers hide the image: `onError={(e) => { e.currentTarget.hidden = true }}`
+- [x] `.card-media` and `.detail-media` get `position: relative` and `overflow: hidden`
+- [x] `.card-photo` and `.detail-photo` fill their box: `position: absolute`, `inset: 0`, `width: 100%`, `height: 100%`, `object-fit: cover`; `.card-photo` also has `transition: transform 0.4s` and `.card:hover .card-photo` has `transform: scale(1.06)`
+- [x] `npm run verify -- 021` passes (tests: `tests/task-021*.test.*`)
 
 ## Hints
 

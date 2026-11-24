@@ -7,6 +7,7 @@ export default function DeviceCard({ device }) {
     <article className={device.available ? 'card' : 'card card-unavailable'}>
       <div className="card-media" style={{ '--hue': categoryHue(device.category) }} aria-hidden="true">
         <span className="card-icon">{categoryIcon(device.category)}</span>
+        <img className="card-photo" src={`/devices/${device.id}.jpg`} alt="" loading="lazy" onError={(e) => { e.currentTarget.hidden = true }} />
       </div>
       <div className="card-body">
         <span className="chip">{device.category}</span>

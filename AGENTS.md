@@ -47,7 +47,7 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
   - exports: App()
   - imports: ./components/Header.jsx, ./components/Footer.jsx, ./pages/Catalog.jsx, ./pages/DeviceDetail.jsx, ./pages/MyRentals.jsx, ./pages/NotFound.jsx
   - routes: / → Catalog, /devices/:id → DeviceDetail, /rentals → MyRentals, * → NotFound
-- `src/components/DeviceCard.jsx` (23 lines)
+- `src/components/DeviceCard.jsx` (24 lines)
   - exports: DeviceCard({ device })
   - imports: ../data/money.js, ../data/categories.js
 - `src/components/Footer.jsx` (14 lines)
@@ -68,15 +68,15 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
 - `src/data/rentals.js` (10 lines)
   - exports: getRentals(), addRental(rental)
   - localStorage: ai-block-rentals
-- `src/index.css` (767 lines)
-  - classes: header, logo, container, grid, card, category, price, filters, badge, badge-ok, badge-no, error, rental-form, success, logo-mark, nav, footer, footer-links, hero, hero-image, eyebrow, lead, search, stats, visually-hidden, card-media, card-icon, card-body, card-unavailable, chip, view-link, toolbar, toolbar-end, result-count, button-ghost, empty-state, back-link, detail, detail-media, detail-icon, price-tag, detail-booking, specs, summary, summary-days, summary-total, table-wrap, table, row-icon, chip-active, chip-past, muted, not-found, not-found-code
+- `src/index.css` (792 lines)
+  - classes: header, logo, container, grid, card, category, price, filters, badge, badge-ok, badge-no, error, rental-form, success, logo-mark, nav, footer, footer-links, hero, hero-image, eyebrow, lead, search, stats, visually-hidden, card-media, card-photo, card-icon, card-body, card-unavailable, chip, view-link, toolbar, toolbar-end, result-count, button-ghost, empty-state, back-link, detail, detail-media, detail-photo, detail-icon, price-tag, detail-booking, specs, summary, summary-days, summary-total, table-wrap, table, row-icon, chip-active, chip-past, muted, not-found, not-found-code
 - `src/main.jsx` (14 lines)
   - imports: ./App.jsx
 - `src/pages/Catalog.jsx` (92 lines)
   - exports: Catalog()
   - imports: ../data/devices.js, ../components/DeviceCard.jsx
   - hooks: useState
-- `src/pages/DeviceDetail.jsx` (46 lines)
+- `src/pages/DeviceDetail.jsx` (47 lines)
   - exports: DeviceDetail()
   - imports: ../data/devices.js, ../components/RentalForm.jsx, ../data/money.js, ../data/categories.js
   - hooks: useParams
@@ -92,7 +92,7 @@ react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @eslint/js@^10.0.1, @
 
 ### Backlog status
 
-- todo: 021
+- todo: —
 - in-progress: —
-- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020
+- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020, 021
 <!-- CODEMAP:END -->

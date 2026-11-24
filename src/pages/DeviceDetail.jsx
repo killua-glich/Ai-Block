@@ -19,6 +19,7 @@ export default function DeviceDetail() {
         <div className="detail-info">
           <div className="detail-media" style={{ '--hue': categoryHue(device.category) }} aria-hidden="true">
             <span className="detail-icon">{categoryIcon(device.category)}</span>
+            <img className="detail-photo" src={`/devices/${device.id}.jpg`} alt="" onError={(e) => { e.currentTarget.hidden = true }} />
           </div>
           <h1>{device.name}</h1>
           <p className="category">
