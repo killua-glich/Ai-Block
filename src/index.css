@@ -159,8 +159,8 @@ button:disabled {
 .rental-form {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  max-width: 300px;
+  gap: 0.75rem;
+  width: 100%;
 }
 
 .success {
@@ -459,5 +459,89 @@ select {
   .filters {
     flex-direction: column;
     align-items: stretch;
+  }
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.back-link:hover {
+  color: var(--color-primary);
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.detail-media {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 21 / 9;
+  margin-bottom: 1.5rem;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, hsl(var(--hue) 85% 62%), hsl(calc(var(--hue) + 45) 85% 55%));
+  box-shadow: var(--shadow);
+}
+
+.detail-icon {
+  font-size: 5rem;
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.25));
+}
+
+.price-tag {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: var(--gradient-brand);
+  color: var(--color-on-primary);
+  font-size: 1.1rem;
+}
+
+.detail-booking {
+  position: sticky;
+  top: 5.5rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+}
+
+.detail-booking h2 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+}
+
+.specs {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 1.25rem 0;
+}
+
+.specs li {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 800px) {
+  .detail {
+    grid-template-columns: 1fr;
+  }
+  .detail-booking {
+    position: static;
   }
 }

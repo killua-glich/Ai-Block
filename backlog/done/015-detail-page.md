@@ -10,12 +10,12 @@ The detail page shows a large gradient image area with the category icon, a grad
 
 ## Acceptance criteria
 
-- [ ] `.detail-media` (`aria-hidden`, `--hue`, holds `.detail-icon`) sits above the title inside `.detail-info`
-- [ ] The price is `<p className="price price-tag">€25 / day</p>`, the specs `<ul className="specs">`
-- [ ] `.detail-booking` holds the heading "Book this device" and the rental form; it is `position: sticky` on a wide screen
-- [ ] Two columns (`2fr 1fr`); at `@media (max-width: 800px)` one column and the card is no longer sticky
-- [ ] `.rental-form` fills its card (`width: 100%`, no `max-width`)
-- [ ] `npm run verify -- 015` passes (tests: `tests/task-015*.test.*`)
+- [x] `.detail-media` (`aria-hidden`, `--hue`, holds `.detail-icon`) sits above the title inside `.detail-info`
+- [x] The price is `<p className="price price-tag">€25 / day</p>`, the specs `<ul className="specs">`
+- [x] `.detail-booking` holds the heading "Book this device" and the rental form; it is `position: sticky` on a wide screen
+- [x] Two columns (`2fr 1fr`); at `@media (max-width: 800px)` one column and the card is no longer sticky
+- [x] `.rental-form` fills its card (`width: 100%`, no `max-width`)
+- [x] `npm run verify -- 015` passes (tests: `tests/task-015*.test.*`)
 
 ## Hints
 
