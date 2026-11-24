@@ -51,21 +51,32 @@ a {
 }
 
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background: var(--color-surface);
+  padding: 0.9rem 2rem;
+  background: color-mix(in srgb, var(--color-surface) 72%, transparent);
   border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(14px) saturate(1.4);
 }
 
 .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
   font-weight: 800;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
+  letter-spacing: -0.02em;
   color: var(--color-text);
 }
 
 .container {
+  flex: 1;
+  width: 100%;
   max-width: 1100px;
   margin: 0 auto;
   padding: 2rem;
@@ -149,4 +160,74 @@ button:disabled {
 
 .success {
   color: var(--color-success);
+}
+
+.logo-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 0.6rem;
+  background: var(--gradient-brand);
+  color: var(--color-on-primary);
+  font-size: 0.9rem;
+  box-shadow: var(--shadow);
+}
+
+.nav {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.nav a {
+  color: var(--color-muted);
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.nav a:hover {
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+.nav a[aria-current="page"] {
+  color: var(--color-primary);
+  background: var(--color-bg);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.footer-links a {
+  color: var(--color-muted);
+}
+
+.footer-links a:hover {
+  color: var(--color-primary);
 }

@@ -43,14 +43,16 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
 
 ### Files
 
-- `src/App.jsx` (23 lines)
+- `src/App.jsx` (25 lines)
   - exports: App()
-  - imports: ./components/Header.jsx, ./pages/Catalog.jsx, ./pages/DeviceDetail.jsx, ./pages/MyRentals.jsx, ./pages/NotFound.jsx
+  - imports: ./components/Header.jsx, ./components/Footer.jsx, ./pages/Catalog.jsx, ./pages/DeviceDetail.jsx, ./pages/MyRentals.jsx, ./pages/NotFound.jsx
   - routes: / → Catalog, /devices/:id → DeviceDetail, /rentals → MyRentals, * → NotFound
 - `src/components/DeviceCard.jsx` (14 lines)
   - exports: DeviceCard({ device })
   - imports: ../data/money.js
-- `src/components/Header.jsx` (14 lines)
+- `src/components/Footer.jsx` (14 lines)
+  - exports: Footer()
+- `src/components/Header.jsx` (17 lines)
   - exports: Header()
 - `src/components/RentalForm.jsx` (49 lines)
   - exports: RentalForm({ device })
@@ -64,8 +66,8 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
 - `src/data/rentals.js` (10 lines)
   - exports: getRentals(), addRental(rental)
   - localStorage: ai-block-rentals
-- `src/index.css` (153 lines)
-  - classes: header, logo, container, grid, card, category, price, filters, badge, badge-ok, badge-no, error, rental-form, success
+- `src/index.css` (234 lines)
+  - classes: header, logo, container, grid, card, category, price, filters, badge, badge-ok, badge-no, error, rental-form, success, logo-mark, nav, footer, footer-links
 - `src/main.jsx` (14 lines)
   - imports: ./App.jsx
 - `src/pages/Catalog.jsx` (45 lines)
@@ -88,7 +90,7 @@ react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @eslint/js@^10.0.1, @
 
 ### Backlog status
 
-- todo: 011, 012, 013, 014, 015, 016, 017, 018, 019
+- todo: 012, 013, 014, 015, 016, 017, 018, 019
 - in-progress: —
-- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010
+- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011
 <!-- CODEMAP:END -->

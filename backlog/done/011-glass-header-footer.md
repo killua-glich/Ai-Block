@@ -10,12 +10,12 @@ A sticky header that blurs what scrolls under it, a gradient logo mark, a naviga
 
 ## Acceptance criteria
 
-- [ ] `Header.jsx`: the logo link has a decorative `<span className="logo-mark" aria-hidden="true">◆</span>`; the nav uses `NavLink` (Devices with `end`), has `className="nav"` and no inline style
-- [ ] New `Footer.jsx` (`<footer className="footer">`): the text "© 2026 Ai-Block · Rent devices by the day" and two links, "Catalog" (to `/`) and "Bookings" (to `/rentals`), in a `div` (not a second `nav`)
-- [ ] `App.jsx` renders `<Footer />` after `<main>`
-- [ ] `.header` is sticky with `backdrop-filter: blur(...)`; `.logo-mark` is a gradient tile; `.nav a` are pills; the current page is highlighted in the primary colour
-- [ ] `#root` is a flex column with `min-height: 100vh` and `.container` has `flex: 1`, so the footer sits at the bottom
-- [ ] `npm run verify -- 011` passes (tests: `tests/task-011*.test.*`)
+- [x] `Header.jsx`: the logo link has a decorative `<span className="logo-mark" aria-hidden="true">◆</span>`; the nav uses `NavLink` (Devices with `end`), has `className="nav"` and no inline style
+- [x] New `Footer.jsx` (`<footer className="footer">`): the text "© 2026 Ai-Block · Rent devices by the day" and two links, "Catalog" (to `/`) and "Bookings" (to `/rentals`), in a `div` (not a second `nav`)
+- [x] `App.jsx` renders `<Footer />` after `<main>`
+- [x] `.header` is sticky with `backdrop-filter: blur(...)`; `.logo-mark` is a gradient tile; `.nav a` are pills; the current page is highlighted in the primary colour
+- [x] `#root` is a flex column with `min-height: 100vh` and `.container` has `flex: 1`, so the footer sits at the bottom
+- [x] `npm run verify -- 011` passes (tests: `tests/task-011*.test.*`)
 
 ## Hints
 

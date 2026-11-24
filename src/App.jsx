@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header.jsx'
+import Footer from './components/Footer.jsx'
 import Catalog from './pages/Catalog.jsx'
 import DeviceDetail from './pages/DeviceDetail.jsx'
 import MyRentals from './pages/MyRentals.jsx'
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
+      <Footer />
     </>
   )
 }
