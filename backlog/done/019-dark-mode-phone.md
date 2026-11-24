@@ -10,10 +10,10 @@ The site follows the system's dark mode with its own deep violet palette, and th
 
 ## Acceptance criteria
 
-- [ ] `:root` gets `color-scheme: light dark`
-- [ ] `@media (prefers-color-scheme: dark)` overrides the background, surface, text, muted, border, disabled, primary and primary-hover colours and the three shadows, and nothing else (the status colours, the gradient and the radius stay)
-- [ ] In the existing `@media (max-width: 600px)` block `.header`, `.nav a`, `.hero`, `.stats` and `.footer` get tighter spacing; there is still only one block with that query
-- [ ] `npm run verify -- 019` passes (tests: `tests/task-019*.test.*`)
+- [x] `:root` gets `color-scheme: light dark`
+- [x] `@media (prefers-color-scheme: dark)` overrides the background, surface, text, muted, border, disabled, primary and primary-hover colours and the three shadows, and nothing else (the status colours, the gradient and the radius stay)
+- [x] In the existing `@media (max-width: 600px)` block `.header`, `.nav a`, `.hero`, `.stats` and `.footer` get tighter spacing; there is still only one block with that query
+- [x] `npm run verify -- 019` passes (tests: `tests/task-019*.test.*`)
 
 ## Hints
 

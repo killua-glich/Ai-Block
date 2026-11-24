@@ -19,6 +19,7 @@
   --shadow: 0 8px 24px rgba(76, 29, 149, 0.1);
   --shadow-lg: 0 20px 40px rgba(76, 29, 149, 0.18);
   --font-body: system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light dark;
   --font-display: ui-rounded, "SF Pro Rounded", "Avenir Next", system-ui, sans-serif;
 }
 
@@ -478,6 +479,21 @@ select {
     flex-direction: column;
     align-items: stretch;
   }
+  .header {
+    padding: 0.75rem 1rem;
+  }
+  .nav a {
+    padding: 0.35rem 0.7rem;
+  }
+  .hero {
+    padding: 1.5rem 1.25rem;
+  }
+  .stats {
+    gap: 1.25rem;
+  }
+  .footer {
+    padding: 1.25rem 1rem;
+  }
 }
 
 .back-link {
@@ -708,5 +724,21 @@ input[type="date"] {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0d0b1f;
+    --color-surface: #17142e;
+    --color-text: #f0eeff;
+    --color-muted: #a29fc8;
+    --color-border: #2b2750;
+    --color-disabled: #4a4670;
+    --color-primary: #8b5cf6;
+    --color-primary-hover: #7c3aed;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.55);
   }
 }
