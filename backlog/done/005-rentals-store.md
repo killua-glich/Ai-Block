@@ -9,10 +9,10 @@ Clicking Rent stores the rental so it survives a page reload (no backend yet).
 
 ## Acceptance criteria
 
-- [ ] `src/data/rentals.js` exports `getRentals()` and `addRental(rental)` using `localStorage` key `ai-block-rentals`
-- [ ] A rental is `{ id, deviceId, startDate, endDate, totalPrice, createdAt }` (`id` from `crypto.randomUUID()`)
-- [ ] Clicking Rent calls `addRental` and shows "Rental confirmed!"
-- [ ] `npm run verify -- 005` passes (tests: `tests/task-005*.test.jsx`)
+- [x] `src/data/rentals.js` exports `getRentals()` and `addRental(rental)` using `localStorage` key `ai-block-rentals`
+- [x] A rental is `{ id, deviceId, startDate, endDate, totalPrice, createdAt }` (`id` from `crypto.randomUUID()`)
+- [x] Clicking Rent calls `addRental` and shows "Rental confirmed!"
+- [x] `npm run verify -- 005` passes (tests: `tests/task-005*.test.jsx`)
 
 ## Prompt
 

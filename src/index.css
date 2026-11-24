@@ -105,3 +105,7 @@ button:disabled {
   gap: 0.5rem;
   max-width: 300px;
 }
+
+.success {
+  color: #16a34a;
+}

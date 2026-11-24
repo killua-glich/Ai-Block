@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { addRental } from '../data/rentals'
 
 export default function RentalForm({ device }) {
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
+  const [confirmed, setConfirmed] = useState(false)
 
   const today = new Date().toISOString().slice(0, 10)
 
@@ -16,6 +18,13 @@ export default function RentalForm({ device }) {
   const days = startDate && endDate && !error ? Math.round((new Date(endDate) - new Date(startDate)) / 86400000) + 1 : 0
   const total = days * device.pricePerDay
 
+  function handleRent() {
+    addRental({ id: crypto.randomUUID(), deviceId: device.id, startDate, endDate, totalPrice: total, createdAt: new Date().toISOString() })
+    setConfirmed(true)
+    setStartDate('')
+    setEndDate('')
+  }
+
   return (
     <div className="rental-form">
       <label>
@@ -28,10 +37,11 @@ export default function RentalForm({ device }) {
       </label>
       {error && <p className="error">{error}</p>}
       {days > 0 && <p>{days} day(s) — total CHF {total}</p>}
-      <button type="button" disabled={!(days > 0 && device.available)}>
+      <button type="button" disabled={!(days > 0 && device.available)} onClick={handleRent}>
         Rent
       </button>
       {!device.available && <p>This device is currently not available.</p>}
+      {confirmed && <p className="success">Rental confirmed!</p>}
     </div>
   )
 }

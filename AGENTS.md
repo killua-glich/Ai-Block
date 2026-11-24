@@ -51,14 +51,18 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
   - exports: DeviceCard({ device })
 - `src/components/Header.jsx` (13 lines)
   - exports: Header()
-- `src/components/RentalForm.jsx` (38 lines)
+- `src/components/RentalForm.jsx` (48 lines)
   - exports: RentalForm({ device })
+  - imports: ../data/rentals
   - hooks: useState
 - `src/data/devices.js` (132 lines)
   - exports: devices (default)
   - shape: { id, name, category, pricePerDay, description, specs, available } × 14
-- `src/index.css` (108 lines)
-  - classes: header, logo, container, grid, card, category, price, filters, badge, badge-ok, badge-no, error, rental-form
+- `src/data/rentals.js` (10 lines)
+  - exports: getRentals(), addRental(rental)
+  - localStorage: ai-block-rentals
+- `src/index.css` (112 lines)
+  - classes: header, logo, container, grid, card, category, price, filters, badge, badge-ok, badge-no, error, rental-form, success
 - `src/main.jsx` (14 lines)
   - imports: ./App.jsx
 - `src/pages/Catalog.jsx` (45 lines)
@@ -76,7 +80,7 @@ react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @eslint/js@^10.0.1, @
 
 ### Backlog status
 
-- todo: 005, 006, 007
+- todo: 006, 007
 - in-progress: —
-- done: 001, 002, 003, 004, 008
+- done: 001, 002, 003, 004, 005, 008
 <!-- CODEMAP:END -->
