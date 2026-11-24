@@ -24,9 +24,9 @@ Ai-Block: a device rental website. This file is loaded automatically by the codi
 
 ## Editing rules (learned from real agent runs)
 
-1. **CSS:** add new rules at the END of `src/index.css`. Never delete a rule and never define the same selector twice. Change the properties of an existing rule only when the task lists that rule; then rewrite the whole file with `write` and keep every other rule. Verify fails if a rule disappears or a selector appears twice (a rule inside `@media` counts as a different rule from the same selector outside it).
-2. **Small files (< 80 lines):** prefer the `write` tool with the complete new file content over many `edit` calls.
-3. **If an edit fails twice** ("Could not find the exact text"): read the file ONCE, then rewrite the whole file with `write`. Don't retry the same edit.
+1. **CSS:** `src/index.css` is long (over 300 lines). **Never rewrite it as a whole**: copying it again and again picks up typos (a real run turned `color:` into ` * color:` and nobody saw it). Change it with the `edit` tool and exact text, in ONE call with several edits. Never delete a rule and never define the same selector twice. Verify fails on a deleted rule, a duplicate selector, or a typo like an invalid property name (a rule inside `@media` counts as a different rule from the same selector outside it).
+2. **Small files (< 80 lines):** prefer the `write` tool with the complete new file content over many `edit` calls. Write each file ONCE. If the tool said "Successfully wrote", the file is written: do not write it again, run verify.
+3. **If an edit fails twice** ("Could not find the exact text"): read the file ONCE, copy the exact text from what you read, and try again. For a file under 80 lines you may rewrite it once with `write`. Don't retry the same edit with guesses.
 4. **Don't read the same file more than twice in a row.** If you're unsure, run `npm run verify -- NNN` instead and follow its output.
 5. **Never write files with a heredoc** (`cat <<EOF`, `python3 - <<EOF`). Backticks inside get executed by bash. Use `write` or `edit`.
 6. **Ticking checkboxes in a task file:** change only `- [ ]` to `- [x]`. Never rewrite the task file. Verify checks this. Safe one-liner: `sed -i '' 's/- \[ \]/- [x]/' backlog/in-progress/NNN-*.md`

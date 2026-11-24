@@ -8,7 +8,7 @@
 import { execFileSync } from 'node:child_process'
 import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { ruleKeys } from './css.mjs'
+import { lintCss, ruleKeys } from './css.mjs'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const BIN = (name) => join(ROOT, 'node_modules/.bin', name)
@@ -90,7 +90,10 @@ const cssFiles = [...new Set([
 const cssProblems = []
 for (const f of cssFiles) {
   if (!existsSync(join(ROOT, f))) continue
-  const now = selectors(readFileSync(join(ROOT, f), 'utf8'))
+  const text = readFileSync(join(ROOT, f), 'utf8')
+  const typos = lintCss(text)
+  if (typos.length) cssProblems.push(`${f}: typos that the browser would silently ignore:`, ...typos.map((t) => '  - ' + t), 'Fix the typos. Open the file at that rule and compare it with the task text.')
+  const now = selectors(text)
   const before = atHead(f)
   if (before !== null) {
     const removed = [...new Set(selectors(before))].filter((s) => !now.includes(s))
@@ -99,7 +102,7 @@ for (const f of cssFiles) {
   const dupes = [...new Set(now.filter((s, i) => now.indexOf(s) !== i))]
   if (dupes.length) cssProblems.push(`${f}: these selectors are defined twice: ${dupes.join(', ')}. Keep only one of each.`)
 }
-report('css (no deleted or duplicate rules)', cssProblems.length === 0, cssProblems.join('\n'))
+report('css (no deleted or duplicate rules, no typos)', cssProblems.length === 0, cssProblems.join('\n'))
 
 // Task files: an agent may only tick checkboxes and add a "## Notes" section.
 const normalizeTask = (md) => md.replace(/- \[x\]/g, '- [ ]').replace(/\n## Notes[\s\S]*$/, '').trimEnd()

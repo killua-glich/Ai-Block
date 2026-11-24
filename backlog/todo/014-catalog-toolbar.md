@@ -27,7 +27,7 @@ Run `pi` (or `opencode`) in the repo root, then paste:
 
 ````text
 Context: AGENTS.md (already loaded) has the stack, the conventions, the editing rules and a project map. Use it. Do NOT list or scan the project. Open only the files named below.
-Rules: only change the files listed. Do not touch tests/. Never delete a CSS rule. Do not write files with heredocs.
+Rules: only change the files listed. Do not touch tests/. Never delete a CSS rule. Do not write files with heredocs. Never rewrite `src/index.css` as a whole: change it with the edit tool and exact text. Write each file only once; do not write the same file again and again.
 
 First: `git mv backlog/todo/014-catalog-toolbar.md backlog/in-progress/014-catalog-toolbar.md`.
 
@@ -130,8 +130,17 @@ export default function Catalog() {
   )
 }
 ```
-2. Write the complete new `src/index.css` with the write tool. Keep every existing rule, in the same order.
-   a) These rules change: keep the selector, use exactly this text for each:
+2. Change `src/index.css` with ONE call of the edit tool that holds these 2 edits. Do NOT rewrite the whole file: a long file copied again and again picks up typos.
+   For each edit, oldText must match the file exactly: copy it from here. If an edit fails, read the file once and correct oldText from what you read. Do not guess.
+   Edit 1: replace this rule. oldText:
+```css
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+```
+   newText:
 ```css
 .filters {
   display: flex;
@@ -140,8 +149,32 @@ export default function Catalog() {
   gap: 1rem;
 }
 ```
-   b) Add these new rules at the END of the file, in this order:
+   Edit 2: append the new rules after the last rule of the file. oldText:
 ```css
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+```
+   newText:
+```css
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .toolbar {
   display: flex;
   flex-wrap: wrap;

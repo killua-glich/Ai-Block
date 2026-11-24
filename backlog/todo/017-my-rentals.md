@@ -27,7 +27,7 @@ Run `pi` (or `opencode`) in the repo root, then paste:
 
 ````text
 Context: AGENTS.md (already loaded) has the stack, the conventions, the editing rules and a project map. Use it. Do NOT list or scan the project. Open only the files named below.
-Rules: only change the files listed. Do not touch tests/. Never delete a CSS rule. Do not write files with heredocs.
+Rules: only change the files listed. Do not touch tests/. Never delete a CSS rule. Do not write files with heredocs. Never rewrite `src/index.css` as a whole: change it with the edit tool and exact text. Write each file only once; do not write the same file again and again.
 
 First: `git mv backlog/todo/017-my-rentals.md backlog/in-progress/017-my-rentals.md`.
 
@@ -111,9 +111,26 @@ export default function MyRentals() {
   )
 }
 ```
-2. Write the complete new `src/index.css` with the write tool. Keep every existing rule, in the same order.
-   a) Add these new rules at the END of the file, in this order:
+2. Change `src/index.css` with ONE call of the edit tool that holds these 1 edits. Do NOT rewrite the whole file: a long file copied again and again picks up typos.
+   For each edit, oldText must match the file exactly: copy it from here. If an edit fails, read the file once and correct oldText from what you read. Do not guess.
+   Edit 1: append the new rules after the last rule of the file. oldText:
 ```css
+.summary-total {
+  margin: 0.25rem 0 0;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+```
+   newText:
+```css
+.summary-total {
+  margin: 0.25rem 0 0;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
 .table-wrap {
   overflow-x: auto;
   margin-bottom: 1.75rem;

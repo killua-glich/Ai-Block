@@ -26,7 +26,7 @@ Run `pi` (or `opencode`) in the repo root, then paste:
 
 ````text
 Context: AGENTS.md (already loaded) has the stack, the conventions, the editing rules and a project map. Use it. Do NOT list or scan the project. Open only the files named below.
-Rules: only change the files listed. Do not touch tests/. Never delete a CSS rule. Do not write files with heredocs.
+Rules: only change the files listed. Do not touch tests/. Never delete a CSS rule. Do not write files with heredocs. Never rewrite `src/index.css` as a whole: change it with the edit tool and exact text. Write each file only once; do not write the same file again and again.
 
 First: `git mv backlog/todo/013-category-cards.md backlog/in-progress/013-category-cards.md`.
 
@@ -85,8 +85,19 @@ export default function DeviceCard({ device }) {
   )
 }
 ```
-3. Write the complete new `src/index.css` with the write tool. Keep every existing rule, in the same order.
-   a) These rules change: keep the selector, use exactly this text for each:
+3. Change `src/index.css` with ONE call of the edit tool that holds these 2 edits. Do NOT rewrite the whole file: a long file copied again and again picks up typos.
+   For each edit, oldText must match the file exactly: copy it from here. If an edit fails, read the file once and correct oldText from what you read. Do not guess.
+   Edit 1: replace this rule. oldText:
+```css
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem;
+}
+```
+   newText:
 ```css
 .card {
   display: flex;
@@ -100,8 +111,34 @@ export default function DeviceCard({ device }) {
   animation: rise 0.45s ease both;
 }
 ```
-   b) Add these new rules at the END of the file, in this order:
+   Edit 2: append the new rules after the last rule of the file. oldText:
 ```css
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+```
+   newText:
+```css
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .card:hover {
   box-shadow: var(--shadow-lg);
   transform: translateY(-4px);

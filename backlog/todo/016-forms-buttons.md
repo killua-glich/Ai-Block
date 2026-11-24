@@ -27,7 +27,7 @@ Run `pi` (or `opencode`) in the repo root, then paste:
 
 ````text
 Context: AGENTS.md (already loaded) has the stack, the conventions, the editing rules and a project map. Use it. Do NOT list or scan the project. Open only the files named below.
-Rules: only change the files listed. Do not touch tests/. Never delete a CSS rule. Do not write files with heredocs.
+Rules: only change the files listed. Do not touch tests/. Never delete a CSS rule. Do not write files with heredocs. Never rewrite `src/index.css` as a whole: change it with the edit tool and exact text. Write each file only once; do not write the same file again and again.
 
 First: `git mv backlog/todo/016-forms-buttons.md backlog/in-progress/016-forms-buttons.md`.
 
@@ -93,8 +93,20 @@ export default function RentalForm({ device }) {
   )
 }
 ```
-2. Write the complete new `src/index.css` with the write tool. Keep every existing rule, in the same order.
-   a) These rules change: keep the selector, use exactly this text for each:
+2. Change `src/index.css` with ONE call of the edit tool that holds these 7 edits. Do NOT rewrite the whole file: a long file copied again and again picks up typos.
+   For each edit, oldText must match the file exactly: copy it from here. If an edit fails, read the file once and correct oldText from what you read. Do not guess.
+   Edit 1: replace this rule. oldText:
+```css
+button {
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  cursor: pointer;
+}
+```
+   newText:
 ```css
 button {
   padding: 0.7rem 1.4rem;
@@ -108,32 +120,75 @@ button {
   cursor: pointer;
   transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
 }
-
+```
+   Edit 2: replace this rule. oldText:
+```css
+button:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+```
+   newText:
+```css
 button:hover:not(:disabled) {
   background: var(--color-primary-hover);
   box-shadow: var(--shadow);
   filter: brightness(1.06);
   transform: translateY(-1px);
 }
-
+```
+   Edit 3: replace this rule. oldText:
+```css
+button:disabled {
+  background: var(--color-disabled);
+  cursor: not-allowed;
+}
+```
+   newText:
+```css
 button:disabled {
   background: var(--color-disabled);
   background-image: none;
   cursor: not-allowed;
 }
-
+```
+   Edit 4: replace this rule. oldText:
+```css
+.button-ghost {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+}
+```
+   newText:
+```css
 .button-ghost {
   background: transparent;
   background-image: none;
   color: var(--color-primary);
   border: 1px solid var(--color-border);
 }
-
+```
+   Edit 5: replace this rule. oldText:
+```css
+.error {
+  color: var(--color-danger);
+}
+```
+   newText:
+```css
 .error {
   color: var(--color-danger);
   font-weight: 600;
 }
-
+```
+   Edit 6: replace this rule. oldText:
+```css
+.success {
+  color: var(--color-success);
+}
+```
+   newText:
+```css
 .success {
   display: flex;
   align-items: center;
@@ -145,8 +200,28 @@ button:disabled {
   font-weight: 700;
 }
 ```
-   b) Add these new rules at the END of the file, in this order:
+   Edit 7: append the new rules after the last rule of the file. oldText:
 ```css
+@media (max-width: 800px) {
+  .detail {
+    grid-template-columns: 1fr;
+  }
+  .detail-booking {
+    position: static;
+  }
+}
+```
+   newText:
+```css
+@media (max-width: 800px) {
+  .detail {
+    grid-template-columns: 1fr;
+  }
+  .detail-booking {
+    position: static;
+  }
+}
+
 button:active:not(:disabled) {
   transform: translateY(1px);
 }

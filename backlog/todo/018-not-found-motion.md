@@ -26,7 +26,7 @@ Run `pi` (or `opencode`) in the repo root, then paste:
 
 ````text
 Context: AGENTS.md (already loaded) has the stack, the conventions, the editing rules and a project map. Use it. Do NOT list or scan the project. Open only the files named below.
-Rules: only change the files listed. Do not touch tests/. Never delete a CSS rule. Do not write files with heredocs.
+Rules: only change the files listed. Do not touch tests/. Never delete a CSS rule. Do not write files with heredocs. Never rewrite `src/index.css` as a whole: change it with the edit tool and exact text. Write each file only once; do not write the same file again and again.
 
 First: `git mv backlog/todo/018-not-found-motion.md backlog/in-progress/018-not-found-motion.md`.
 
@@ -51,8 +51,19 @@ export default function NotFound() {
   )
 }
 ```
-2. Write the complete new `src/index.css` with the write tool. Keep every existing rule, in the same order.
-   a) These rules change: keep the selector, use exactly this text for each:
+2. Change `src/index.css` with ONE call of the edit tool that holds these 2 edits. Do NOT rewrite the whole file: a long file copied again and again picks up typos.
+   For each edit, oldText must match the file exactly: copy it from here. If an edit fails, read the file once and correct oldText from what you read. Do not guess.
+   Edit 1: replace this rule. oldText:
+```css
+.container {
+  flex: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+```
+   newText:
 ```css
 .container {
   flex: 1;
@@ -63,8 +74,18 @@ export default function NotFound() {
   animation: fade 0.35s ease both;
 }
 ```
-   b) Add these new rules at the END of the file, in this order:
+   Edit 2: append the new rules after the last rule of the file. oldText:
 ```css
+.muted {
+  color: var(--color-muted);
+}
+```
+   newText:
+```css
+.muted {
+  color: var(--color-muted);
+}
+
 .not-found {
   padding: 3rem 1rem;
   text-align: center;
