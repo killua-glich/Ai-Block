@@ -9,11 +9,11 @@ Users see their rentals in one place.
 
 ## Acceptance criteria
 
-- [ ] Route `/rentals` renders `MyRentals`
-- [ ] Header has a "My rentals" link
-- [ ] Table/list with device name, dates, total price; split into "Active" (end date >= today) and "Past"
-- [ ] Empty state: "You have no rentals yet."
-- [ ] `npm run verify -- 006` passes (tests: `tests/task-006*.test.jsx`)
+- [x] Route `/rentals` renders `MyRentals`
+- [x] Header has a "My rentals" link
+- [x] Table/list with device name, dates, total price; split into "Active" (end date >= today) and "Past"
+- [x] Empty state: "You have no rentals yet."
+- [x] `npm run verify -- 006` passes (tests: `tests/task-006*.test.jsx`)
 
 ## Prompt
 

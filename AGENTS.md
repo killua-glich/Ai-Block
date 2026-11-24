@@ -43,13 +43,13 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
 
 ### Files
 
-- `src/App.jsx` (19 lines)
+- `src/App.jsx` (21 lines)
   - exports: App()
-  - imports: ./components/Header.jsx, ./pages/Catalog.jsx, ./pages/DeviceDetail.jsx
-  - routes: / → Catalog, /devices/:id → DeviceDetail
+  - imports: ./components/Header.jsx, ./pages/Catalog.jsx, ./pages/DeviceDetail.jsx, ./pages/MyRentals.jsx
+  - routes: / → Catalog, /devices/:id → DeviceDetail, /rentals → MyRentals
 - `src/components/DeviceCard.jsx` (13 lines)
   - exports: DeviceCard({ device })
-- `src/components/Header.jsx` (13 lines)
+- `src/components/Header.jsx` (14 lines)
   - exports: Header()
 - `src/components/RentalForm.jsx` (48 lines)
   - exports: RentalForm({ device })
@@ -73,6 +73,9 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
   - exports: DeviceDetail()
   - imports: ../data/devices.js, ../components/RentalForm.jsx
   - hooks: useParams
+- `src/pages/MyRentals.jsx` (46 lines)
+  - exports: MyRentals()
+  - imports: ../data/rentals.js, ../data/devices.js
 
 ### Dependencies
 
@@ -80,7 +83,7 @@ react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @eslint/js@^10.0.1, @
 
 ### Backlog status
 
-- todo: 006, 007
+- todo: 007
 - in-progress: —
-- done: 001, 002, 003, 004, 005, 008
+- done: 001, 002, 003, 004, 005, 006, 008
 <!-- CODEMAP:END -->
