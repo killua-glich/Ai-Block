@@ -54,9 +54,9 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
   - exports: Footer()
 - `src/components/Header.jsx` (17 lines)
   - exports: Header()
-- `src/components/RentalForm.jsx` (49 lines)
+- `src/components/RentalForm.jsx` (54 lines)
   - exports: RentalForm({ device })
-  - imports: ../data/rentals, ../data/money.js
+  - imports: ../data/rentals.js, ../data/money.js
   - hooks: useState
 - `src/data/categories.js` (22 lines)
   - exports: categoryIcon(category), categoryHue(category)
@@ -68,8 +68,8 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
 - `src/data/rentals.js` (10 lines)
   - exports: getRentals(), addRental(rental)
   - localStorage: ai-block-rentals
-- `src/index.css` (548 lines)
-  - classes: header, logo, container, grid, card, category, price, filters, badge, badge-ok, badge-no, error, rental-form, success, logo-mark, nav, footer, footer-links, hero, eyebrow, lead, search, stats, visually-hidden, card-media, card-icon, card-body, card-unavailable, chip, view-link, toolbar, toolbar-end, result-count, button-ghost, empty-state, back-link, detail, detail-media, detail-icon, price-tag, detail-booking, specs
+- `src/index.css` (617 lines)
+  - classes: header, logo, container, grid, card, category, price, filters, badge, badge-ok, badge-no, error, rental-form, success, logo-mark, nav, footer, footer-links, hero, eyebrow, lead, search, stats, visually-hidden, card-media, card-icon, card-body, card-unavailable, chip, view-link, toolbar, toolbar-end, result-count, button-ghost, empty-state, back-link, detail, detail-media, detail-icon, price-tag, detail-booking, specs, summary, summary-days, summary-total
 - `src/main.jsx` (14 lines)
   - imports: ./App.jsx
 - `src/pages/Catalog.jsx` (91 lines)
@@ -92,7 +92,7 @@ react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @eslint/js@^10.0.1, @
 
 ### Backlog status
 
-- todo: 016, 017, 018, 019
+- todo: 017, 018, 019
 - in-progress: —
-- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015
+- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016
 <!-- CODEMAP:END -->

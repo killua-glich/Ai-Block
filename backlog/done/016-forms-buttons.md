@@ -10,12 +10,12 @@ Buttons get the brand gradient and react to hover and press. The rental form sho
 
 ## Acceptance criteria
 
-- [ ] Once both dates are valid, `<div className="summary">` shows `<p className="summary-days">5 day(s)</p>` and `<p className="summary-total">total €125</p>` (replacing the old one-line text)
-- [ ] The confirmation is `<p className="success" role="status">Rental confirmed!</p>`
-- [ ] `button` has the gradient as `background-image`; hover lifts it with a shadow; `button:active:not(:disabled)` moves it down; disabled buttons have `background-image: none`; `.button-ghost` stays flat
-- [ ] `:focus-visible` has a soft outline in the primary colour; `input[type="date"]` looks like `select`; `.rental-form label` is small caps; `.rental-form button` stretches
-- [ ] `.success` is a tinted alert; `.summary` has a dashed border and a large total in the display font
-- [ ] `npm run verify -- 016` passes (tests: `tests/task-016*.test.*`)
+- [x] Once both dates are valid, `<div className="summary">` shows `<p className="summary-days">5 day(s)</p>` and `<p className="summary-total">total €125</p>` (replacing the old one-line text)
+- [x] The confirmation is `<p className="success" role="status">Rental confirmed!</p>`
+- [x] `button` has the gradient as `background-image`; hover lifts it with a shadow; `button:active:not(:disabled)` moves it down; disabled buttons have `background-image: none`; `.button-ghost` stays flat
+- [x] `:focus-visible` has a soft outline in the primary colour; `input[type="date"]` looks like `select`; `.rental-form label` is small caps; `.rental-form button` stretches
+- [x] `.success` is a tinted alert; `.summary` has a dashed border and a large total in the display font
+- [x] `npm run verify -- 016` passes (tests: `tests/task-016*.test.*`)
 
 ## Hints
 

@@ -110,20 +110,28 @@ a {
 }
 
 button {
-  padding: 0.6rem 1.2rem;
+  padding: 0.7rem 1.4rem;
   border-radius: var(--radius-sm);
   border: none;
   background: var(--color-primary);
+  background-image: var(--gradient-brand);
   color: var(--color-on-primary);
+  font: inherit;
+  font-weight: 700;
   cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
 }
 
 button:hover:not(:disabled) {
   background: var(--color-primary-hover);
+  box-shadow: var(--shadow);
+  filter: brightness(1.06);
+  transform: translateY(-1px);
 }
 
 button:disabled {
   background: var(--color-disabled);
+  background-image: none;
   cursor: not-allowed;
 }
 
@@ -154,6 +162,7 @@ button:disabled {
 
 .error {
   color: var(--color-danger);
+  font-weight: 600;
 }
 
 .rental-form {
@@ -164,7 +173,14 @@ button:disabled {
 }
 
 .success {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--color-success) 14%, transparent);
   color: var(--color-success);
+  font-weight: 700;
 }
 
 .logo-mark {
@@ -431,6 +447,7 @@ select {
 
 .button-ghost {
   background: transparent;
+  background-image: none;
   color: var(--color-primary);
   border: 1px solid var(--color-border);
 }
@@ -544,4 +561,56 @@ select {
   .detail-booking {
     position: static;
   }
+}
+
+button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-primary) 45%, transparent);
+  outline-offset: 2px;
+}
+
+input[type="date"] {
+  font: inherit;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.rental-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.rental-form button {
+  align-self: stretch;
+}
+
+.summary {
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  border: 1px dashed var(--color-border);
+}
+
+.summary-days {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.summary-total {
+  margin: 0.25rem 0 0;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
 }
