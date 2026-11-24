@@ -10,11 +10,11 @@ Put the whole look into CSS variables: a violet to pink brand gradient, softer c
 
 ## Acceptance criteria
 
-- [ ] `:root` defines the colours (`--color-bg` ... `--color-danger`, plus `--color-accent` and `--color-highlight`), `--gradient-brand` (three colour stops), `--radius`, `--radius-sm`, three shadows and two fonts
-- [ ] Every existing rule uses `var(...)` instead of a hex colour (only `:root` may contain hex colours)
-- [ ] Headings (`h1, h2, h3`) use the display font with `letter-spacing: -0.02em`; `h1` has a fluid `clamp(...)` size
-- [ ] `body` has `line-height: 1.5` and a soft glow in the background; `.card` uses the small shadow
-- [ ] `npm run verify -- 010` passes (tests: `tests/task-010*.test.*`)
+- [x] `:root` defines the colours (`--color-bg` ... `--color-danger`, plus `--color-accent` and `--color-highlight`), `--gradient-brand` (three colour stops), `--radius`, `--radius-sm`, three shadows and two fonts
+- [x] Every existing rule uses `var(...)` instead of a hex colour (only `:root` may contain hex colours)
+- [x] Headings (`h1, h2, h3`) use the display font with `letter-spacing: -0.02em`; `h1` has a fluid `clamp(...)` size
+- [x] `body` has `line-height: 1.5` and a soft glow in the background; `.card` uses the small shadow
+- [x] `npm run verify -- 010` passes (tests: `tests/task-010*.test.*`)
 
 ## Hints
 

@@ -1,16 +1,52 @@
+:root {
+  --color-bg: #f6f5ff;
+  --color-surface: #fff;
+  --color-text: #14122b;
+  --color-muted: #6b6a8a;
+  --color-border: #e4e2f5;
+  --color-primary: #6d28d9;
+  --color-primary-hover: #5b21b6;
+  --color-accent: #ec4899;
+  --color-highlight: #fde68a;
+  --color-on-primary: #fff;
+  --color-disabled: #b9b6d6;
+  --color-success: #059669;
+  --color-danger: #e11d48;
+  --gradient-brand: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow-sm: 0 1px 2px rgba(20, 18, 43, 0.06);
+  --shadow: 0 8px 24px rgba(76, 29, 149, 0.1);
+  --shadow-lg: 0 20px 40px rgba(76, 29, 149, 0.18);
+  --font-body: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: ui-rounded, "SF Pro Rounded", "Avenir Next", system-ui, sans-serif;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
-  color: #222;
-  background: #f7f7f8;
+  font-family: var(--font-body);
+  line-height: 1.5;
+  color: var(--color-text);
+  background: radial-gradient(1000px 420px at 85% -80px, rgba(139, 92, 246, 0.16), transparent 70%), var(--color-bg);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(2rem, 5vw, 3.25rem);
 }
 
 a {
-  color: #2563eb;
+  color: var(--color-primary);
   text-decoration: none;
 }
 
@@ -19,55 +55,60 @@ a {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: #fff;
-  border-bottom: 1px solid #e5e5e5;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .logo {
-  font-weight: 700;
+  font-weight: 800;
   font-size: 1.25rem;
-  color: #222;
+  color: var(--color-text);
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 2rem;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
 }
 
 .card {
-  background: #fff;
-  border: 1px solid #e5e5e5;
-  border-radius: 8px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
   padding: 1rem;
 }
 
 .category {
-  color: #666;
+  color: var(--color-muted);
   font-size: 0.9rem;
 }
 
 .price {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 button {
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-sm);
   border: none;
-  background: #2563eb;
-  color: #fff;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
   cursor: pointer;
 }
 
+button:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
 button:disabled {
-  background: #9ca3af;
+  background: var(--color-disabled);
   cursor: not-allowed;
 }
 
@@ -83,20 +124,20 @@ button:disabled {
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--color-on-primary);
   vertical-align: middle;
 }
 
 .badge-ok {
-  background: #16a34a;
+  background: var(--color-success);
 }
 
 .badge-no {
-  background: #dc2626;
+  background: var(--color-danger);
 }
 
 .error {
-  color: #dc2626;
+  color: var(--color-danger);
 }
 
 .rental-form {
@@ -107,5 +148,5 @@ button:disabled {
 }
 
 .success {
-  color: #16a34a;
+  color: var(--color-success);
 }

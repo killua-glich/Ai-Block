@@ -64,7 +64,7 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
 - `src/data/rentals.js` (10 lines)
   - exports: getRentals(), addRental(rental)
   - localStorage: ai-block-rentals
-- `src/index.css` (112 lines)
+- `src/index.css` (153 lines)
   - classes: header, logo, container, grid, card, category, price, filters, badge, badge-ok, badge-no, error, rental-form, success
 - `src/main.jsx` (14 lines)
   - imports: ./App.jsx
@@ -88,7 +88,7 @@ react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @eslint/js@^10.0.1, @
 
 ### Backlog status
 
-- todo: 010, 011, 012, 013, 014, 015, 016, 017, 018, 019
+- todo: 011, 012, 013, 014, 015, 016, 017, 018, 019
 - in-progress: —
-- done: 001, 002, 003, 004, 005, 006, 007, 008, 009
+- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010
 <!-- CODEMAP:END -->
