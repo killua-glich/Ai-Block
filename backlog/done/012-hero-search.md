@@ -10,11 +10,11 @@ The catalog opens with a big gradient hero: a headline, a short text, a search b
 
 ## Acceptance criteria
 
-- [ ] The hero has an eyebrow line, an `h1` "Tech you need, without buying it" (the last words in `<span className="accent">`), a `.lead` text and `<ul className="stats">` with two items: the number of devices and the number of categories (each number in `<strong>`)
-- [ ] A search box (`<input type="search">`) with a visually hidden label "Search devices" filters the devices by name, ignoring case, together with the category filter
-- [ ] "No devices found." appears when nothing matches; clearing the box shows everything again
-- [ ] `.hero` is a gradient banner (`var(--gradient-brand)`, white text, large shadow); the search input is a 100% wide pill; `.visually-hidden` hides the label but keeps it readable
-- [ ] `npm run verify -- 012` passes (tests: `tests/task-012*.test.*`)
+- [x] The hero has an eyebrow line, an `h1` "Tech you need, without buying it" (the last words in `<span className="accent">`), a `.lead` text and `<ul className="stats">` with two items: the number of devices and the number of categories (each number in `<strong>`)
+- [x] A search box (`<input type="search">`) with a visually hidden label "Search devices" filters the devices by name, ignoring case, together with the category filter
+- [x] "No devices found." appears when nothing matches; clearing the box shows everything again
+- [x] `.hero` is a gradient banner (`var(--gradient-brand)`, white text, large shadow); the search input is a 100% wide pill; `.visually-hidden` hides the label but keeps it readable
+- [x] `npm run verify -- 012` passes (tests: `tests/task-012*.test.*`)
 
 ## Hints
 

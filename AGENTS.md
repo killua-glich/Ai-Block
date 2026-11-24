@@ -66,11 +66,11 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
 - `src/data/rentals.js` (10 lines)
   - exports: getRentals(), addRental(rental)
   - localStorage: ai-block-rentals
-- `src/index.css` (234 lines)
-  - classes: header, logo, container, grid, card, category, price, filters, badge, badge-ok, badge-no, error, rental-form, success, logo-mark, nav, footer, footer-links
+- `src/index.css` (310 lines)
+  - classes: header, logo, container, grid, card, category, price, filters, badge, badge-ok, badge-no, error, rental-form, success, logo-mark, nav, footer, footer-links, hero, eyebrow, lead, search, stats, visually-hidden
 - `src/main.jsx` (14 lines)
   - imports: ./App.jsx
-- `src/pages/Catalog.jsx` (45 lines)
+- `src/pages/Catalog.jsx` (68 lines)
   - exports: Catalog()
   - imports: ../data/devices.js, ../components/DeviceCard.jsx
   - hooks: useState
@@ -90,7 +90,7 @@ react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @eslint/js@^10.0.1, @
 
 ### Backlog status
 
-- todo: 012, 013, 014, 015, 016, 017, 018, 019
+- todo: 013, 014, 015, 016, 017, 018, 019
 - in-progress: —
-- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011
+- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012
 <!-- CODEMAP:END -->
