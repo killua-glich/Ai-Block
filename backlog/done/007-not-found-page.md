@@ -9,9 +9,9 @@ Unknown URLs show a friendly page instead of a blank screen.
 
 ## Acceptance criteria
 
-- [ ] Catch-all route `path="*"` renders `NotFound`
-- [ ] Page says "Page not found" with a link back to `/`
-- [ ] `npm run verify -- 007` passes (tests: `tests/task-007*.test.jsx`)
+- [x] Catch-all route `path="*"` renders `NotFound`
+- [x] Page says "Page not found" with a link back to `/`
+- [x] `npm run verify -- 007` passes (tests: `tests/task-007*.test.jsx`)
 
 ## Prompt
 

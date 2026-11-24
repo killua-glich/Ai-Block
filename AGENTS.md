@@ -43,10 +43,10 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
 
 ### Files
 
-- `src/App.jsx` (21 lines)
+- `src/App.jsx` (23 lines)
   - exports: App()
-  - imports: ./components/Header.jsx, ./pages/Catalog.jsx, ./pages/DeviceDetail.jsx, ./pages/MyRentals.jsx
-  - routes: / → Catalog, /devices/:id → DeviceDetail, /rentals → MyRentals
+  - imports: ./components/Header.jsx, ./pages/Catalog.jsx, ./pages/DeviceDetail.jsx, ./pages/MyRentals.jsx, ./pages/NotFound.jsx
+  - routes: / → Catalog, /devices/:id → DeviceDetail, /rentals → MyRentals, * → NotFound
 - `src/components/DeviceCard.jsx` (13 lines)
   - exports: DeviceCard({ device })
 - `src/components/Header.jsx` (14 lines)
@@ -76,6 +76,8 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
 - `src/pages/MyRentals.jsx` (46 lines)
   - exports: MyRentals()
   - imports: ../data/rentals.js, ../data/devices.js
+- `src/pages/NotFound.jsx` (11 lines)
+  - exports: NotFound()
 
 ### Dependencies
 
@@ -83,7 +85,7 @@ react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @eslint/js@^10.0.1, @
 
 ### Backlog status
 
-- todo: 007
+- todo: —
 - in-progress: —
-- done: 001, 002, 003, 004, 005, 006, 008
+- done: 001, 002, 003, 004, 005, 006, 007, 008
 <!-- CODEMAP:END -->
