@@ -126,8 +126,9 @@ for (const status of ['in-progress', 'done']) {
 report('task file (only checkboxes / Notes changed)', taskProblems.length === 0, taskProblems.join('\n'))
 
 // ---------- 2. lint ----------
-const lint = run(BIN('eslint'), ['src', 'tests'])
-report('lint (eslint src tests)', lint.ok, lint.out)
+const lintDirs = ['src', 'tests', ...(existsSync(join(ROOT, 'server')) ? ['server'] : [])]
+const lint = run(BIN('eslint'), lintDirs)
+report(`lint (eslint ${lintDirs.join(' ')})`, lint.ok, lint.out)
 
 // ---------- 3. build ----------
 const build = run(BIN('vite'), ['build', '--logLevel', 'error', '--outDir', join(ROOT, 'node_modules/.verify-dist'), '--emptyOutDir'])

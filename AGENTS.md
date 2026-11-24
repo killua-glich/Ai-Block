@@ -19,6 +19,9 @@ Ai-Block: a device rental website. This file is loaded automatically by the codi
 - Pages in `src/pages/`, reusable UI in `src/components/`, data and storage in `src/data/`
 - All styles in `src/index.css` (no CSS modules, no inline style objects unless tiny)
 - Prices in euros (always use formatEuro from src/data/money.js), dates as `YYYY-MM-DD` strings
+- Backend in `server/`: Node 24, ES modules, Express 5, SQLite through the built-in `node:sqlite` (`import { DatabaseSync } from 'node:sqlite'`). Same style as the front end (2-space indent, no semicolons, single quotes). No other packages.
+- The API lives under `/api`, answers JSON, and sends errors as `{ "error": "message" }`. The browser calls it with relative URLs (`/api/devices`): Vite proxies them in development, nginx in Docker.
+- Server tests start with the line `// @vitest-environment node` and use an in-memory database (`openDb()` with no argument)
 - Verify with `npm run verify -- NNN` (NNN = task number). Last line must be `VERIFY PASSED`
 - `tests/` holds the acceptance tests, written by humans. NEVER edit them: change `src/` until they pass
 
@@ -88,7 +91,7 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
 
 ### Dependencies
 
-react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @eslint/js@^10.0.1, @testing-library/jest-dom@^8.0.0, @testing-library/react@^16.3.3, @testing-library/user-event@^14.6.13, @vitejs/plugin-react@^5.0.0, eslint@^10.15.0, eslint-plugin-react-hooks@^7.1.1, globals@^17.14.0, jsdom@^29.1.1, vite@^7.0.0, vitest@^5.0.1
+express@^5.3.0, react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @eslint/js@^10.0.1, @testing-library/jest-dom@^8.0.0, @testing-library/react@^16.3.3, @testing-library/user-event@^14.6.13, @vitejs/plugin-react@^5.0.0, eslint@^10.15.0, eslint-plugin-react-hooks@^7.1.1, globals@^17.14.0, jsdom@^29.1.1, vite@^7.0.0, vitest@^5.0.1
 
 ### Backlog status
 

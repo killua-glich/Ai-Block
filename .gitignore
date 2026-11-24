@@ -13,6 +13,9 @@ Thumbs.db
 .env.*
 !.env.example
 
+# SQLite database file made by the server
+data/
+
 # Node
 node_modules/
 dist/

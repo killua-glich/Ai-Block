@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
 import { getRentals, addRental } from '../src/data/rentals.js'
 import RentalForm from '../src/components/RentalForm.jsx'
+import { fakeApi, savedRentals } from './rentals-world.js'
 
 const KEY = 'ai-block-rentals'
 const device = { id: 3, name: 'Test', category: 'Camera', pricePerDay: 40, description: '', specs: ['a', 'b', 'c'], available: true }
@@ -26,14 +27,15 @@ describe('005 rentals store', () => {
     expect(JSON.parse(localStorage.getItem(KEY))).toHaveLength(2)
   })
 
-  it('clicking Rent saves the rental, confirms and resets the dates', () => {
+  it('clicking Rent saves the rental, confirms and resets the dates', async () => {
+    fakeApi()
     render(<RentalForm device={device} />)
     fireEvent.change(screen.getByLabelText(/start date/i), { target: { value: '2026-12-01' } })
     fireEvent.change(screen.getByLabelText(/end date/i), { target: { value: '2026-12-02' } })
     fireEvent.click(screen.getByRole('button', { name: /rent/i }))
 
-    expect(screen.getByText('Rental confirmed!')).toBeInTheDocument()
-    const [r] = getRentals()
+    expect(await screen.findByText('Rental confirmed!')).toBeInTheDocument()
+    const [r] = savedRentals()
     expect(r).toMatchObject({ deviceId: 3, startDate: '2026-12-01', endDate: '2026-12-02', totalPrice: 80 })
     expect(typeof r.id).toBe('string')
     expect(typeof r.createdAt).toBe('string')

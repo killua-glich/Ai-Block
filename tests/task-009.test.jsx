@@ -7,6 +7,7 @@ import devices from '../src/data/devices.js'
 import { formatEuro } from '../src/data/money.js'
 import RentalForm from '../src/components/RentalForm.jsx'
 import { renderAt } from './helpers.jsx'
+import { seedRentals } from './rentals-world.js'
 
 const sourceFiles = (dir) =>
   readdirSync(dir).flatMap((name) => {
@@ -53,14 +54,11 @@ describe('009 prices are in euros', () => {
       expect(document.body).not.toHaveTextContent('CHF')
     })
 
-    it('My rentals shows totals in euros', () => {
-      localStorage.setItem(
-        'ai-block-rentals',
-        JSON.stringify([{ id: 'a', deviceId: devices[0].id, startDate: '2026-11-23', endDate: '2026-11-30', totalPrice: 111, createdAt: '' }]),
-      )
+    it('My rentals shows totals in euros', async () => {
+      seedRentals([{ id: 'a', deviceId: devices[0].id, startDate: '2026-11-23', endDate: '2026-11-30', totalPrice: 111, createdAt: '' }])
       renderAt('/rentals')
 
-      expect(screen.getByText('€111')).toBeInTheDocument()
+      expect(await screen.findByText('€111')).toBeInTheDocument()
       expect(document.body).not.toHaveTextContent('CHF')
     })
   })

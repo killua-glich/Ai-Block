@@ -6,7 +6,7 @@ import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from '
 import { join, relative } from 'node:path'
 
 const ROOT = new URL('..', import.meta.url).pathname
-const SRC = join(ROOT, 'src')
+const SOURCE_DIRS = ['src', 'server'].map((d) => join(ROOT, d)).filter((d) => existsSync(d))
 const TARGET = join(ROOT, 'AGENTS.md')
 const START = '<!-- CODEMAP:START -->'
 const END = '<!-- CODEMAP:END -->'
@@ -37,6 +37,12 @@ function describe(file) {
 
   const routes = [...code.matchAll(/<Route\s+path="([^"]+)"\s+element=\{<(\w+)/g)].map((m) => `${m[1]} → ${m[2]}`)
   if (routes.length) info.push(`routes: ${routes.join(', ')}`)
+
+  const api = [...code.matchAll(/\bapp\.(get|post|put|patch|delete)\(\s*['"]([^'"]+)['"]/g)].map((m) => `${m[1].toUpperCase()} ${m[2]}`)
+  if (api.length) info.push(`api: ${api.join(', ')}`)
+
+  const tables = [...new Set([...code.matchAll(/CREATE TABLE IF NOT EXISTS\s+(\w+)/g)].map((m) => m[1]))]
+  if (tables.length) info.push(`sqlite tables: ${tables.join(', ')}`)
 
   const storage = [...new Set([...code.matchAll(/(?:const\s+KEY\s*=\s*|localStorage\.\w+\()['"]([\w-]+)['"]/g)].map((m) => m[1]))]
   if (storage.length) info.push(`localStorage: ${storage.join(', ')}`)
@@ -75,7 +81,7 @@ const out = [
   '',
   '### Files',
   '',
-  ...walk(SRC).map(describe).map((f) => `- \`${f.path}\` (${f.lines} lines)${f.info.length ? '\n' + f.info.map((i) => `  - ${i}`).join('\n') : ''}`),
+  ...SOURCE_DIRS.flatMap(walk).map(describe).map((f) => `- \`${f.path}\` (${f.lines} lines)${f.info.length ? '\n' + f.info.map((i) => `  - ${i}`).join('\n') : ''}`),
   '',
   '### Dependencies',
   '',
