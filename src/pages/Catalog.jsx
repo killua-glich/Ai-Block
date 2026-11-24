@@ -29,6 +29,7 @@ export default function Catalog() {
   return (
     <>
       <section className="hero">
+        <img className="hero-image" src="/hero.png" alt="" aria-hidden="true" />
         <p className="eyebrow">Rent by the day</p>
         <h1>Tech you need, <span className="accent">without buying it</span></h1>
         <p className="lead">Laptops, cameras, drones and more. Pick a device, pick your dates, done.</p>

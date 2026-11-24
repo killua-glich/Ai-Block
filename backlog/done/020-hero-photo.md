@@ -10,11 +10,11 @@ The hero banner on the catalog page shows a product photo behind the headline. A
 
 ## Acceptance criteria
 
-- [ ] `Catalog.jsx`: the first child of `<section className="hero">` is `<img className="hero-image" src="/hero.png" alt="" aria-hidden="true" />`; everything else in the hero stays as it is
-- [ ] `.hero` gets `position: relative`, `overflow: hidden` and `isolation: isolate` and keeps its `background: var(--gradient-brand)`
-- [ ] `.hero-image` fills the hero behind the text: `position: absolute`, `inset: 0`, `z-index: -1`, `width: 100%`, `height: 100%`, `object-fit: cover`
-- [ ] `.hero::after` is a dark overlay: `content: ""`, `position: absolute`, `inset: 0`, `z-index: -1`, `pointer-events: none` and a `linear-gradient(...)` background
-- [ ] `npm run verify -- 020` passes (tests: `tests/task-020*.test.*`)
+- [x] `Catalog.jsx`: the first child of `<section className="hero">` is `<img className="hero-image" src="/hero.png" alt="" aria-hidden="true" />`; everything else in the hero stays as it is
+- [x] `.hero` gets `position: relative`, `overflow: hidden` and `isolation: isolate` and keeps its `background: var(--gradient-brand)`
+- [x] `.hero-image` fills the hero behind the text: `position: absolute`, `inset: 0`, `z-index: -1`, `width: 100%`, `height: 100%`, `object-fit: cover`
+- [x] `.hero::after` is a dark overlay: `content: ""`, `position: absolute`, `inset: 0`, `z-index: -1`, `pointer-events: none` and a `linear-gradient(...)` background
+- [x] `npm run verify -- 020` passes (tests: `tests/task-020*.test.*`)
 
 ## Hints
 
