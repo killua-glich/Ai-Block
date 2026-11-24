@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { addRental } from '../data/rentals'
+import { formatEuro } from '../data/money.js'
 
 export default function RentalForm({ device }) {
   const [startDate, setStartDate] = useState('')
@@ -36,7 +37,7 @@ export default function RentalForm({ device }) {
         <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
       </label>
       {error && <p className="error">{error}</p>}
-      {days > 0 && <p>{days} day(s) — total CHF {total}</p>}
+      {days > 0 && <p>{days} day(s) — total {formatEuro(total)}</p>}
       <button type="button" disabled={!(days > 0 && device.available)} onClick={handleRent}>
         Rent
       </button>

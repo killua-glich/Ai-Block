@@ -10,12 +10,12 @@ Every price is shown as `CHF 25`. The shop is in euros. Prices appear in four pl
 
 ## Acceptance criteria
 
-- [ ] New `src/data/money.js` exports `formatEuro(amount)`: whole amounts as `€25`, other amounts with two decimals as `€12.50`
-- [ ] Catalog cards and the detail page show `€25 / day`
-- [ ] The rental form shows `{days} day(s) — total €125`
-- [ ] "My rentals" shows the total as `€111`
-- [ ] No `CHF` is left in `src/` or in `AGENTS.md`, and `AGENTS.md` says "Prices in euros"
-- [ ] `npm run verify -- 009` passes (tests: `tests/task-009*.test.jsx`)
+- [x] New `src/data/money.js` exports `formatEuro(amount)`: whole amounts as `€25`, other amounts with two decimals as `€12.50`
+- [x] Catalog cards and the detail page show `€25 / day`
+- [x] The rental form shows `{days} day(s) — total €125`
+- [x] "My rentals" shows the total as `€111`
+- [x] No `CHF` is left in `src/` or in `AGENTS.md`, and `AGENTS.md` says "Prices in euros"
+- [x] `npm run verify -- 009` passes (tests: `tests/task-009*.test.jsx`)
 
 ## Hints
 

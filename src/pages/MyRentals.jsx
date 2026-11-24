@@ -1,5 +1,6 @@
 import { getRentals } from '../data/rentals.js'
 import devices from '../data/devices.js'
+import { formatEuro } from '../data/money.js'
 
 export default function MyRentals() {
   const rentals = getRentals()
@@ -27,7 +28,7 @@ export default function MyRentals() {
             <td>{devices.find((d) => d.id === r.deviceId)?.name ?? 'Unknown device'}</td>
             <td>{r.startDate}</td>
             <td>{r.endDate}</td>
-            <td>CHF {r.totalPrice}</td>
+            <td>{formatEuro(r.totalPrice)}</td>
           </tr>
         ))}
       </tbody>

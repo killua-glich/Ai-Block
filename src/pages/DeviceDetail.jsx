@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import devices from '../data/devices.js'
 import RentalForm from '../components/RentalForm.jsx'
+import { formatEuro } from '../data/money.js'
 
 export default function DeviceDetail() {
   const { id } = useParams()
@@ -26,7 +27,7 @@ export default function DeviceDetail() {
           <li key={spec}>{spec}</li>
         ))}
       </ul>
-      <p className="price">CHF {device.pricePerDay} / day</p>
+      <p className="price">{formatEuro(device.pricePerDay)} / day</p>
       <RentalForm device={device} />
     </section>
   )

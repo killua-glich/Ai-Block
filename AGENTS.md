@@ -18,7 +18,7 @@ Ai-Block: a device rental website. This file is loaded automatically by the codi
 - Function components, default exports, 2-space indent, no semicolons, single quotes
 - Pages in `src/pages/`, reusable UI in `src/components/`, data and storage in `src/data/`
 - All styles in `src/index.css` (no CSS modules, no inline style objects unless tiny)
-- Prices in CHF, dates as `YYYY-MM-DD` strings
+- Prices in euros (always use formatEuro from src/data/money.js), dates as `YYYY-MM-DD` strings
 - Verify with `npm run verify -- NNN` (NNN = task number). Last line must be `VERIFY PASSED`
 - `tests/` holds the acceptance tests, written by humans. NEVER edit them: change `src/` until they pass
 
@@ -47,17 +47,20 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
   - exports: App()
   - imports: ./components/Header.jsx, ./pages/Catalog.jsx, ./pages/DeviceDetail.jsx, ./pages/MyRentals.jsx, ./pages/NotFound.jsx
   - routes: / → Catalog, /devices/:id → DeviceDetail, /rentals → MyRentals, * → NotFound
-- `src/components/DeviceCard.jsx` (13 lines)
+- `src/components/DeviceCard.jsx` (14 lines)
   - exports: DeviceCard({ device })
+  - imports: ../data/money.js
 - `src/components/Header.jsx` (14 lines)
   - exports: Header()
-- `src/components/RentalForm.jsx` (48 lines)
+- `src/components/RentalForm.jsx` (49 lines)
   - exports: RentalForm({ device })
-  - imports: ../data/rentals
+  - imports: ../data/rentals, ../data/money.js
   - hooks: useState
 - `src/data/devices.js` (132 lines)
   - exports: devices (default)
   - shape: { id, name, category, pricePerDay, description, specs, available } × 14
+- `src/data/money.js` (4 lines)
+  - exports: formatEuro(amount)
 - `src/data/rentals.js` (10 lines)
   - exports: getRentals(), addRental(rental)
   - localStorage: ai-block-rentals
@@ -69,13 +72,13 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
   - exports: Catalog()
   - imports: ../data/devices.js, ../components/DeviceCard.jsx
   - hooks: useState
-- `src/pages/DeviceDetail.jsx` (34 lines)
+- `src/pages/DeviceDetail.jsx` (35 lines)
   - exports: DeviceDetail()
-  - imports: ../data/devices.js, ../components/RentalForm.jsx
+  - imports: ../data/devices.js, ../components/RentalForm.jsx, ../data/money.js
   - hooks: useParams
-- `src/pages/MyRentals.jsx` (46 lines)
+- `src/pages/MyRentals.jsx` (47 lines)
   - exports: MyRentals()
-  - imports: ../data/rentals.js, ../data/devices.js
+  - imports: ../data/rentals.js, ../data/devices.js, ../data/money.js
 - `src/pages/NotFound.jsx` (11 lines)
   - exports: NotFound()
 
@@ -85,7 +88,7 @@ react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @eslint/js@^10.0.1, @
 
 ### Backlog status
 
-- todo: 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019
+- todo: 010, 011, 012, 013, 014, 015, 016, 017, 018, 019
 - in-progress: —
-- done: 001, 002, 003, 004, 005, 006, 007, 008
+- done: 001, 002, 003, 004, 005, 006, 007, 008, 009
 <!-- CODEMAP:END -->
