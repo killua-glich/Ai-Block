@@ -10,11 +10,11 @@ The header shows the name of the logged-in user with a Log out button, or Log in
 
 ## Acceptance criteria
 
-- [ ] `Header.jsx` uses `useAuth()`: a logged-in user gets `<span className="nav-user">NAME</span>` and a `Log out` button (class `button-ghost`) that calls `logout`; when `status` is `anonymous` it shows the links `Log in` (`/login`) and `Sign up` (`/register`); in every other case (loading, unknown) it shows neither
-- [ ] A user with the role `admin` also gets the link `Admin` (`/admin`)
-- [ ] The links `Devices` and `My rentals` and the logo stay as they are
-- [ ] `index.css` has the rules `.nav-user` and `.nav .button-ghost`
-- [ ] `npm run verify -- 045` passes (tests: `tests/task-045*.test.*`)
+- [x] `Header.jsx` uses `useAuth()`: a logged-in user gets `<span className="nav-user">NAME</span>` and a `Log out` button (class `button-ghost`) that calls `logout`; when `status` is `anonymous` it shows the links `Log in` (`/login`) and `Sign up` (`/register`); in every other case (loading, unknown) it shows neither
+- [x] A user with the role `admin` also gets the link `Admin` (`/admin`)
+- [x] The links `Devices` and `My rentals` and the logo stay as they are
+- [x] `index.css` has the rules `.nav-user` and `.nav .button-ghost`
+- [x] `npm run verify -- 045` passes (tests: `tests/task-045*.test.*`)
 
 ## Hints
 

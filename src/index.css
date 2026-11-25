@@ -397,6 +397,18 @@ button:disabled {
   color: var(--color-muted);
 }
 
+.nav-user {
+  align-self: center;
+  margin-left: 0.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.nav .button-ghost {
+  margin-left: 0.25rem;
+  padding: 0.35rem 0.9rem;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
