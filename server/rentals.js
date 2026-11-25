@@ -20,16 +20,21 @@ function toRental(row) {
     totalPrice: row.total_price,
     createdAt: row.created_at,
     status: row.status,
+    userId: row.user_id,
   }
 }
 
-export function listRentals(db) {
-  return db.prepare('SELECT * FROM rentals ORDER BY created_at, id').all().map(toRental)
+export function listRentals(db, { userId } = {}) {
+  const rows =
+    userId === undefined
+      ? db.prepare('SELECT * FROM rentals ORDER BY created_at, id').all()
+      : db.prepare('SELECT * FROM rentals WHERE user_id = ? ORDER BY created_at, id').all(userId)
+  return rows.map(toRental)
 }
 
 // Checks the request, works out the price and saves the rental.
 // `today` is a parameter so tests can pick the day.
-export function createRental(db, input, today = new Date().toISOString().slice(0, 10)) {
+export function createRental(db, input, today = new Date().toISOString().slice(0, 10), userId = null) {
   const { deviceId, startDate, endDate } = input ?? {}
   if (!Number.isInteger(deviceId)) throw new RentalError(400, 'deviceId must be a whole number')
   if (!DATE.test(startDate ?? '') || !DATE.test(endDate ?? '')) throw new RentalError(400, 'Dates must look like YYYY-MM-DD')
@@ -54,9 +59,10 @@ export function createRental(db, input, today = new Date().toISOString().slice(0
     totalPrice: days * device.pricePerDay,
     createdAt: new Date().toISOString(),
     status: 'active',
+    userId,
   }
   db.prepare(
-    'INSERT INTO rentals (id, device_id, start_date, end_date, total_price, created_at) VALUES (?, ?, ?, ?, ?, ?)',
-  ).run(rental.id, rental.deviceId, rental.startDate, rental.endDate, rental.totalPrice, rental.createdAt)
+    'INSERT INTO rentals (id, device_id, start_date, end_date, total_price, created_at, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)',
+  ).run(rental.id, rental.deviceId, rental.startDate, rental.endDate, rental.totalPrice, rental.createdAt, userId)
   return rental
 }

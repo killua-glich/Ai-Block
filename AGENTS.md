@@ -115,8 +115,8 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
   - sqlite tables: devices, rentals
 - `server/passwords.js` (23 lines)
   - exports: hashPassword(password), verifyPassword(password, stored)
-- `server/rentals.js` (63 lines)
-  - exports: RentalError, listRentals(db), createRental(db, input, today = new Date()
+- `server/rentals.js` (69 lines)
+  - exports: RentalError, listRentals(db, { userId } = {}), createRental(db, input, today = new Date()
   - imports: ./devices.js
 - `server/seed.js` (22 lines)
   - exports: seedDevices(db, devices)
@@ -132,7 +132,7 @@ express@^5.3.0, react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @esli
 
 ### Backlog status
 
-- todo: 039, 040, 041, 042, 043, 044, 045, 046, 047, 048, 049, 050, 051
+- todo: 040, 041, 042, 043, 044, 045, 046, 047, 048, 049, 050, 051
 - in-progress: —
-- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020, 021, 022, 023, 024, 025, 026, 027, 028, 029, 030, 031, 032, 033, 034, 035, 036, 037, 038
+- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020, 021, 022, 023, 024, 025, 026, 027, 028, 029, 030, 031, 032, 033, 034, 035, 036, 037, 038, 039
 <!-- CODEMAP:END -->

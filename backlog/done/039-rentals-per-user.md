@@ -10,11 +10,11 @@ Renting needs a login, and a rental belongs to the user who made it. The list of
 
 ## Acceptance criteria
 
-- [ ] `toRental` also gives `userId`; `createRental(db, input, today, userId = null)` saves the owner and the rental it returns has `userId` too
-- [ ] `listRentals(db, { userId } = {})` gives only the rentals of that user when `userId` is given, and all of them when it is not
-- [ ] `GET /api/rentals` and `POST /api/rentals` use `requireUser` (401 without a login); `GET` answers only the rentals of the logged-in user; `POST` saves the logged-in user as the owner
-- [ ] Booking rules do not change: two users still cannot book the same device on the same days
-- [ ] `npm run verify -- 039` passes (tests: `tests/task-039*.test.*`)
+- [x] `toRental` also gives `userId`; `createRental(db, input, today, userId = null)` saves the owner and the rental it returns has `userId` too
+- [x] `listRentals(db, { userId } = {})` gives only the rentals of that user when `userId` is given, and all of them when it is not
+- [x] `GET /api/rentals` and `POST /api/rentals` use `requireUser` (401 without a login); `GET` answers only the rentals of the logged-in user; `POST` saves the logged-in user as the owner
+- [x] Booking rules do not change: two users still cannot book the same device on the same days
+- [x] `npm run verify -- 039` passes (tests: `tests/task-039*.test.*`)
 
 ## Hints
 
