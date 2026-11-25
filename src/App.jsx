@@ -6,6 +6,8 @@ import Catalog from './pages/Catalog.jsx'
 import DeviceDetail from './pages/DeviceDetail.jsx'
 import MyRentals from './pages/MyRentals.jsx'
 import NotFound from './pages/NotFound.jsx'
+import Login from './pages/Login.jsx'
+import Register from './pages/Register.jsx'
 
 export default function App() {
   return (
@@ -16,6 +18,8 @@ export default function App() {
           <Route path="/" element={<Catalog />} />
           <Route path="/devices/:id" element={<DeviceDetail />} />
           <Route path="/rentals" element={<MyRentals />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

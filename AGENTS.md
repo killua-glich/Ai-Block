@@ -46,10 +46,10 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
 
 ### Files
 
-- `src/App.jsx` (26 lines)
+- `src/App.jsx` (30 lines)
   - exports: App()
-  - imports: ./components/Header.jsx, ./components/Footer.jsx, ./data/AuthContext.jsx, ./pages/Catalog.jsx, ./pages/DeviceDetail.jsx, ./pages/MyRentals.jsx, ./pages/NotFound.jsx
-  - routes: / → Catalog, /devices/:id → DeviceDetail, /rentals → MyRentals, * → NotFound
+  - imports: ./components/Header.jsx, ./components/Footer.jsx, ./data/AuthContext.jsx, ./pages/Catalog.jsx, ./pages/DeviceDetail.jsx, ./pages/MyRentals.jsx, ./pages/NotFound.jsx, ./pages/Login.jsx, ./pages/Register.jsx
+  - routes: / → Catalog, /devices/:id → DeviceDetail, /rentals → MyRentals, /login → Login, /register → Register, * → NotFound
 - `src/components/DeviceCard.jsx` (24 lines)
   - exports: DeviceCard({ device })
   - imports: ../data/money.js, ../data/categories.js
@@ -81,8 +81,8 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
   - exports: resetDevices(), useDevices()
   - imports: ./devices.js, ./api.js
   - hooks: useDevices, useState, useEffect
-- `src/index.css` (792 lines)
-  - classes: header, logo, container, grid, card, category, price, filters, badge, badge-ok, badge-no, error, rental-form, success, logo-mark, nav, footer, footer-links, hero, hero-image, eyebrow, lead, search, stats, visually-hidden, card-media, card-photo, card-icon, card-body, card-unavailable, chip, view-link, toolbar, toolbar-end, result-count, button-ghost, empty-state, back-link, detail, detail-media, detail-photo, detail-icon, price-tag, detail-booking, specs, summary, summary-days, summary-total, table-wrap, table, row-icon, chip-active, chip-past, muted, not-found, not-found-code
+- `src/index.css` (848 lines)
+  - classes: header, logo, container, grid, card, category, price, filters, badge, badge-ok, badge-no, error, rental-form, success, logo-mark, nav, footer, footer-links, hero, hero-image, eyebrow, lead, search, stats, auth-card, auth-hint, visually-hidden, card-media, card-photo, card-icon, card-body, card-unavailable, chip, view-link, toolbar, toolbar-end, result-count, button-ghost, empty-state, back-link, detail, detail-media, detail-photo, detail-icon, price-tag, detail-booking, specs, summary, summary-days, summary-total, table-wrap, table, row-icon, chip-active, chip-past, muted, not-found, not-found-code
 - `src/main.jsx` (14 lines)
   - imports: ./App.jsx
 - `src/pages/Catalog.jsx` (93 lines)
@@ -93,12 +93,20 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
   - exports: DeviceDetail()
   - imports: ../data/useDevices.js, ../components/RentalForm.jsx, ../data/money.js, ../data/categories.js
   - hooks: useParams, useDevices
+- `src/pages/Login.jsx` (46 lines)
+  - exports: Login()
+  - imports: ../data/AuthContext.jsx
+  - hooks: useAuth, useNavigate, useLocation, useState
 - `src/pages/MyRentals.jsx` (106 lines)
   - exports: MyRentals()
   - imports: ../data/api.js, ../data/useDevices.js, ../data/money.js, ../data/categories.js
   - hooks: useDevices, useState, useEffect
 - `src/pages/NotFound.jsx` (13 lines)
   - exports: NotFound()
+- `src/pages/Register.jsx` (51 lines)
+  - exports: Register()
+  - imports: ../data/AuthContext.jsx
+  - hooks: useAuth, useNavigate, useState
 - `server/app.js` (92 lines)
   - exports: createApp(db)
   - imports: ./devices.js, ./rentals.js, ./auth.js, ./users.js, ./sessions.js
@@ -137,7 +145,7 @@ express@^5.3.0, react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @esli
 
 ### Backlog status
 
-- todo: 044, 045, 046, 047, 048, 049, 050, 051
+- todo: 045, 046, 047, 048, 049, 050, 051
 - in-progress: —
-- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020, 021, 022, 023, 024, 025, 026, 027, 028, 029, 030, 031, 032, 033, 034, 035, 036, 037, 038, 039, 040, 041, 042, 043
+- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020, 021, 022, 023, 024, 025, 026, 027, 028, 029, 030, 031, 032, 033, 034, 035, 036, 037, 038, 039, 040, 041, 042, 043, 044
 <!-- CODEMAP:END -->

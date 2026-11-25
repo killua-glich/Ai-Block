@@ -10,11 +10,11 @@ Two new pages, `/login` and `/register`, with forms in a card. Logging in or reg
 
 ## Acceptance criteria
 
-- [ ] `Login.jsx`: `<section className="auth-card">` with the `h1` `Log in`, a form with fields `Email` and `Password`, the error message in `<p className="error" role="alert">` when the login is refused, a submit button `Log in` that is disabled while saving, and the link `Create one` to `/register`; a successful login goes to `location.state.from` or to `/`
-- [ ] `Register.jsx`: the same card with the `h1` `Create your account`, fields `Name`, `Email` and `Password` (`minLength` 8) with the hint `At least 8 characters.`, the button `Create account` and the link `Log in` to `/login`; success goes to `/`
-- [ ] `App.jsx` has the routes `/login` and `/register` (before the `*` route)
-- [ ] `index.css` has the rules `.auth-card`, `.auth-card h1`, `.auth-card form`, `.auth-card label`, `.auth-card input`, `.auth-card input:focus-visible`, `.auth-card button` and `.auth-hint` as in the code below
-- [ ] `npm run verify -- 044` passes (tests: `tests/task-044*.test.*`)
+- [x] `Login.jsx`: `<section className="auth-card">` with the `h1` `Log in`, a form with fields `Email` and `Password`, the error message in `<p className="error" role="alert">` when the login is refused, a submit button `Log in` that is disabled while saving, and the link `Create one` to `/register`; a successful login goes to `location.state.from` or to `/`
+- [x] `Register.jsx`: the same card with the `h1` `Create your account`, fields `Name`, `Email` and `Password` (`minLength` 8) with the hint `At least 8 characters.`, the button `Create account` and the link `Log in` to `/login`; success goes to `/`
+- [x] `App.jsx` has the routes `/login` and `/register` (before the `*` route)
+- [x] `index.css` has the rules `.auth-card`, `.auth-card h1`, `.auth-card form`, `.auth-card label`, `.auth-card input`, `.auth-card input:focus-visible`, `.auth-card button` and `.auth-hint` as in the code below
+- [x] `npm run verify -- 044` passes (tests: `tests/task-044*.test.*`)
 
 ## Hints
 
