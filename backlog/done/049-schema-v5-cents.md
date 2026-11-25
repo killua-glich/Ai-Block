@@ -10,11 +10,11 @@ Migration step 5 rebuilds the `rentals` table. Totals are stored as whole cents 
 
 ## Acceptance criteria
 
-- [ ] `MIGRATIONS` gets a fifth step, version 5, after step 4: it makes a new table `rentals_v5` with the columns `id`, `device_id`, `user_id`, `start_date`, `end_date`, `total_cents` (a whole number, zero or more), `status`, `created_at`, `cancelled_at`, with the checks for the end date, for the status and for the pair status and cancel time; copies every rental into it (cents = euros times 100, rounded; a rental that is cancelled by its status or by its cancel time becomes `cancelled` and gets a cancel time); drops the old table, renames the new one to `rentals` and makes the two indexes again
-- [ ] A rental is `cancelled` exactly when `cancelled_at` is set: the database refuses any other row
-- [ ] `toRental` in `server/rentals.js` gives `totalPrice` as `total_cents / 100`; `createRental` works out `totalCents` as `Math.round(days * device.pricePerDay * 100)`, saves it in `total_cents` and returns `totalPrice: totalCents / 100`
-- [ ] A version 4 database file is upgraded without losing a rental, its owner or its foreign keys
-- [ ] `npm run verify -- 049` passes (tests: `tests/task-049*.test.*`)
+- [x] `MIGRATIONS` gets a fifth step, version 5, after step 4: it makes a new table `rentals_v5` with the columns `id`, `device_id`, `user_id`, `start_date`, `end_date`, `total_cents` (a whole number, zero or more), `status`, `created_at`, `cancelled_at`, with the checks for the end date, for the status and for the pair status and cancel time; copies every rental into it (cents = euros times 100, rounded; a rental that is cancelled by its status or by its cancel time becomes `cancelled` and gets a cancel time); drops the old table, renames the new one to `rentals` and makes the two indexes again
+- [x] A rental is `cancelled` exactly when `cancelled_at` is set: the database refuses any other row
+- [x] `toRental` in `server/rentals.js` gives `totalPrice` as `total_cents / 100`; `createRental` works out `totalCents` as `Math.round(days * device.pricePerDay * 100)`, saves it in `total_cents` and returns `totalPrice: totalCents / 100`
+- [x] A version 4 database file is upgraded without losing a rental, its owner or its foreign keys
+- [x] `npm run verify -- 049` passes (tests: `tests/task-049*.test.*`)
 
 ## Hints
 

@@ -72,6 +72,35 @@ CREATE TABLE sessions (
 CREATE INDEX sessions_user_index ON sessions (user_id);
 `,
   },
+  {
+    version: 5,
+    name: 'rentals in whole cents, cancelled rentals always have a cancel time',
+    sql: `
+CREATE TABLE rentals_v5 (
+  id TEXT PRIMARY KEY,
+  device_id INTEGER NOT NULL REFERENCES devices (id),
+  user_id INTEGER REFERENCES users (id) ON DELETE SET NULL,
+  start_date TEXT NOT NULL,
+  end_date TEXT NOT NULL,
+  total_cents INTEGER NOT NULL CHECK (typeof(total_cents) = 'integer' AND total_cents >= 0),
+  status TEXT NOT NULL DEFAULT 'active' CHECK (status IN ('active', 'cancelled')),
+  created_at TEXT NOT NULL,
+  cancelled_at TEXT,
+  CHECK (end_date >= start_date),
+  CHECK ((status = 'cancelled') = (cancelled_at IS NOT NULL))
+);
+INSERT INTO rentals_v5 (id, device_id, user_id, start_date, end_date, total_cents, status, created_at, cancelled_at)
+  SELECT id, device_id, user_id, start_date, end_date, CAST(ROUND(total_price * 100) AS INTEGER),
+    CASE WHEN status = 'cancelled' OR cancelled_at IS NOT NULL THEN 'cancelled' ELSE 'active' END,
+    created_at,
+    CASE WHEN status = 'cancelled' OR cancelled_at IS NOT NULL THEN COALESCE(cancelled_at, created_at) END
+  FROM rentals;
+DROP TABLE rentals;
+ALTER TABLE rentals_v5 RENAME TO rentals;
+CREATE INDEX rentals_device_status_dates ON rentals (device_id, status, start_date, end_date);
+CREATE INDEX rentals_user_index ON rentals (user_id);
+`,
+  },
 ]
 
 export function currentVersion(db) {

@@ -132,12 +132,12 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
 - `server/index.js` (28 lines)
   - exports: startServer({ port = 3001, dbPath = 'data/ai-block.db', admin = { email: process.env.ADMIN_EMAIL, password: process.env.ADMIN_PASSWORD }, } = {})
   - imports: ./db.js, ./seed.js, ./app.js, ../src/data/devices.js
-- `server/migrations.js` (97 lines)
+- `server/migrations.js` (126 lines)
   - exports: MIGRATIONS, currentVersion(db), migrate(db, migrations = MIGRATIONS)
   - sqlite tables: devices, rentals
 - `server/passwords.js` (23 lines)
   - exports: hashPassword(password), verifyPassword(password, stored)
-- `server/rentals.js` (83 lines)
+- `server/rentals.js` (84 lines)
   - exports: RentalError, listRentals(db, { userId } = {}), createRental(db, input, today = new Date(), cancelRental(db, id, user, today = new Date()
   - imports: ./devices.js
 - `server/seed.js` (34 lines)
@@ -155,7 +155,7 @@ express@^5.3.0, react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @esli
 
 ### Backlog status
 
-- todo: 049, 050, 051
+- todo: 050, 051
 - in-progress: —
-- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020, 021, 022, 023, 024, 025, 026, 027, 028, 029, 030, 031, 032, 033, 034, 035, 036, 037, 038, 039, 040, 041, 042, 043, 044, 045, 046, 047, 048
+- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020, 021, 022, 023, 024, 025, 026, 027, 028, 029, 030, 031, 032, 033, 034, 035, 036, 037, 038, 039, 040, 041, 042, 043, 044, 045, 046, 047, 048, 049
 <!-- CODEMAP:END -->

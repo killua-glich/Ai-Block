@@ -17,7 +17,7 @@ function toRental(row) {
     deviceId: row.device_id,
     startDate: row.start_date,
     endDate: row.end_date,
-    totalPrice: row.total_price,
+    totalPrice: row.total_cents / 100,
     createdAt: row.created_at,
     status: row.status,
     userId: row.user_id,
@@ -52,20 +52,21 @@ export function createRental(db, input, today = new Date().toISOString().slice(0
   if (clash) throw new RentalError(409, 'Those dates are already booked.')
 
   const days = Math.round((Date.parse(endDate) - Date.parse(startDate)) / 86400000) + 1
+  const totalCents = Math.round(days * device.pricePerDay * 100)
   const rental = {
     id: randomUUID(),
     deviceId,
     startDate,
     endDate,
-    totalPrice: days * device.pricePerDay,
+    totalPrice: totalCents / 100,
     createdAt: new Date().toISOString(),
     status: 'active',
     userId,
     cancelledAt: null,
   }
   db.prepare(
-    'INSERT INTO rentals (id, device_id, start_date, end_date, total_price, created_at, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)',
-  ).run(rental.id, rental.deviceId, rental.startDate, rental.endDate, rental.totalPrice, rental.createdAt, userId)
+    'INSERT INTO rentals (id, device_id, start_date, end_date, total_cents, created_at, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)',
+  ).run(rental.id, rental.deviceId, rental.startDate, rental.endDate, totalCents, rental.createdAt, userId)
   return rental
 }
 
