@@ -95,18 +95,18 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
   - hooks: useDevices, useState, useEffect
 - `src/pages/NotFound.jsx` (13 lines)
   - exports: NotFound()
-- `server/app.js` (79 lines)
+- `server/app.js` (92 lines)
   - exports: createApp(db)
   - imports: ./devices.js, ./rentals.js, ./auth.js, ./users.js, ./sessions.js
-  - api: GET /api/health, GET /api/devices, GET /api/devices/:id, POST /api/auth/register, POST /api/auth/login, POST /api/auth/logout, GET /api/auth/me, GET /api/rentals, POST /api/rentals, POST /api/rentals/:id/cancel
+  - api: GET /api/health, GET /api/devices, GET /api/devices/:id, POST /api/auth/register, POST /api/auth/login, POST /api/auth/logout, GET /api/auth/me, POST /api/devices, PUT /api/devices/:id, DELETE /api/devices/:id, GET /api/rentals, POST /api/rentals, POST /api/rentals/:id/cancel
 - `server/auth.js` (41 lines)
   - exports: COOKIE, readCookie(req, name), setSessionCookie(res, token), clearSessionCookie(res), attachUser(db), requireUser(req, res, next), requireAdmin(req, res, next)
   - imports: ./sessions.js
 - `server/db.js` (11 lines)
   - exports: openDb(path = ':memory:')
   - imports: ./migrations.js
-- `server/devices.js` (22 lines)
-  - exports: listDevices(db), getDevice(db, id)
+- `server/devices.js` (94 lines)
+  - exports: listDevices(db), getDevice(db, id), DeviceError, createDevice(db, input, now = new Date(), updateDevice(db, id, input, now = new Date(), deleteDevice(db, id)
 - `server/index.js` (23 lines)
   - exports: startServer({ port = 3001, dbPath = 'data/ai-block.db' } = {})
   - imports: ./db.js, ./seed.js, ./app.js, ../src/data/devices.js
@@ -132,7 +132,7 @@ express@^5.3.0, react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @esli
 
 ### Backlog status
 
-- todo: 041, 042, 043, 044, 045, 046, 047, 048, 049, 050, 051
+- todo: 042, 043, 044, 045, 046, 047, 048, 049, 050, 051
 - in-progress: —
-- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020, 021, 022, 023, 024, 025, 026, 027, 028, 029, 030, 031, 032, 033, 034, 035, 036, 037, 038, 039, 040
+- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020, 021, 022, 023, 024, 025, 026, 027, 028, 029, 030, 031, 032, 033, 034, 035, 036, 037, 038, 039, 040, 041
 <!-- CODEMAP:END -->

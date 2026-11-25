@@ -10,10 +10,10 @@ Admins can add, change and delete devices through the API. Everyone else gets 40
 
 ## Acceptance criteria
 
-- [ ] `server/devices.js` exports `DeviceError` (with a `status`) and the functions `createDevice(db, input, now)`, `updateDevice(db, id, input, now)` and `deleteDevice(db, id)`; `createDevice` and `updateDevice` check the input with the exact messages in the code below (status 400), clean up the text, and `updateDevice` stores the update time
-- [ ] A name that exists already answers 409 `A device with that name already exists.`; an unknown device answers 404 `Device not found`; a device that has rentals cannot be deleted (409)
-- [ ] `POST /api/devices` (201 with the device), `PUT /api/devices/:id` (200 with the device) and `DELETE /api/devices/:id` (204) use `requireAdmin`: 401 without a login, 403 for a normal user
-- [ ] `npm run verify -- 041` passes (tests: `tests/task-041*.test.*`)
+- [x] `server/devices.js` exports `DeviceError` (with a `status`) and the functions `createDevice(db, input, now)`, `updateDevice(db, id, input, now)` and `deleteDevice(db, id)`; `createDevice` and `updateDevice` check the input with the exact messages in the code below (status 400), clean up the text, and `updateDevice` stores the update time
+- [x] A name that exists already answers 409 `A device with that name already exists.`; an unknown device answers 404 `Device not found`; a device that has rentals cannot be deleted (409)
+- [x] `POST /api/devices` (201 with the device), `PUT /api/devices/:id` (200 with the device) and `DELETE /api/devices/:id` (204) use `requireAdmin`: 401 without a login, 403 for a normal user
+- [x] `npm run verify -- 041` passes (tests: `tests/task-041*.test.*`)
 
 ## Hints
 

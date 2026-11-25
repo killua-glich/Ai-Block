@@ -1,7 +1,7 @@
 import express from 'express'
-import { listDevices, getDevice } from './devices.js'
+import { listDevices, getDevice, createDevice, updateDevice, deleteDevice } from './devices.js'
 import { listRentals, createRental, cancelRental, RentalError } from './rentals.js'
-import { attachUser, requireUser, readCookie, setSessionCookie, clearSessionCookie, COOKIE } from './auth.js'
+import { attachUser, requireUser, requireAdmin, readCookie, setSessionCookie, clearSessionCookie, COOKIE } from './auth.js'
 import { createUser, authenticate } from './users.js'
 import { createSession, deleteSession } from './sessions.js'
 
@@ -47,6 +47,19 @@ export function createApp(db) {
   app.get('/api/auth/me', (req, res) => {
     if (!req.user) return res.status(401).json({ error: 'Not logged in.' })
     res.json({ user: req.user })
+  })
+
+  app.post('/api/devices', requireAdmin, (req, res) => {
+    res.status(201).json(createDevice(db, req.body))
+  })
+
+  app.put('/api/devices/:id', requireAdmin, (req, res) => {
+    res.json(updateDevice(db, Number(req.params.id), req.body))
+  })
+
+  app.delete('/api/devices/:id', requireAdmin, (req, res) => {
+    deleteDevice(db, Number(req.params.id))
+    res.status(204).end()
   })
 
   app.get('/api/rentals', requireUser, (req, res) => {
