@@ -10,11 +10,11 @@ The rental form sends the rental to the API instead of saving it in the browser.
 
 ## Acceptance criteria
 
-- [ ] `RentalForm.jsx` imports `postRental` from `../data/api.js` and no longer imports `addRental`
-- [ ] Clicking Rent calls `postRental({ deviceId, startDate, endDate })`; when it works the form shows `Rental confirmed!` and empties the dates
-- [ ] When it fails, the form shows the error message in a `<p className="error">` under the date checks, does not confirm, keeps the dates, and forgets the message at the next try
-- [ ] The Rent button is disabled while the rental is being saved; the date checks and the price summary work as before
-- [ ] `npm run verify -- 030` passes (tests: `tests/task-030*.test.*`)
+- [x] `RentalForm.jsx` imports `postRental` from `../data/api.js` and no longer imports `addRental`
+- [x] Clicking Rent calls `postRental({ deviceId, startDate, endDate })`; when it works the form shows `Rental confirmed!` and empties the dates
+- [x] When it fails, the form shows the error message in a `<p className="error">` under the date checks, does not confirm, keeps the dates, and forgets the message at the next try
+- [x] The Rent button is disabled while the rental is being saved; the date checks and the price summary work as before
+- [x] `npm run verify -- 030` passes (tests: `tests/task-030*.test.*`)
 
 ## Hints
 
