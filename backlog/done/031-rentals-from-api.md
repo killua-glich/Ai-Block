@@ -10,11 +10,11 @@ The My rentals page loads the rentals from the API. It shows a loading message f
 
 ## Acceptance criteria
 
-- [ ] `MyRentals.jsx` no longer imports `getRentals` or `src/data/devices.js`; it uses `fetchRentals` from `../data/api.js` and `useDevices` from `../data/useDevices.js`
-- [ ] While the rentals load, the page shows the `h1` "My rentals" and a `<p className="muted">` with `Loading your rentals …`
-- [ ] When loading fails, the page shows the `h1` and a `<p className="error">` with `Could not load your rentals. Is the server running?` (and not the empty state)
-- [ ] When it works, the page looks as before: Active and Past tables, or the empty state; the device names come from `useDevices()`
-- [ ] `npm run verify -- 031` passes (tests: `tests/task-031*.test.*`)
+- [x] `MyRentals.jsx` no longer imports `getRentals` or `src/data/devices.js`; it uses `fetchRentals` from `../data/api.js` and `useDevices` from `../data/useDevices.js`
+- [x] While the rentals load, the page shows the `h1` "My rentals" and a `<p className="muted">` with `Loading your rentals …`
+- [x] When loading fails, the page shows the `h1` and a `<p className="error">` with `Could not load your rentals. Is the server running?` (and not the empty state)
+- [x] When it works, the page looks as before: Active and Past tables, or the empty state; the device names come from `useDevices()`
+- [x] `npm run verify -- 031` passes (tests: `tests/task-031*.test.*`)
 
 ## Hints
 

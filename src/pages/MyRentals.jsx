@@ -1,11 +1,45 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { getRentals } from '../data/rentals.js'
-import devices from '../data/devices.js'
+import { fetchRentals } from '../data/api.js'
+import { useDevices } from '../data/useDevices.js'
 import { formatEuro } from '../data/money.js'
 import { categoryIcon } from '../data/categories.js'
 
 export default function MyRentals() {
-  const rentals = getRentals()
+  const devices = useDevices()
+  const [rentals, setRentals] = useState(null)
+  const [hasFailed, setHasFailed] = useState(false)
+
+  useEffect(() => {
+    let isActive = true
+    fetchRentals()
+      .then((list) => {
+        if (isActive) setRentals(list)
+      })
+      .catch(() => {
+        if (isActive) setHasFailed(true)
+      })
+    return () => {
+      isActive = false
+    }
+  }, [])
+
+  if (hasFailed) {
+    return (
+      <section>
+        <h1>My rentals</h1>
+        <p className="error">Could not load your rentals. Is the server running?</p>
+      </section>
+    )
+  }
+  if (rentals === null) {
+    return (
+      <section>
+        <h1>My rentals</h1>
+        <p className="muted">Loading your rentals …</p>
+      </section>
+    )
+  }
   const today = new Date().toISOString().slice(0, 10)
   const active = rentals.filter((r) => r.endDate >= today)
   const past = rentals.filter((r) => r.endDate < today)
