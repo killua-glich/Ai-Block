@@ -10,10 +10,10 @@ Nobody can make themselves an admin on the site, so the first admin comes from t
 
 ## Acceptance criteria
 
-- [ ] `seedAdmin(db, { email, password } = {})` in `server/seed.js` makes a user with the role `admin` and the name `Administrator` and returns `true`; it returns `false` and does nothing when the email or the password is missing or empty, or when a user with that email exists already (that user is not changed); a password that is too short throws the error of `createUser`
-- [ ] `startServer` in `server/index.js` takes an `admin` option that defaults to `{ email: process.env.ADMIN_EMAIL, password: process.env.ADMIN_PASSWORD }` and calls `seedAdmin(db, admin)` after `seedDevices`
-- [ ] In `docker-compose.yml` the `api` service gets `ADMIN_EMAIL: ${ADMIN_EMAIL:-}` and `ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}` under `environment`
-- [ ] `npm run verify -- 042` passes (tests: `tests/task-042*.test.*`)
+- [x] `seedAdmin(db, { email, password } = {})` in `server/seed.js` makes a user with the role `admin` and the name `Administrator` and returns `true`; it returns `false` and does nothing when the email or the password is missing or empty, or when a user with that email exists already (that user is not changed); a password that is too short throws the error of `createUser`
+- [x] `startServer` in `server/index.js` takes an `admin` option that defaults to `{ email: process.env.ADMIN_EMAIL, password: process.env.ADMIN_PASSWORD }` and calls `seedAdmin(db, admin)` after `seedDevices`
+- [x] In `docker-compose.yml` the `api` service gets `ADMIN_EMAIL: ${ADMIN_EMAIL:-}` and `ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}` under `environment`
+- [x] `npm run verify -- 042` passes (tests: `tests/task-042*.test.*`)
 
 ## Hints
 

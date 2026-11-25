@@ -1,3 +1,5 @@
+import { createUser, findUserByEmail } from './users.js'
+
 // Puts the built-in devices into an empty database. Does nothing when there are devices already.
 // Returns how many devices it added.
 export function seedDevices(db, devices) {
@@ -18,4 +20,14 @@ export function seedDevices(db, devices) {
     throw err
   }
   return devices.length
+}
+
+// Makes the first admin from an email and a password (they come from the environment).
+// Does nothing when one of them is missing or when a user with that email exists already.
+// Returns true when it made the admin.
+export function seedAdmin(db, { email, password } = {}) {
+  if (!email || !password) return false
+  if (findUserByEmail(db, email)) return false
+  createUser(db, { email, name: 'Administrator', password, role: 'admin' })
+  return true
 }

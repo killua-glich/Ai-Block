@@ -11,6 +11,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.api
+    environment:
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
     volumes:
       - db-data:/data
     restart: unless-stopped
