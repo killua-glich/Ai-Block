@@ -10,11 +10,11 @@
 
 ## Acceptance criteria
 
-- [ ] New `Dockerfile.api`: Node 24 image, installs only the production packages, copies `server/` and `src/data/devices.js`, sets `DB_PATH=/data/ai-block.db`, starts `node server/index.js`
-- [ ] `docker-compose.yml` has the `web` service (port 8080, waits for `api`) and the `api` service (built from `Dockerfile.api`, no published port, volume `db-data` mounted at `/data`)
-- [ ] `nginx.conf` has a `location /api/` block that does `proxy_pass http://api:3001;`; the rest stays as it is
-- [ ] `.dockerignore` lists `data`, so a local database file is never copied into an image
-- [ ] `npm run verify -- 032` passes (tests: `tests/task-032*.test.*`)
+- [x] New `Dockerfile.api`: Node 24 image, installs only the production packages, copies `server/` and `src/data/devices.js`, sets `DB_PATH=/data/ai-block.db`, starts `node server/index.js`
+- [x] `docker-compose.yml` has the `web` service (port 8080, waits for `api`) and the `api` service (built from `Dockerfile.api`, no published port, volume `db-data` mounted at `/data`)
+- [x] `nginx.conf` has a `location /api/` block that does `proxy_pass http://api:3001;`; the rest stays as it is
+- [x] `.dockerignore` lists `data`, so a local database file is never copied into an image
+- [x] `npm run verify -- 032` passes (tests: `tests/task-032*.test.*`)
 
 ## Hints
 

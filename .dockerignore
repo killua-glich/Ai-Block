@@ -3,6 +3,7 @@ dist
 .git
 .githooks
 backlog
+data
 bench
 tests
 *.log

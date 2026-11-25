@@ -1,0 +1,12 @@
+FROM node:24-alpine
+WORKDIR /app
+COPY package.json package-lock.json ./
+# --omit=dev: the server needs only express. --ignore-scripts: the image has no git for the "prepare" hook.
+RUN npm ci --omit=dev --ignore-scripts --no-audit --no-fund
+COPY server ./server
+# The server fills an empty database with the built-in device list.
+COPY src/data/devices.js ./src/data/devices.js
+ENV PORT=3001 DB_PATH=/data/ai-block.db
+VOLUME /data
+EXPOSE 3001
+CMD ["node", "server/index.js"]
