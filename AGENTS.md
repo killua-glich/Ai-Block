@@ -88,6 +88,9 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
   - imports: ../data/rentals.js, ../data/devices.js, ../data/money.js, ../data/categories.js
 - `src/pages/NotFound.jsx` (13 lines)
   - exports: NotFound()
+- `server/db.js` (34 lines)
+  - exports: openDb(path = ':memory:')
+  - sqlite tables: devices, rentals
 
 ### Dependencies
 
@@ -95,7 +98,7 @@ express@^5.3.0, react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @esli
 
 ### Backlog status
 
-- todo: 022, 023, 024, 025, 026, 027, 028, 029, 030, 031, 032
+- todo: 023, 024, 025, 026, 027, 028, 029, 030, 031, 032
 - in-progress: —
-- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020, 021
+- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020, 021, 022
 <!-- CODEMAP:END -->

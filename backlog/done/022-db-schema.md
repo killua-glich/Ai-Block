@@ -10,11 +10,11 @@ A new file `server/db.js` opens a SQLite database and creates two tables: `devic
 
 ## Acceptance criteria
 
-- [ ] `server/db.js` exports `openDb(path = ':memory:')`: it opens a `DatabaseSync` from `node:sqlite`, turns foreign keys on, creates the tables if they do not exist, and returns the database
-- [ ] Table `devices`: `id`, `name`, `category`, `price_per_day`, `description` (default `''`), `specs` (JSON text, default `'[]'`), `available` (0 or 1, default 1)
-- [ ] Table `rentals`: `id` (text), `device_id` (must be an existing device), `start_date`, `end_date`, `total_price`, `created_at`; the end date cannot be before the start date
-- [ ] Opening a database file that already exists keeps its data
-- [ ] `npm run verify -- 022` passes (tests: `tests/task-022*.test.*`)
+- [x] `server/db.js` exports `openDb(path = ':memory:')`: it opens a `DatabaseSync` from `node:sqlite`, turns foreign keys on, creates the tables if they do not exist, and returns the database
+- [x] Table `devices`: `id`, `name`, `category`, `price_per_day`, `description` (default `''`), `specs` (JSON text, default `'[]'`), `available` (0 or 1, default 1)
+- [x] Table `rentals`: `id` (text), `device_id` (must be an existing device), `start_date`, `end_date`, `total_price`, `created_at`; the end date cannot be before the start date
+- [x] Opening a database file that already exists keeps its data
+- [x] `npm run verify -- 022` passes (tests: `tests/task-022*.test.*`)
 
 ## Hints
 
