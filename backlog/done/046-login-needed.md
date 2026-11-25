@@ -10,10 +10,10 @@ A visitor who is not logged in is sent from My rentals to the login page and com
 
 ## Acceptance criteria
 
-- [ ] `src/components/RequireLogin.jsx` (new) shows its children, except when `useAuth().status` is `anonymous`: then it redirects with `<Navigate to="/login" replace state={{ from: location.pathname }} />`
-- [ ] `App.jsx` wraps the page in the `/rentals` route: `<RequireLogin><MyRentals /></RequireLogin>`
-- [ ] `RentalForm.jsx`: when the status is `anonymous` the Rent button is replaced by `<p className="muted">` with a link `Log in` (to `/login`, with `state={{ from: '/devices/ID' }}`) and the text ` to rent this device.`; in every other case the button is there as before
-- [ ] `npm run verify -- 046` passes (tests: `tests/task-046*.test.*`)
+- [x] `src/components/RequireLogin.jsx` (new) shows its children, except when `useAuth().status` is `anonymous`: then it redirects with `<Navigate to="/login" replace state={{ from: location.pathname }} />`
+- [x] `App.jsx` wraps the page in the `/rentals` route: `<RequireLogin><MyRentals /></RequireLogin>`
+- [x] `RentalForm.jsx`: when the status is `anonymous` the Rent button is replaced by `<p className="muted">` with a link `Log in` (to `/login`, with `state={{ from: '/devices/ID' }}`) and the text ` to rent this device.`; in every other case the button is there as before
+- [x] `npm run verify -- 046` passes (tests: `tests/task-046*.test.*`)
 
 ## Hints
 

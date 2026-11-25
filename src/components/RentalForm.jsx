@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { postRental } from '../data/api.js'
+import { useAuth } from '../data/AuthContext.jsx'
 import { formatEuro } from '../data/money.js'
 
 export default function RentalForm({ device }) {
@@ -8,6 +10,7 @@ export default function RentalForm({ device }) {
   const [confirmed, setConfirmed] = useState(false)
   const [serverError, setServerError] = useState('')
   const [isSaving, setIsSaving] = useState(false)
+  const { status } = useAuth()
 
   const today = new Date().toISOString().slice(0, 10)
 
@@ -55,9 +58,15 @@ export default function RentalForm({ device }) {
           <p className="summary-total">total {formatEuro(total)}</p>
         </div>
       )}
-      <button type="button" disabled={!(days > 0 && device.available) || isSaving} onClick={handleRent}>
-        Rent
-      </button>
+      {status === 'anonymous' ? (
+        <p className="muted">
+          <Link to="/login" state={{ from: `/devices/${device.id}` }}>Log in</Link> to rent this device.
+        </p>
+      ) : (
+        <button type="button" disabled={!(days > 0 && device.available) || isSaving} onClick={handleRent}>
+          Rent
+        </button>
+      )}
       {!device.available && <p>This device is currently not available.</p>}
       {confirmed && <p className="success" role="status">Rental confirmed!</p>}
     </div>
