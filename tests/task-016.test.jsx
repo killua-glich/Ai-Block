@@ -2,6 +2,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import { screen, fireEvent } from '@testing-library/react'
 import { renderAt } from './helpers.jsx'
+import { fakeApi } from './rentals-world.js'
 import { rule } from './css-helpers.js'
 
 function fill(start, end) {
@@ -30,11 +31,12 @@ describe('016 forms, buttons and summary', () => {
     expect(document.querySelector('.summary .summary-total')).toHaveTextContent('total €125')
   })
 
-  it('renting shows a confirmation that screen readers announce', () => {
+  it('renting shows a confirmation that screen readers announce', async () => {
+    fakeApi()
     renderAt('/devices/1')
     fill('2026-12-01', '2026-12-02')
     fireEvent.click(screen.getByRole('button', { name: /rent/i }))
-    const ok = screen.getByText('Rental confirmed!')
+    const ok = await screen.findByText('Rental confirmed!')
     expect(ok).toHaveClass('success')
     expect(ok).toHaveAttribute('role', 'status')
   })
