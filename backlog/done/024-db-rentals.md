@@ -10,11 +10,11 @@ A new file `server/rentals.js` saves rentals in the database and lists them. It 
 
 ## Acceptance criteria
 
-- [ ] `listRentals(db)` returns all rentals as `{ id, deviceId, startDate, endDate, totalPrice, createdAt }`, ordered by creation time
-- [ ] `createRental(db, input, today)` takes `{ deviceId, startDate, endDate }`, makes a UUID `id`, works out `totalPrice` (days counted from the first to the last day, both included, times the daily price), saves the rental and returns it
-- [ ] It throws a `RentalError` (which has a `status` and a `message`) for: a `deviceId` that is not a whole number or dates not written `YYYY-MM-DD` (400); an end date before the start date, message `End date must be after start date.` (400); a start date before `today`, message `Start date cannot be in the past.` (400); an unknown device, message `Device not found` (404); an unavailable device, message `This device is currently not available.` (409); dates that overlap another rental of the same device, message `Those dates are already booked.` (409)
-- [ ] A refused rental is not saved. `today` defaults to the real date as `YYYY-MM-DD`
-- [ ] `npm run verify -- 024` passes (tests: `tests/task-024*.test.*`)
+- [x] `listRentals(db)` returns all rentals as `{ id, deviceId, startDate, endDate, totalPrice, createdAt }`, ordered by creation time
+- [x] `createRental(db, input, today)` takes `{ deviceId, startDate, endDate }`, makes a UUID `id`, works out `totalPrice` (days counted from the first to the last day, both included, times the daily price), saves the rental and returns it
+- [x] It throws a `RentalError` (which has a `status` and a `message`) for: a `deviceId` that is not a whole number or dates not written `YYYY-MM-DD` (400); an end date before the start date, message `End date must be after start date.` (400); a start date before `today`, message `Start date cannot be in the past.` (400); an unknown device, message `Device not found` (404); an unavailable device, message `This device is currently not available.` (409); dates that overlap another rental of the same device, message `Those dates are already booked.` (409)
+- [x] A refused rental is not saved. `today` defaults to the real date as `YYYY-MM-DD`
+- [x] `npm run verify -- 024` passes (tests: `tests/task-024*.test.*`)
 
 ## Hints
 

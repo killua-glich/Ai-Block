@@ -93,6 +93,9 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
   - sqlite tables: devices, rentals
 - `server/devices.js` (22 lines)
   - exports: listDevices(db), getDevice(db, id)
+- `server/rentals.js` (61 lines)
+  - exports: RentalError, listRentals(db), createRental(db, input, today = new Date()
+  - imports: ./devices.js
 - `server/seed.js` (22 lines)
   - exports: seedDevices(db, devices)
 
@@ -102,7 +105,7 @@ express@^5.3.0, react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @esli
 
 ### Backlog status
 
-- todo: 024, 025, 026, 027, 028, 029, 030, 031, 032
+- todo: 025, 026, 027, 028, 029, 030, 031, 032
 - in-progress: —
-- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020, 021, 022, 023
+- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020, 021, 022, 023, 024
 <!-- CODEMAP:END -->
