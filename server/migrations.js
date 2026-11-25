@@ -111,14 +111,22 @@ export function currentVersion(db) {
 export function migrate(db, migrations = MIGRATIONS) {
   const pending = migrations.filter((m) => m.version > currentVersion(db)).sort((a, b) => a.version - b.version)
   for (const step of pending) {
+    // A step that rebuilds a table other tables point to needs foreign keys off while it runs (`foreignKeys: false`).
+    const isRebuild = step.foreignKeys === false
+    if (isRebuild) db.exec('PRAGMA foreign_keys = OFF')
     db.exec('BEGIN')
     try {
       db.exec(step.sql)
+      if (isRebuild && db.prepare('PRAGMA foreign_key_check').all().length > 0) {
+        throw new Error('some rows point to rows that do not exist')
+      }
       db.exec(`PRAGMA user_version = ${step.version}`)
       db.exec('COMMIT')
     } catch (err) {
       db.exec('ROLLBACK')
       throw new Error(`Migration ${step.version} (${step.name}) failed: ${err.message}`, { cause: err })
+    } finally {
+      if (isRebuild) db.exec('PRAGMA foreign_keys = ON')
     }
   }
   return currentVersion(db)

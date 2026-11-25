@@ -10,11 +10,11 @@
 
 ## Acceptance criteria
 
-- [ ] A step with `foreignKeys: false` runs with `PRAGMA foreign_keys = OFF` (set before `BEGIN`, because it does nothing inside a transaction)
-- [ ] Before such a step is committed, `PRAGMA foreign_key_check` must find nothing; when it finds a row that points nowhere, the step is undone and `migrate` throws the usual `Migration N (name) failed: ...` error
-- [ ] Whatever happens, foreign keys are switched on again at the end of such a step (`finally`)
-- [ ] Steps without the flag behave exactly as before
-- [ ] `npm run verify -- 050` passes (tests: `tests/task-050*.test.*`)
+- [x] A step with `foreignKeys: false` runs with `PRAGMA foreign_keys = OFF` (set before `BEGIN`, because it does nothing inside a transaction)
+- [x] Before such a step is committed, `PRAGMA foreign_key_check` must find nothing; when it finds a row that points nowhere, the step is undone and `migrate` throws the usual `Migration N (name) failed: ...` error
+- [x] Whatever happens, foreign keys are switched on again at the end of such a step (`finally`)
+- [x] Steps without the flag behave exactly as before
+- [x] `npm run verify -- 050` passes (tests: `tests/task-050*.test.*`)
 
 ## Hints
 
