@@ -73,18 +73,22 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
 - `src/data/rentals.js` (10 lines)
   - exports: getRentals(), addRental(rental)
   - localStorage: ai-block-rentals
+- `src/data/useDevices.js` (31 lines)
+  - exports: resetDevices(), useDevices()
+  - imports: ./devices.js, ./api.js
+  - hooks: useDevices, useState, useEffect
 - `src/index.css` (792 lines)
   - classes: header, logo, container, grid, card, category, price, filters, badge, badge-ok, badge-no, error, rental-form, success, logo-mark, nav, footer, footer-links, hero, hero-image, eyebrow, lead, search, stats, visually-hidden, card-media, card-photo, card-icon, card-body, card-unavailable, chip, view-link, toolbar, toolbar-end, result-count, button-ghost, empty-state, back-link, detail, detail-media, detail-photo, detail-icon, price-tag, detail-booking, specs, summary, summary-days, summary-total, table-wrap, table, row-icon, chip-active, chip-past, muted, not-found, not-found-code
 - `src/main.jsx` (14 lines)
   - imports: ./App.jsx
-- `src/pages/Catalog.jsx` (92 lines)
+- `src/pages/Catalog.jsx` (93 lines)
   - exports: Catalog()
-  - imports: ../data/devices.js, ../components/DeviceCard.jsx
-  - hooks: useState
-- `src/pages/DeviceDetail.jsx` (47 lines)
+  - imports: ../data/useDevices.js, ../components/DeviceCard.jsx
+  - hooks: useDevices, useState
+- `src/pages/DeviceDetail.jsx` (48 lines)
   - exports: DeviceDetail()
-  - imports: ../data/devices.js, ../components/RentalForm.jsx, ../data/money.js, ../data/categories.js
-  - hooks: useParams
+  - imports: ../data/useDevices.js, ../components/RentalForm.jsx, ../data/money.js, ../data/categories.js
+  - hooks: useParams, useDevices
 - `src/pages/MyRentals.jsx` (72 lines)
   - exports: MyRentals()
   - imports: ../data/rentals.js, ../data/devices.js, ../data/money.js, ../data/categories.js
@@ -114,7 +118,7 @@ express@^5.3.0, react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @esli
 
 ### Backlog status
 
-- todo: 029, 030, 031, 032
+- todo: 030, 031, 032
 - in-progress: —
-- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020, 021, 022, 023, 024, 025, 026, 027, 028
+- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020, 021, 022, 023, 024, 025, 026, 027, 028, 029
 <!-- CODEMAP:END -->

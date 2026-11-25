@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import devices from '../data/devices.js'
+import { useDevices } from '../data/useDevices.js'
 import DeviceCard from '../components/DeviceCard.jsx'
 
 export default function Catalog() {
+  const devices = useDevices()
   const categories = ['All', ...new Set(devices.map((d) => d.category))]
   const [category, setCategory] = useState('All')
   const [sort, setSort] = useState('default')

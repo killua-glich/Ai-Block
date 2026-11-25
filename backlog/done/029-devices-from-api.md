@@ -10,11 +10,11 @@ A new hook `useDevices` gives the pages the built-in device list at once and swa
 
 ## Acceptance criteria
 
-- [ ] `src/data/useDevices.js` exports `useDevices()` (returns the list) and `resetDevices()`; the first render uses the built-in list from `src/data/devices.js`
-- [ ] After the first render it fetches `fetchDevices()`; when the list arrives the page shows it and the hook remembers it, so a page opened later shows it at once; when the fetch fails, nothing changes and no error is shown
-- [ ] `Catalog.jsx` and `DeviceDetail.jsx` no longer import `src/data/devices.js`: they call `useDevices()` at the top of the component
-- [ ] The detail page finds devices that exist only in the database
-- [ ] `npm run verify -- 029` passes (tests: `tests/task-029*.test.*`)
+- [x] `src/data/useDevices.js` exports `useDevices()` (returns the list) and `resetDevices()`; the first render uses the built-in list from `src/data/devices.js`
+- [x] After the first render it fetches `fetchDevices()`; when the list arrives the page shows it and the hook remembers it, so a page opened later shows it at once; when the fetch fails, nothing changes and no error is shown
+- [x] `Catalog.jsx` and `DeviceDetail.jsx` no longer import `src/data/devices.js`: they call `useDevices()` at the top of the component
+- [x] The detail page finds devices that exist only in the database
+- [x] `npm run verify -- 029` passes (tests: `tests/task-029*.test.*`)
 
 ## Hints
 

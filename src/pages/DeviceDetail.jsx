@@ -1,11 +1,12 @@
 import { useParams, Link } from 'react-router-dom'
-import devices from '../data/devices.js'
+import { useDevices } from '../data/useDevices.js'
 import RentalForm from '../components/RentalForm.jsx'
 import { formatEuro } from '../data/money.js'
 import { categoryIcon, categoryHue } from '../data/categories.js'
 
 export default function DeviceDetail() {
   const { id } = useParams()
+  const devices = useDevices()
   const device = devices.find((d) => d.id === Number(id))
 
   if (!device) {
