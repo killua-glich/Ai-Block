@@ -10,11 +10,11 @@ A new file `server/app.js` builds the Express app with three routes: a health ch
 
 ## Acceptance criteria
 
-- [ ] `server/app.js` exports `createApp(db)`: it returns an Express app that reads JSON request bodies
-- [ ] `GET /api/health` answers `{ "ok": true }`
-- [ ] `GET /api/devices` answers the list from `listDevices`; `GET /api/devices/:id` answers one device, or 404 with `{ "error": "Device not found" }` (also when the id is not a number)
-- [ ] Any other address under `/api` answers 404 with `{ "error": "Not found" }` as JSON
-- [ ] `npm run verify -- 025` passes (tests: `tests/task-025*.test.*`)
+- [x] `server/app.js` exports `createApp(db)`: it returns an Express app that reads JSON request bodies
+- [x] `GET /api/health` answers `{ "ok": true }`
+- [x] `GET /api/devices` answers the list from `listDevices`; `GET /api/devices/:id` answers one device, or 404 with `{ "error": "Device not found" }` (also when the id is not a number)
+- [x] Any other address under `/api` answers 404 with `{ "error": "Not found" }` as JSON
+- [x] `npm run verify -- 025` passes (tests: `tests/task-025*.test.*`)
 
 ## Hints
 
