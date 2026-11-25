@@ -10,11 +10,11 @@ A new file `src/data/api.js` is the one place where the web site talks to the AP
 
 ## Acceptance criteria
 
-- [ ] `fetchDevices()` asks `/api/devices`, `fetchDevice(id)` asks `/api/devices/ID`, `fetchRentals()` asks `/api/rentals`; each returns the parsed JSON
-- [ ] `postRental({ deviceId, startDate, endDate })` sends a POST with `Content-Type: application/json` and a body with only those three fields, and returns the saved rental
-- [ ] When the server answers with an error status, the function throws an `ApiError` (exported; it has `status` and `message`); the message is the `error` text from the JSON, or `Request failed (STATUS)` when there is none
-- [ ] When the request cannot be made at all (server down), it throws a plain `Error` with the message `Could not reach the server.`
-- [ ] `npm run verify -- 028` passes (tests: `tests/task-028*.test.*`)
+- [x] `fetchDevices()` asks `/api/devices`, `fetchDevice(id)` asks `/api/devices/ID`, `fetchRentals()` asks `/api/rentals`; each returns the parsed JSON
+- [x] `postRental({ deviceId, startDate, endDate })` sends a POST with `Content-Type: application/json` and a body with only those three fields, and returns the saved rental
+- [x] When the server answers with an error status, the function throws an `ApiError` (exported; it has `status` and `message`); the message is the `error` text from the JSON, or `Request failed (STATUS)` when there is none
+- [x] When the request cannot be made at all (server down), it throws a plain `Error` with the message `Could not reach the server.`
+- [x] `npm run verify -- 028` passes (tests: `tests/task-028*.test.*`)
 
 ## Hints
 
