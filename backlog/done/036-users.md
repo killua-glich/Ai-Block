@@ -10,11 +10,11 @@ Migration step 3 adds a `users` table and lets a rental belong to a user. A new 
 
 ## Acceptance criteria
 
-- [ ] `MIGRATIONS` gets a third step, version 3: table `users` (`id`, `email` unique and not case sensitive, `name`, `password_hash`, `role` `user` or `admin`, `created_at`) and a column `rentals.user_id` that points to a user (the rental stays, without an owner, when the user is deleted)
-- [ ] `createUser(db, { email, name, password, role = 'user' })` checks the input (status 400 with the exact messages in the code below), refuses a taken email (status 409), stores a scrypt hash of the password and returns `{ id, email, name, role }`: never the password or the hash
-- [ ] `getUser(db, id)` and `findUserByEmail(db, email)` return that same shape, or `null`
-- [ ] `authenticate(db, email, password)` returns the user for a right email and password, and `null` for a wrong password and for an unknown email alike
-- [ ] `npm run verify -- 036` passes (tests: `tests/task-036*.test.*`)
+- [x] `MIGRATIONS` gets a third step, version 3: table `users` (`id`, `email` unique and not case sensitive, `name`, `password_hash`, `role` `user` or `admin`, `created_at`) and a column `rentals.user_id` that points to a user (the rental stays, without an owner, when the user is deleted)
+- [x] `createUser(db, { email, name, password, role = 'user' })` checks the input (status 400 with the exact messages in the code below), refuses a taken email (status 409), stores a scrypt hash of the password and returns `{ id, email, name, role }`: never the password or the hash
+- [x] `getUser(db, id)` and `findUserByEmail(db, email)` return that same shape, or `null`
+- [x] `authenticate(db, email, password)` returns the user for a right email and password, and `null` for a wrong password and for an unknown email alike
+- [x] `npm run verify -- 036` passes (tests: `tests/task-036*.test.*`)
 
 ## Hints
 

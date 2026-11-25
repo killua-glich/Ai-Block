@@ -43,6 +43,22 @@ DROP INDEX rentals_device_dates;
 CREATE INDEX rentals_device_status_dates ON rentals (device_id, status, start_date, end_date);
 `,
   },
+  {
+    version: 3,
+    name: 'users',
+    sql: `
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  email TEXT NOT NULL UNIQUE COLLATE NOCASE,
+  name TEXT NOT NULL,
+  password_hash TEXT NOT NULL,
+  role TEXT NOT NULL DEFAULT 'user' CHECK (role IN ('user', 'admin')),
+  created_at TEXT NOT NULL
+);
+ALTER TABLE rentals ADD COLUMN user_id INTEGER REFERENCES users (id) ON DELETE SET NULL;
+CREATE INDEX rentals_user_index ON rentals (user_id);
+`,
+  },
 ]
 
 export function currentVersion(db) {
