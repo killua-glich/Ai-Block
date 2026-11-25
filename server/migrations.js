@@ -59,6 +59,19 @@ ALTER TABLE rentals ADD COLUMN user_id INTEGER REFERENCES users (id) ON DELETE S
 CREATE INDEX rentals_user_index ON rentals (user_id);
 `,
   },
+  {
+    version: 4,
+    name: 'sessions',
+    sql: `
+CREATE TABLE sessions (
+  token_hash TEXT PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES users (id) ON DELETE CASCADE,
+  created_at TEXT NOT NULL,
+  expires_at TEXT NOT NULL
+);
+CREATE INDEX sessions_user_index ON sessions (user_id);
+`,
+  },
 ]
 
 export function currentVersion(db) {

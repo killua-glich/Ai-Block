@@ -10,11 +10,11 @@ Migration step 4 adds a `sessions` table. A new file `server/sessions.js` makes,
 
 ## Acceptance criteria
 
-- [ ] `MIGRATIONS` gets a fourth step, version 4: table `sessions` (`token_hash` primary key, `user_id` of an existing user, deleted with the user, `created_at`, `expires_at`) and an index on `user_id`
-- [ ] `createSession(db, userId, now = Date.now())` makes a random token of 64 hex characters, stores its SHA-256 hash with an expiry `SESSION_DAYS` (7) days later, and returns the token
-- [ ] `findSessionUser(db, token, now = Date.now())` returns `{ id, email, name, role }` of a valid session; it returns `null` for an unknown, empty or non-text token, and for an expired session, which it deletes at once
-- [ ] `deleteSession(db, token)` ends one session; `deleteExpiredSessions(db, now)` ends all the expired ones
-- [ ] `npm run verify -- 037` passes (tests: `tests/task-037*.test.*`)
+- [x] `MIGRATIONS` gets a fourth step, version 4: table `sessions` (`token_hash` primary key, `user_id` of an existing user, deleted with the user, `created_at`, `expires_at`) and an index on `user_id`
+- [x] `createSession(db, userId, now = Date.now())` makes a random token of 64 hex characters, stores its SHA-256 hash with an expiry `SESSION_DAYS` (7) days later, and returns the token
+- [x] `findSessionUser(db, token, now = Date.now())` returns `{ id, email, name, role }` of a valid session; it returns `null` for an unknown, empty or non-text token, and for an expired session, which it deletes at once
+- [x] `deleteSession(db, token)` ends one session; `deleteExpiredSessions(db, now)` ends all the expired ones
+- [x] `npm run verify -- 037` passes (tests: `tests/task-037*.test.*`)
 
 ## Hints
 
