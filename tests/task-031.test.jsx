@@ -66,7 +66,11 @@ describe('031 My rentals and the API', () => {
     const renamed = devices.map((d) => (d.id === 3 ? { ...d, name: 'Renamed Camera' } : d))
     vi.stubGlobal(
       'fetch',
-      vi.fn(async (url) => (url === '/api/devices' ? reply(200, renamed) : reply(200, [rental]))),
+      vi.fn(async (url) => {
+        if (url === '/api/devices') return reply(200, renamed)
+        if (url === '/api/rentals') return reply(200, [rental])
+        return reply(404, { error: 'Not found' })
+      }),
     )
     renderAt('/rentals')
     expect(await screen.findByText('Renamed Camera')).toBeInTheDocument()
