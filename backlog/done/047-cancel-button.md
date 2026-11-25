@@ -10,11 +10,11 @@ Every rental that has not started yet gets a Cancel button on the My rentals pag
 
 ## Acceptance criteria
 
-- [ ] `MyRentals.jsx` imports `cancelRentalById` and keeps an error text in state (`cancelError`)
-- [ ] A table row gets a Cancel button (class `button-ghost`) only when its `status` is not `cancelled` and its `startDate` is after today; clicking it calls `cancelRentalById(id)` and replaces the rental in the list with the one the server answers; when the server refuses, the message shows in `<p className="error" role="alert">` above the tables
-- [ ] Cancelled rentals are listed under Past (not Active) and show the chip `Cancelled` (classes `chip chip-past`) instead of Active or Past
-- [ ] The tables get a sixth column with the header `<th><span className="visually-hidden">Actions</span></th>`; the first five columns stay as they are
-- [ ] `npm run verify -- 047` passes (tests: `tests/task-047*.test.*`)
+- [x] `MyRentals.jsx` imports `cancelRentalById` and keeps an error text in state (`cancelError`)
+- [x] A table row gets a Cancel button (class `button-ghost`) only when its `status` is not `cancelled` and its `startDate` is after today; clicking it calls `cancelRentalById(id)` and replaces the rental in the list with the one the server answers; when the server refuses, the message shows in `<p className="error" role="alert">` above the tables
+- [x] Cancelled rentals are listed under Past (not Active) and show the chip `Cancelled` (classes `chip chip-past`) instead of Active or Past
+- [x] The tables get a sixth column with the header `<th><span className="visually-hidden">Actions</span></th>`; the first five columns stay as they are
+- [x] `npm run verify -- 047` passes (tests: `tests/task-047*.test.*`)
 
 ## Hints
 
