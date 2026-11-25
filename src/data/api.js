@@ -32,3 +32,36 @@ export const postRental = ({ deviceId, startDate, endDate }) =>
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ deviceId, startDate, endDate }),
   })
+
+const jsonSend = (method, body) => ({
+  method,
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(body),
+})
+
+// Who is logged in: the user, or null when nobody is (the server answers 401). Other errors are thrown.
+export async function fetchMe() {
+  try {
+    const body = await request('/api/auth/me')
+    return body.user
+  } catch (err) {
+    if (err instanceof ApiError && err.status === 401) return null
+    throw err
+  }
+}
+
+export const registerUser = ({ email, name, password }) =>
+  request('/api/auth/register', jsonSend('POST', { email, name, password })).then((body) => body.user)
+
+export const loginUser = ({ email, password }) =>
+  request('/api/auth/login', jsonSend('POST', { email, password })).then((body) => body.user)
+
+export const logoutUser = () => request('/api/auth/logout', { method: 'POST' })
+
+export const cancelRentalById = (id) => request(`/api/rentals/${id}/cancel`, { method: 'POST' })
+
+export const createDeviceAdmin = (device) => request('/api/devices', jsonSend('POST', device))
+
+export const updateDeviceAdmin = (id, device) => request(`/api/devices/${id}`, jsonSend('PUT', device))
+
+export const deleteDeviceAdmin = (id) => request(`/api/devices/${id}`, { method: 'DELETE' })

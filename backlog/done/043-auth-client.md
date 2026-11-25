@@ -10,12 +10,12 @@ The API client gets the functions for accounts, cancelling and device admin. A n
 
 ## Acceptance criteria
 
-- [ ] `src/data/api.js` gets: `fetchMe()` (the user, `null` for a 401 answer, other errors thrown), `registerUser`, `loginUser` (they give back the user), `logoutUser`, `cancelRentalById(id)` (POST `/api/rentals/ID/cancel`), `createDeviceAdmin(device)`, `updateDeviceAdmin(id, device)` and `deleteDeviceAdmin(id)`
-- [ ] `src/data/AuthContext.jsx` (new) exports `AuthProvider` and `useAuth()`; `useAuth()` gives `{ user, status, login, register, logout }` with `status` `loading`, `user`, `anonymous` or `unknown` (server cannot be reached, or does not know accounts)
-- [ ] Without a provider `useAuth()` gives `status: 'unknown'`
-- [ ] `login` and `register` set the user and throw the error of the server when it refuses; `logout` makes the visitor anonymous even when the request fails
-- [ ] `App.jsx` wraps the header, the pages and the footer in `<AuthProvider>`
-- [ ] `npm run verify -- 043` passes (tests: `tests/task-043*.test.*`)
+- [x] `src/data/api.js` gets: `fetchMe()` (the user, `null` for a 401 answer, other errors thrown), `registerUser`, `loginUser` (they give back the user), `logoutUser`, `cancelRentalById(id)` (POST `/api/rentals/ID/cancel`), `createDeviceAdmin(device)`, `updateDeviceAdmin(id, device)` and `deleteDeviceAdmin(id)`
+- [x] `src/data/AuthContext.jsx` (new) exports `AuthProvider` and `useAuth()`; `useAuth()` gives `{ user, status, login, register, logout }` with `status` `loading`, `user`, `anonymous` or `unknown` (server cannot be reached, or does not know accounts)
+- [x] Without a provider `useAuth()` gives `status: 'unknown'`
+- [x] `login` and `register` set the user and throw the error of the server when it refuses; `logout` makes the visitor anonymous even when the request fails
+- [x] `App.jsx` wraps the header, the pages and the footer in `<AuthProvider>`
+- [x] `npm run verify -- 043` passes (tests: `tests/task-043*.test.*`)
 
 ## Hints
 
