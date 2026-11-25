@@ -18,8 +18,9 @@ const count = (db, table) => db.prepare(`SELECT COUNT(*) AS n FROM ${table}`).ge
 describe('022 database schema', () => {
   it('has a devices and a rentals table with the agreed columns', () => {
     const db = openDb()
-    expect(columns(db, 'devices')).toEqual(['id', 'name', 'category', 'price_per_day', 'description', 'specs', 'available'])
-    expect(columns(db, 'rentals')).toEqual(['id', 'device_id', 'start_date', 'end_date', 'total_price', 'created_at'])
+    // Later tickets add columns (status, user_id, ...): the agreed ones must stay.
+    expect(columns(db, 'devices')).toEqual(expect.arrayContaining(['id', 'name', 'category', 'price_per_day', 'description', 'specs', 'available']))
+    expect(columns(db, 'rentals')).toEqual(expect.arrayContaining(['id', 'device_id', 'start_date', 'end_date', 'total_price', 'created_at']))
   })
 
   it('gives a new device the defaults: no description, no specs, available', () => {

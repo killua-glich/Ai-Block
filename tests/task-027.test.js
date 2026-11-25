@@ -7,6 +7,7 @@ import { join } from 'node:path'
 import { once } from 'node:events'
 import viteConfig from '../vite.config.js'
 import { startServer } from '../server/index.js'
+import { authHeaders } from './server-world.js'
 
 const running = []
 const start = async (options) => {
@@ -46,15 +47,16 @@ describe('027 server entry point', () => {
     try {
       const file = join(dir, 'ai-block.db')
       const first = await start({ dbPath: file })
+      const who = await authHeaders(first)
       const rental = { deviceId: 3, startDate: '2099-03-01', endDate: '2099-03-02' }
-      await fetch(`${first.url}/api/rentals`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(rental) })
+      await fetch(`${first.url}/api/rentals`, { method: 'POST', headers: { 'Content-Type': 'application/json', ...who }, body: JSON.stringify(rental) })
       await new Promise((resolve) => first.server.close(resolve))
       first.db.close()
       running.length = 0
 
       const second = await start({ dbPath: file })
       expect(await (await fetch(`${second.url}/api/devices`)).json()).toHaveLength(14)
-      expect(await (await fetch(`${second.url}/api/rentals`)).json()).toHaveLength(1)
+      expect(await (await fetch(`${second.url}/api/rentals`, { headers: who })).json()).toHaveLength(1)
     } finally {
       rmSync(dir, { recursive: true, force: true })
     }

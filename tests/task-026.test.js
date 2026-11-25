@@ -5,22 +5,24 @@ import devices from '../src/data/devices.js'
 import { openDb } from '../server/db.js'
 import { seedDevices } from '../server/seed.js'
 import { createApp } from '../server/app.js'
-import { listen } from './server-world.js'
+import { listen, authHeaders } from './server-world.js'
 
 let api
+let who = {}
 const unavailable = devices.find((d) => !d.available)
 
 beforeEach(async () => {
   const db = openDb()
   seedDevices(db, devices)
   api = await listen(createApp(db))
+  who = await authHeaders(api)
 })
 afterEach(() => api.close())
 
 const send = async (method, path, body, raw) => {
   const res = await fetch(api.url + path, {
     method,
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', ...who },
     body: raw ?? (body === undefined ? undefined : JSON.stringify(body)),
   })
   return { status: res.status, body: await res.json() }

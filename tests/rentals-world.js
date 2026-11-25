@@ -19,6 +19,7 @@ export function fakeApi(list = []) {
     'fetch',
     vi.fn(async (url, options = {}) => {
       if (url === '/api/devices') return reply(200, devices)
+      if (url === '/api/auth/me') return reply(200, { user: { id: 1, email: 'test@example.com', name: 'Test User', role: 'user' } })
       if (url === '/api/rentals' && options.method === 'POST') {
         const input = JSON.parse(options.body)
         const device = devices.find((d) => d.id === input.deviceId)
