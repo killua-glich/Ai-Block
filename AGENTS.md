@@ -95,10 +95,13 @@ Tasks live in `backlog/`. See `backlog/README.md`. One task per session. All tas
   - hooks: useDevices, useState, useEffect
 - `src/pages/NotFound.jsx` (13 lines)
   - exports: NotFound()
-- `server/app.js` (46 lines)
+- `server/app.js` (75 lines)
   - exports: createApp(db)
-  - imports: ./devices.js, ./rentals.js
-  - api: GET /api/health, GET /api/devices, GET /api/devices/:id, GET /api/rentals, POST /api/rentals
+  - imports: ./devices.js, ./rentals.js, ./auth.js, ./users.js, ./sessions.js
+  - api: GET /api/health, GET /api/devices, GET /api/devices/:id, POST /api/auth/register, POST /api/auth/login, POST /api/auth/logout, GET /api/auth/me, GET /api/rentals, POST /api/rentals
+- `server/auth.js` (41 lines)
+  - exports: COOKIE, readCookie(req, name), setSessionCookie(res, token), clearSessionCookie(res), attachUser(db), requireUser(req, res, next), requireAdmin(req, res, next)
+  - imports: ./sessions.js
 - `server/db.js` (11 lines)
   - exports: openDb(path = ':memory:')
   - imports: ./migrations.js
@@ -129,7 +132,7 @@ express@^5.3.0, react@^19.0.0, react-dom@^19.0.0, react-router-dom@^7.0.0, @esli
 
 ### Backlog status
 
-- todo: 038, 039, 040, 041, 042, 043, 044, 045, 046, 047, 048, 049, 050, 051
+- todo: 039, 040, 041, 042, 043, 044, 045, 046, 047, 048, 049, 050, 051
 - in-progress: —
-- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020, 021, 022, 023, 024, 025, 026, 027, 028, 029, 030, 031, 032, 033, 034, 035, 036, 037
+- done: 001, 002, 003, 004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020, 021, 022, 023, 024, 025, 026, 027, 028, 029, 030, 031, 032, 033, 034, 035, 036, 037, 038
 <!-- CODEMAP:END -->

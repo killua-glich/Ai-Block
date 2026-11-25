@@ -10,13 +10,13 @@ Accounts work in the API. Four routes under `/api/auth` register, log in, log ou
 
 ## Acceptance criteria
 
-- [ ] `server/auth.js` (new) exports `COOKIE` (`sid`), `readCookie(req, name)`, `setSessionCookie(res, token)` and `clearSessionCookie(res)` (cookie `HttpOnly; SameSite=Lax; Path=/`, 7 days, `Max-Age=0` to clear), the middleware `attachUser(db)` (puts the user of the cookie, or `null`, on `req.user`) and the guards `requireUser` (401 `Please log in.`) and `requireAdmin` (401, or 403 `Admins only.`)
-- [ ] `POST /api/auth/register` takes `{ email, name, password }` only (a `role` in the body is ignored), makes the user and a session, sets the cookie and answers 201 with `{ user }`
-- [ ] `POST /api/auth/login` answers 200 with `{ user }` and a new cookie; a wrong password and an unknown email both answer 401 `Wrong email or password.` with no cookie
-- [ ] `POST /api/auth/logout` ends the session of the cookie, clears the cookie and answers 204 (also when nobody is logged in); other sessions of the same user stay
-- [ ] `GET /api/auth/me` answers `{ user }`, or 401 `Not logged in.`
-- [ ] `createApp` uses `attachUser(db)` right after `express.json()`
-- [ ] `npm run verify -- 038` passes (tests: `tests/task-038*.test.*`)
+- [x] `server/auth.js` (new) exports `COOKIE` (`sid`), `readCookie(req, name)`, `setSessionCookie(res, token)` and `clearSessionCookie(res)` (cookie `HttpOnly; SameSite=Lax; Path=/`, 7 days, `Max-Age=0` to clear), the middleware `attachUser(db)` (puts the user of the cookie, or `null`, on `req.user`) and the guards `requireUser` (401 `Please log in.`) and `requireAdmin` (401, or 403 `Admins only.`)
+- [x] `POST /api/auth/register` takes `{ email, name, password }` only (a `role` in the body is ignored), makes the user and a session, sets the cookie and answers 201 with `{ user }`
+- [x] `POST /api/auth/login` answers 200 with `{ user }` and a new cookie; a wrong password and an unknown email both answer 401 `Wrong email or password.` with no cookie
+- [x] `POST /api/auth/logout` ends the session of the cookie, clears the cookie and answers 204 (also when nobody is logged in); other sessions of the same user stay
+- [x] `GET /api/auth/me` answers `{ user }`, or 401 `Not logged in.`
+- [x] `createApp` uses `attachUser(db)` right after `express.json()`
+- [x] `npm run verify -- 038` passes (tests: `tests/task-038*.test.*`)
 
 ## Hints
 
