@@ -10,11 +10,11 @@ Two new files: `server/seed.js` puts the 14 built-in devices into an empty datab
 
 ## Acceptance criteria
 
-- [ ] `server/seed.js` exports `seedDevices(db, devices)`: it inserts every device inside one transaction (all or nothing) and returns how many it added; when the table already has devices it adds nothing and returns 0
-- [ ] The `specs` list is stored as JSON text and `available` as 1 or 0
-- [ ] `server/devices.js` exports `listDevices(db)` (all devices ordered by id) and `getDevice(db, id)` (one device, or `null`)
-- [ ] Both give plain objects shaped `{ id, name, category, pricePerDay, description, specs, available }`: the list equals `src/data/devices.js`
-- [ ] `npm run verify -- 023` passes (tests: `tests/task-023*.test.*`)
+- [x] `server/seed.js` exports `seedDevices(db, devices)`: it inserts every device inside one transaction (all or nothing) and returns how many it added; when the table already has devices it adds nothing and returns 0
+- [x] The `specs` list is stored as JSON text and `available` as 1 or 0
+- [x] `server/devices.js` exports `listDevices(db)` (all devices ordered by id) and `getDevice(db, id)` (one device, or `null`)
+- [x] Both give plain objects shaped `{ id, name, category, pricePerDay, description, specs, available }`: the list equals `src/data/devices.js`
+- [x] `npm run verify -- 023` passes (tests: `tests/task-023*.test.*`)
 
 ## Hints
 
