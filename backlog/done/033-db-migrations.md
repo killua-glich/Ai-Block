@@ -10,11 +10,11 @@ The database schema moves out of `server/db.js` into numbered migration steps. A
 
 ## Acceptance criteria
 
-- [ ] New `server/migrations.js` exports `MIGRATIONS` (a list of `{ version, name, sql }`; for now one step, version 1, with exactly the two tables and the index of the old schema), `currentVersion(db)` and `migrate(db, migrations = MIGRATIONS)`
-- [ ] `migrate` reads the version from `PRAGMA user_version`, runs only the steps above it, in order of version, each step in its own transaction (`BEGIN` … `COMMIT`), and stores the new version
-- [ ] When a step fails, `migrate` rolls that step back, keeps the old version and throws an error with the message `Migration N (name) failed: ...`
-- [ ] `openDb` in `server/db.js` turns foreign keys on and then calls `migrate(db)`; it no longer holds any SQL itself
-- [ ] `npm run verify -- 033` passes (tests: `tests/task-033*.test.*`)
+- [x] New `server/migrations.js` exports `MIGRATIONS` (a list of `{ version, name, sql }`; for now one step, version 1, with exactly the two tables and the index of the old schema), `currentVersion(db)` and `migrate(db, migrations = MIGRATIONS)`
+- [x] `migrate` reads the version from `PRAGMA user_version`, runs only the steps above it, in order of version, each step in its own transaction (`BEGIN` … `COMMIT`), and stores the new version
+- [x] When a step fails, `migrate` rolls that step back, keeps the old version and throws an error with the message `Migration N (name) failed: ...`
+- [x] `openDb` in `server/db.js` turns foreign keys on and then calls `migrate(db)`; it no longer holds any SQL itself
+- [x] `npm run verify -- 033` passes (tests: `tests/task-033*.test.*`)
 
 ## Hints
 
