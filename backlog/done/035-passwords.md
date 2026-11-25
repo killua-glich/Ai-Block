@@ -10,10 +10,10 @@ A new file `server/passwords.js` turns passwords into safe text for the database
 
 ## Acceptance criteria
 
-- [ ] `hashPassword(password)` returns `scrypt$<salt in hex>$<hash in hex>`: a new random 16-byte salt every time and a 64-byte scrypt hash
-- [ ] `verifyPassword(password, stored)` is `true` only for the right password; it uses a constant-time comparison (`timingSafeEqual`)
-- [ ] `verifyPassword` returns `false`, and never throws, for broken or foreign stored text and for a password that is not a string
-- [ ] `npm run verify -- 035` passes (tests: `tests/task-035*.test.*`)
+- [x] `hashPassword(password)` returns `scrypt$<salt in hex>$<hash in hex>`: a new random 16-byte salt every time and a 64-byte scrypt hash
+- [x] `verifyPassword(password, stored)` is `true` only for the right password; it uses a constant-time comparison (`timingSafeEqual`)
+- [x] `verifyPassword` returns `false`, and never throws, for broken or foreign stored text and for a password that is not a string
+- [x] `npm run verify -- 035` passes (tests: `tests/task-035*.test.*`)
 
 ## Hints
 
