@@ -10,6 +10,7 @@ import { MIGRATIONS, currentVersion } from '../server/migrations.js'
 import { openDb } from '../server/db.js'
 import { seedDevices } from '../server/seed.js'
 import { createRental, listRentals } from '../server/rentals.js'
+import { insertDevice, insertRental } from './db-helpers.js'
 
 const columns = (db, table) => db.prepare(`PRAGMA table_info(${table})`).all().map((c) => c.name)
 const indexes = (db, table) => db.prepare(`PRAGMA index_list(${table})`).all().map((i) => i.name)
@@ -33,18 +34,22 @@ describe('034 schema version 2', () => {
     const db = openDb()
     seedDevices(db, devices)
     const insert = (id, status) =>
-      db
-        .prepare('INSERT INTO rentals (id, device_id, start_date, end_date, total_price, created_at, status) VALUES (?, 3, ?, ?, 10, ?, ?)')
-        .run(id, '2099-01-01', '2099-01-02', '2026-11-24T10:00:00.000Z', status)
+      insertRental(db, {
+        id,
+        deviceId: 3,
+        createdAt: '2026-11-24T10:00:00.000Z',
+        status,
+        cancelledAt: status === 'cancelled' ? '2026-11-24T11:00:00.000Z' : undefined,
+      })
     expect(() => insert('a', 'cancelled')).not.toThrow()
     expect(() => insert('b', 'finished')).toThrow()
-    db.prepare("INSERT INTO rentals (id, device_id, start_date, end_date, total_price, created_at) VALUES ('c', 4, '2099-01-01', '2099-01-02', 10, 'x')").run()
+    insertRental(db, { id: 'c', deviceId: 4 })
     expect(db.prepare("SELECT status FROM rentals WHERE id = 'c'").get().status).toBe('active')
   })
 
   it('two devices cannot have the same name', () => {
     const db = openDb()
-    const add = (id) => db.prepare('INSERT INTO devices (id, name, category, price_per_day) VALUES (?, ?, ?, ?)').run(id, 'Same name', 'Laptop', 5)
+    const add = (id) => insertDevice(db, { id, name: 'Same name', category: 'Laptop', price: 5 })
     add(1)
     expect(() => add(2)).toThrow()
   })
@@ -69,7 +74,7 @@ describe('034 schema version 2', () => {
     seedDevices(db, devices)
     const first = createRental(db, { deviceId: 3, startDate: '2026-12-01', endDate: '2026-12-05' }, TODAY)
     expect(() => createRental(db, { deviceId: 3, startDate: '2026-12-02', endDate: '2026-12-03' }, TODAY)).toThrow(/already booked/)
-    db.prepare("UPDATE rentals SET status = 'cancelled' WHERE id = ?").run(first.id)
+    db.prepare("UPDATE rentals SET status = 'cancelled', cancelled_at = '2026-11-24T11:00:00.000Z' WHERE id = ?").run(first.id)
     expect(() => createRental(db, { deviceId: 3, startDate: '2026-12-02', endDate: '2026-12-03' }, TODAY)).not.toThrow()
   })
 
@@ -87,7 +92,9 @@ describe('034 schema version 2', () => {
 
       const db = openDb(file)
       expect(currentVersion(db)).toBeGreaterThanOrEqual(2)
-      expect(db.prepare("SELECT status, total_price FROM rentals WHERE id = 'r1'").get()).toEqual({ status: 'active', total_price: 80 })
+      const row = db.prepare("SELECT * FROM rentals WHERE id = 'r1'").get()
+      expect(row.status).toBe('active')
+      expect(row.total_price ?? row.total_cents / 100).toBe(80)
       db.close()
     } finally {
       rmSync(dir, { recursive: true, force: true })

@@ -5,22 +5,20 @@ import { mkdtempSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { openDb } from '../server/db.js'
+import { insertDevice, insertRental } from './db-helpers.js'
 
 const columns = (db, table) => db.prepare(`PRAGMA table_info(${table})`).all().map((c) => c.name)
-const addDevice = (db, id = 1) =>
-  db.prepare('INSERT INTO devices (id, name, category, price_per_day) VALUES (?, ?, ?, ?)').run(id, 'Test', 'Laptop', 10)
+const addDevice = (db, id = 1) => insertDevice(db, { id })
 const addRental = (db, deviceId, start = '2026-12-01', end = '2026-12-02') =>
-  db
-    .prepare('INSERT INTO rentals (id, device_id, start_date, end_date, total_price, created_at) VALUES (?, ?, ?, ?, ?, ?)')
-    .run('r1', deviceId, start, end, 20, '2026-11-24T10:00:00.000Z')
+  insertRental(db, { id: 'r1', deviceId, start, end, total: 20, createdAt: '2026-11-24T10:00:00.000Z' })
 const count = (db, table) => db.prepare(`SELECT COUNT(*) AS n FROM ${table}`).get().n
 
 describe('022 database schema', () => {
   it('has a devices and a rentals table with the agreed columns', () => {
     const db = openDb()
-    // Later tickets add columns (status, user_id, ...): the agreed ones must stay.
-    expect(columns(db, 'devices')).toEqual(expect.arrayContaining(['id', 'name', 'category', 'price_per_day', 'description', 'specs', 'available']))
-    expect(columns(db, 'rentals')).toEqual(expect.arrayContaining(['id', 'device_id', 'start_date', 'end_date', 'total_price', 'created_at']))
+    // Later tickets add and rename columns (status, user_id, prices in cents ...): these stay.
+    expect(columns(db, 'devices')).toEqual(expect.arrayContaining(['id', 'name', 'description', 'specs', 'available']))
+    expect(columns(db, 'rentals')).toEqual(expect.arrayContaining(['id', 'device_id', 'start_date', 'end_date', 'created_at']))
   })
 
   it('gives a new device the defaults: no description, no specs, available', () => {
@@ -53,10 +51,8 @@ describe('022 database schema', () => {
 
   it('refuses a negative price and an available flag other than 0 or 1', () => {
     const db = openDb()
-    expect(() => db.prepare('INSERT INTO devices (id, name, category, price_per_day) VALUES (1, ?, ?, ?)').run('A', 'B', -5)).toThrow()
-    expect(() =>
-      db.prepare('INSERT INTO devices (id, name, category, price_per_day, available) VALUES (1, ?, ?, ?, ?)').run('A', 'B', 5, 2),
-    ).toThrow()
+    expect(() => insertDevice(db, { id: 1, name: 'A', category: 'B', price: -5 })).toThrow()
+    expect(() => insertDevice(db, { id: 1, name: 'A', category: 'B', price: 5, available: 2 })).toThrow()
   })
 
   it('opening the same file again keeps the data', () => {
