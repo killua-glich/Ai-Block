@@ -21,6 +21,7 @@ function toRental(row) {
     createdAt: row.created_at,
     status: row.status,
     userId: row.user_id,
+    cancelledAt: row.cancelled_at,
   }
 }
 
@@ -60,9 +61,22 @@ export function createRental(db, input, today = new Date().toISOString().slice(0
     createdAt: new Date().toISOString(),
     status: 'active',
     userId,
+    cancelledAt: null,
   }
   db.prepare(
     'INSERT INTO rentals (id, device_id, start_date, end_date, total_price, created_at, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)',
   ).run(rental.id, rental.deviceId, rental.startDate, rental.endDate, rental.totalPrice, rental.createdAt, userId)
   return rental
+}
+
+// Cancels a rental that has not started yet. The owner may do it, and an admin. Anyone else gets "not found".
+export function cancelRental(db, id, user, today = new Date().toISOString().slice(0, 10)) {
+  const row = db.prepare('SELECT * FROM rentals WHERE id = ?').get(String(id))
+  const isAllowed = row && (row.user_id === user.id || user.role === 'admin')
+  if (!isAllowed) throw new RentalError(404, 'Rental not found')
+  if (row.status === 'cancelled') throw new RentalError(409, 'This rental is already cancelled.')
+  if (row.start_date <= today) throw new RentalError(409, 'A rental that has started cannot be cancelled.')
+
+  db.prepare("UPDATE rentals SET status = 'cancelled', cancelled_at = ? WHERE id = ?").run(new Date().toISOString(), row.id)
+  return toRental(db.prepare('SELECT * FROM rentals WHERE id = ?').get(row.id))
 }

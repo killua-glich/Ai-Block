@@ -10,11 +10,11 @@ A user can cancel a rental that has not started yet. The rental stays in the lis
 
 ## Acceptance criteria
 
-- [ ] `toRental` also gives `cancelledAt` (`null` while active) and `createRental` returns `cancelledAt: null` as well
-- [ ] `cancelRental(db, id, user, today)` in `server/rentals.js` sets the status to `cancelled` and the cancel time and returns the rental
-- [ ] It throws a `RentalError` 404 `Rental not found` for an unknown rental and for the rental of someone else (an admin may cancel any rental), 409 `This rental is already cancelled.` and 409 `A rental that has started cannot be cancelled.` (the start date is today or earlier)
-- [ ] `POST /api/rentals/:id/cancel` uses `requireUser` and answers 200 with the cancelled rental
-- [ ] `npm run verify -- 040` passes (tests: `tests/task-040*.test.*`)
+- [x] `toRental` also gives `cancelledAt` (`null` while active) and `createRental` returns `cancelledAt: null` as well
+- [x] `cancelRental(db, id, user, today)` in `server/rentals.js` sets the status to `cancelled` and the cancel time and returns the rental
+- [x] It throws a `RentalError` 404 `Rental not found` for an unknown rental and for the rental of someone else (an admin may cancel any rental), 409 `This rental is already cancelled.` and 409 `A rental that has started cannot be cancelled.` (the start date is today or earlier)
+- [x] `POST /api/rentals/:id/cancel` uses `requireUser` and answers 200 with the cancelled rental
+- [x] `npm run verify -- 040` passes (tests: `tests/task-040*.test.*`)
 
 ## Hints
 

@@ -1,6 +1,6 @@
 import express from 'express'
 import { listDevices, getDevice } from './devices.js'
-import { listRentals, createRental, RentalError } from './rentals.js'
+import { listRentals, createRental, cancelRental, RentalError } from './rentals.js'
 import { attachUser, requireUser, readCookie, setSessionCookie, clearSessionCookie, COOKIE } from './auth.js'
 import { createUser, authenticate } from './users.js'
 import { createSession, deleteSession } from './sessions.js'
@@ -56,6 +56,10 @@ export function createApp(db) {
   app.post('/api/rentals', requireUser, (req, res) => {
     const rental = createRental(db, req.body, undefined, req.user.id)
     res.status(201).json(rental)
+  })
+
+  app.post('/api/rentals/:id/cancel', requireUser, (req, res) => {
+    res.json(cancelRental(db, req.params.id, req.user))
   })
 
   app.use('/api', (req, res) => {
