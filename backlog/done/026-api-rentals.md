@@ -10,11 +10,11 @@ Add the rental routes to `server/app.js`: `GET /api/rentals` lists the rentals, 
 
 ## Acceptance criteria
 
-- [ ] `GET /api/rentals` answers the list from `listRentals`
-- [ ] `POST /api/rentals` takes `{ deviceId, startDate, endDate }`, calls `createRental` and answers status 201 with the saved rental; the client cannot choose the price, the id or the time stamp
-- [ ] A `RentalError` answers with its own status and `{ "error": message }`: 400, 404 or 409
-- [ ] Broken JSON in the request answers 400 with an `{ "error": ... }` body; any other unexpected error answers 500 with `{ "error": "Something went wrong" }`
-- [ ] `npm run verify -- 026` passes (tests: `tests/task-026*.test.*`)
+- [x] `GET /api/rentals` answers the list from `listRentals`
+- [x] `POST /api/rentals` takes `{ deviceId, startDate, endDate }`, calls `createRental` and answers status 201 with the saved rental; the client cannot choose the price, the id or the time stamp
+- [x] A `RentalError` answers with its own status and `{ "error": message }`: 400, 404 or 409
+- [x] Broken JSON in the request answers 400 with an `{ "error": ... }` body; any other unexpected error answers 500 with `{ "error": "Something went wrong" }`
+- [x] `npm run verify -- 026` passes (tests: `tests/task-026*.test.*`)
 
 ## Hints
 
