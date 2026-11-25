@@ -69,6 +69,6 @@ describe('027 server entry point', () => {
   })
 
   it('the database file is not committed', () => {
-    expect(readFileSync('.gitignore', 'utf8')).toMatch(/^data\/$/m)
+    expect(readFileSync('.gitignore', 'utf8')).toMatch(/^\/?data\/$/m)
   })
 })
