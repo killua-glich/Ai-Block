@@ -4,19 +4,23 @@ function toDevice(row) {
     id: row.id,
     name: row.name,
     category: row.category,
-    pricePerDay: row.price_per_day,
+    pricePerDay: row.price_cents / 100,
     description: row.description,
     specs: JSON.parse(row.specs),
     available: row.available === 1,
   }
 }
 
+// Every query that reads devices starts like this: the category name comes from its own table.
+const SELECT_DEVICE =
+  'SELECT d.id, d.name, c.name AS category, d.price_cents, d.description, d.specs, d.available FROM devices d JOIN categories c ON c.id = d.category_id'
+
 export function listDevices(db) {
-  return db.prepare('SELECT * FROM devices ORDER BY id').all().map(toDevice)
+  return db.prepare(`${SELECT_DEVICE} ORDER BY d.id`).all().map(toDevice)
 }
 
 export function getDevice(db, id) {
-  const row = db.prepare('SELECT * FROM devices WHERE id = ?').get(id)
+  const row = db.prepare(`${SELECT_DEVICE} WHERE d.id = ?`).get(id)
   return row ? toDevice(row) : null
 }
 
@@ -48,6 +52,13 @@ function readDevice(input) {
   return { name: cleanName, category: cleanCategory, pricePerDay, description, specs: specs.map((s) => s.trim()), available }
 }
 
+// The id of a category. A new one is made when there is none yet. Letter case does not matter:
+// "camera" finds "Camera", and the first spelling stays.
+export function categoryId(db, name) {
+  db.prepare('INSERT OR IGNORE INTO categories (name) VALUES (?)').run(name)
+  return db.prepare('SELECT id FROM categories WHERE name = ?').get(name).id
+}
+
 // A second device with the same name breaks the unique index: say so in plain words.
 function rethrow(err) {
   if (/UNIQUE/.test(err.message)) throw new DeviceError(409, 'A device with that name already exists.')
@@ -58,8 +69,8 @@ export function createDevice(db, input, now = new Date().toISOString()) {
   const d = readDevice(input)
   try {
     const result = db
-      .prepare('INSERT INTO devices (name, category, price_per_day, description, specs, available, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)')
-      .run(d.name, d.category, d.pricePerDay, d.description, JSON.stringify(d.specs), d.available ? 1 : 0, now)
+      .prepare('INSERT INTO devices (name, category_id, price_cents, description, specs, available, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)')
+      .run(d.name, categoryId(db, d.category), Math.round(d.pricePerDay * 100), d.description, JSON.stringify(d.specs), d.available ? 1 : 0, now)
     return getDevice(db, Number(result.lastInsertRowid))
   } catch (err) {
     return rethrow(err)
@@ -71,8 +82,8 @@ export function updateDevice(db, id, input, now = new Date().toISOString()) {
   const d = readDevice(input)
   try {
     db.prepare(
-      'UPDATE devices SET name = ?, category = ?, price_per_day = ?, description = ?, specs = ?, available = ?, updated_at = ? WHERE id = ?',
-    ).run(d.name, d.category, d.pricePerDay, d.description, JSON.stringify(d.specs), d.available ? 1 : 0, now, id)
+      'UPDATE devices SET name = ?, category_id = ?, price_cents = ?, description = ?, specs = ?, available = ?, updated_at = ? WHERE id = ?',
+    ).run(d.name, categoryId(db, d.category), Math.round(d.pricePerDay * 100), d.description, JSON.stringify(d.specs), d.available ? 1 : 0, now, id)
   } catch (err) {
     rethrow(err)
   }

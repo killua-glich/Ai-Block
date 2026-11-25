@@ -10,11 +10,11 @@ Migration step 6 rebuilds the `devices` table: categories move into a table of t
 
 ## Acceptance criteria
 
-- [ ] `MIGRATIONS` gets a sixth step, version 6, with `foreignKeys: false`: it makes the table `categories` (`id`, `name` unique, letter case ignored), fills it from the categories of the devices, makes `devices_v6` with `category_id` (a category that exists) and `price_cents` (a whole number, zero or more) instead of `category` and `price_per_day`, copies the devices, drops the old table, renames the new one to `devices` and makes the two indexes again (`devices_name_unique` is unique; `devices_category_index` is on `category_id`)
-- [ ] `server/devices.js` reads devices through one query that joins the category: `toDevice` gives `category` as the text and `pricePerDay` as `price_cents / 100`; it exports `categoryId(db, name)` (finds a category in any letter case, or makes it); `createDevice` and `updateDevice` use it and store `Math.round(pricePerDay * 100)`
-- [ ] `server/seed.js` seeds devices with `category_id` and `price_cents` (using `categoryId`)
-- [ ] A database file at version 5, and one from the very first version, are upgraded without losing a device or a rental; `listDevices` still gives exactly the devices of `src/data/devices.js`
-- [ ] `npm run verify -- 051` passes (tests: `tests/task-051*.test.*`)
+- [x] `MIGRATIONS` gets a sixth step, version 6, with `foreignKeys: false`: it makes the table `categories` (`id`, `name` unique, letter case ignored), fills it from the categories of the devices, makes `devices_v6` with `category_id` (a category that exists) and `price_cents` (a whole number, zero or more) instead of `category` and `price_per_day`, copies the devices, drops the old table, renames the new one to `devices` and makes the two indexes again (`devices_name_unique` is unique; `devices_category_index` is on `category_id`)
+- [x] `server/devices.js` reads devices through one query that joins the category: `toDevice` gives `category` as the text and `pricePerDay` as `price_cents / 100`; it exports `categoryId(db, name)` (finds a category in any letter case, or makes it); `createDevice` and `updateDevice` use it and store `Math.round(pricePerDay * 100)`
+- [x] `server/seed.js` seeds devices with `category_id` and `price_cents` (using `categoryId`)
+- [x] A database file at version 5, and one from the very first version, are upgraded without losing a device or a rental; `listDevices` still gives exactly the devices of `src/data/devices.js`
+- [x] `npm run verify -- 051` passes (tests: `tests/task-051*.test.*`)
 
 ## Hints
 

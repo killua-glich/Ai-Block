@@ -101,6 +101,36 @@ CREATE INDEX rentals_device_status_dates ON rentals (device_id, status, start_da
 CREATE INDEX rentals_user_index ON rentals (user_id);
 `,
   },
+  {
+    version: 6,
+    name: 'categories table and device prices in whole cents',
+    foreignKeys: false,
+    sql: `
+CREATE TABLE categories (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL UNIQUE COLLATE NOCASE
+);
+INSERT INTO categories (name) SELECT category FROM devices GROUP BY category COLLATE NOCASE ORDER BY category;
+
+CREATE TABLE devices_v6 (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  category_id INTEGER NOT NULL REFERENCES categories (id),
+  price_cents INTEGER NOT NULL CHECK (typeof(price_cents) = 'integer' AND price_cents >= 0),
+  description TEXT NOT NULL DEFAULT '',
+  specs TEXT NOT NULL DEFAULT '[]',
+  available INTEGER NOT NULL DEFAULT 1 CHECK (available IN (0, 1)),
+  updated_at TEXT NOT NULL DEFAULT ''
+);
+INSERT INTO devices_v6 (id, name, category_id, price_cents, description, specs, available, updated_at)
+  SELECT d.id, d.name, c.id, CAST(ROUND(d.price_per_day * 100) AS INTEGER), d.description, d.specs, d.available, d.updated_at
+  FROM devices d JOIN categories c ON c.name = d.category;
+DROP TABLE devices;
+ALTER TABLE devices_v6 RENAME TO devices;
+CREATE UNIQUE INDEX devices_name_unique ON devices (name);
+CREATE INDEX devices_category_index ON devices (category_id);
+`,
+  },
 ]
 
 export function currentVersion(db) {
