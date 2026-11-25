@@ -8,6 +8,7 @@ import DeviceDetail from './pages/DeviceDetail.jsx'
 import MyRentals from './pages/MyRentals.jsx'
 import NotFound from './pages/NotFound.jsx'
 import Login from './pages/Login.jsx'
+import Admin from './pages/Admin.jsx'
 import Register from './pages/Register.jsx'
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
           <Route path="/" element={<Catalog />} />
           <Route path="/devices/:id" element={<DeviceDetail />} />
           <Route path="/rentals" element={<RequireLogin><MyRentals /></RequireLogin>} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />

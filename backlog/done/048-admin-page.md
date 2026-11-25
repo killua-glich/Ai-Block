@@ -10,12 +10,12 @@ A new page `/admin` where an admin sees all devices in a table and can add, chan
 
 ## Acceptance criteria
 
-- [ ] `Admin.jsx` (new): for `status` `anonymous` it redirects to `/login` (with `state={{ from: '/admin' }}`); for a logged-in user who is not an admin it shows the `h1` `Admin` and `<p className="error">Admins only.</p>`; otherwise it shows the page
-- [ ] The page has the `h1` `Admin`, a form (class `admin-form`) with the fields `Name`, `Category`, `Price per day`, `Specs` (comma separated), `Description` and a checkbox `Available`, and a table of all devices (Device, Category, Available, Price, and a column with the buttons)
-- [ ] `Add device` sends `createDeviceAdmin` with `{ name, category, pricePerDay (a number), description, specs (a list), available }`; `Edit` in a row fills the form and the button becomes `Save changes` (`updateDeviceAdmin`); `Cancel editing` empties the form; `Delete` calls `deleteDeviceAdmin`
-- [ ] After every change the table is loaded again; success shows `Device added.`, `Device saved.` or `NAME deleted.` in `<p className="success" role="status">`; a refusal shows the message of the server in `<p className="error" role="alert">` and keeps what was typed
-- [ ] `App.jsx` has the route `/admin`; `index.css` has the rules `.admin-form`, `.admin-form label`, `.admin-form input:not([type="checkbox"])`, `.admin-form textarea` and `.admin-actions`
-- [ ] `npm run verify -- 048` passes (tests: `tests/task-048*.test.*`)
+- [x] `Admin.jsx` (new): for `status` `anonymous` it redirects to `/login` (with `state={{ from: '/admin' }}`); for a logged-in user who is not an admin it shows the `h1` `Admin` and `<p className="error">Admins only.</p>`; otherwise it shows the page
+- [x] The page has the `h1` `Admin`, a form (class `admin-form`) with the fields `Name`, `Category`, `Price per day`, `Specs` (comma separated), `Description` and a checkbox `Available`, and a table of all devices (Device, Category, Available, Price, and a column with the buttons)
+- [x] `Add device` sends `createDeviceAdmin` with `{ name, category, pricePerDay (a number), description, specs (a list), available }`; `Edit` in a row fills the form and the button becomes `Save changes` (`updateDeviceAdmin`); `Cancel editing` empties the form; `Delete` calls `deleteDeviceAdmin`
+- [x] After every change the table is loaded again; success shows `Device added.`, `Device saved.` or `NAME deleted.` in `<p className="success" role="status">`; a refusal shows the message of the server in `<p className="error" role="alert">` and keeps what was typed
+- [x] `App.jsx` has the route `/admin`; `index.css` has the rules `.admin-form`, `.admin-form label`, `.admin-form input:not([type="checkbox"])`, `.admin-form textarea` and `.admin-actions`
+- [x] `npm run verify -- 048` passes (tests: `tests/task-048*.test.*`)
 
 ## Hints
 
