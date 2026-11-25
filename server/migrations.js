@@ -30,6 +30,19 @@ CREATE TABLE IF NOT EXISTS rentals (
 CREATE INDEX IF NOT EXISTS rentals_device_dates ON rentals (device_id, start_date, end_date);
 `,
   },
+  {
+    version: 2,
+    name: 'rental status, device update time, indexes',
+    sql: `
+ALTER TABLE devices ADD COLUMN updated_at TEXT NOT NULL DEFAULT '';
+ALTER TABLE rentals ADD COLUMN status TEXT NOT NULL DEFAULT 'active' CHECK (status IN ('active', 'cancelled'));
+ALTER TABLE rentals ADD COLUMN cancelled_at TEXT;
+CREATE UNIQUE INDEX devices_name_unique ON devices (name);
+CREATE INDEX devices_category_index ON devices (category);
+DROP INDEX rentals_device_dates;
+CREATE INDEX rentals_device_status_dates ON rentals (device_id, status, start_date, end_date);
+`,
+  },
 ]
 
 export function currentVersion(db) {

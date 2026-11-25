@@ -19,6 +19,7 @@ function toRental(row) {
     endDate: row.end_date,
     totalPrice: row.total_price,
     createdAt: row.created_at,
+    status: row.status,
   }
 }
 
@@ -40,7 +41,7 @@ export function createRental(db, input, today = new Date().toISOString().slice(0
   if (!device.available) throw new RentalError(409, 'This device is currently not available.')
 
   const clash = db
-    .prepare('SELECT 1 FROM rentals WHERE device_id = ? AND start_date <= ? AND end_date >= ?')
+    .prepare("SELECT 1 FROM rentals WHERE device_id = ? AND status = 'active' AND start_date <= ? AND end_date >= ?")
     .get(deviceId, endDate, startDate)
   if (clash) throw new RentalError(409, 'Those dates are already booked.')
 
@@ -52,6 +53,7 @@ export function createRental(db, input, today = new Date().toISOString().slice(0
     endDate,
     totalPrice: days * device.pricePerDay,
     createdAt: new Date().toISOString(),
+    status: 'active',
   }
   db.prepare(
     'INSERT INTO rentals (id, device_id, start_date, end_date, total_price, created_at) VALUES (?, ?, ?, ?, ?, ?)',

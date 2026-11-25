@@ -10,11 +10,11 @@ The first real schema improvement, made as migration step 2: rentals get a statu
 
 ## Acceptance criteria
 
-- [ ] `MIGRATIONS` in `server/migrations.js` gets a second step, version 2, after step 1 (step 1 stays exactly as it is): it adds `devices.updated_at`, `rentals.status` (`active` or `cancelled`, default `active`) and `rentals.cancelled_at`, a unique index on the device name, an index on the device category, and replaces the old rentals index by `(device_id, status, start_date, end_date)`
-- [ ] A database file at version 1 is upgraded without losing data; its rentals become `active`
-- [ ] `toRental` in `server/rentals.js` also gives the `status`; a rental made by `createRental` has `status: 'active'`
-- [ ] The overlap check in `createRental` only looks at active rentals: a cancelled rental no longer blocks its dates
-- [ ] `npm run verify -- 034` passes (tests: `tests/task-034*.test.*`)
+- [x] `MIGRATIONS` in `server/migrations.js` gets a second step, version 2, after step 1 (step 1 stays exactly as it is): it adds `devices.updated_at`, `rentals.status` (`active` or `cancelled`, default `active`) and `rentals.cancelled_at`, a unique index on the device name, an index on the device category, and replaces the old rentals index by `(device_id, status, start_date, end_date)`
+- [x] A database file at version 1 is upgraded without losing data; its rentals become `active`
+- [x] `toRental` in `server/rentals.js` also gives the `status`; a rental made by `createRental` has `status: 'active'`
+- [x] The overlap check in `createRental` only looks at active rentals: a cancelled rental no longer blocks its dates
+- [x] `npm run verify -- 034` passes (tests: `tests/task-034*.test.*`)
 
 ## Hints
 
