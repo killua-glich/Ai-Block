@@ -10,11 +10,11 @@ A new file `server/index.js` opens the database file, puts the devices in on the
 
 ## Acceptance criteria
 
-- [ ] `server/index.js` exports `startServer({ port = 3001, dbPath = 'data/ai-block.db' })`: it creates the database folder if needed, opens the database, seeds the devices, starts listening and returns `{ server, db }`
-- [ ] Run directly (`npm run server`) it starts on `process.env.PORT` or 3001, using `process.env.DB_PATH` or `data/ai-block.db`
-- [ ] Starting again with the same database file keeps the rentals and does not add the devices twice
-- [ ] `vite.config.js` has `server.proxy` sending `/api` to `http://127.0.0.1:3001`
-- [ ] `npm run verify -- 027` passes (tests: `tests/task-027*.test.*`)
+- [x] `server/index.js` exports `startServer({ port = 3001, dbPath = 'data/ai-block.db' })`: it creates the database folder if needed, opens the database, seeds the devices, starts listening and returns `{ server, db }`
+- [x] Run directly (`npm run server`) it starts on `process.env.PORT` or 3001, using `process.env.DB_PATH` or `data/ai-block.db`
+- [x] Starting again with the same database file keeps the rentals and does not add the devices twice
+- [x] `vite.config.js` has `server.proxy` sending `/api` to `http://127.0.0.1:3001`
+- [x] `npm run verify -- 027` passes (tests: `tests/task-027*.test.*`)
 
 ## Hints
 
